@@ -13,10 +13,10 @@ class UpdatePetService
 
   def convert_bools(pet_hash)
     pet = pet_hash.deep_dup
-    pet[:spayed]            = pet[:spayed]            == 'yes' ? true : false
+    pet[:spayed]            = pet[:spayed] == 'yes' ? true : false
     pet[:objection_to_spay] = pet[:objection_to_spay] == 'yes' ? true : false
-    pet[:microchipped]      = pet[:microchipped]      == 'yes' ? true : false
-    pet[:vaccinations]      = pet[:vaccinations]      == 'yes' ? true : false
+    pet[:microchipped]      = pet[:microchipped] == 'yes' ? true : false
+    pet[:vaccinations]      = pet[:vaccinations] == 'yes' ? true : false
     pet
   end
 end

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
 
   def self.pending
-    includes(:groups).where( :groups => { :group_id => nil } )
+    includes(:groups).where(groups: { group_id: nil })
   end
 
   def self.get_user(user_hash)

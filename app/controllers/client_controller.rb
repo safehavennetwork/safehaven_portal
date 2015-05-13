@@ -34,7 +34,7 @@ class ClientController < ApplicationController
 
     flash[:status]  = 'success'
     flash[:message] = 'Client added successfully!'
-    #render "organization/#{current_user.org_type}/dashboard"
+    # render "organization/#{current_user.org_type}/dashboard"
 
     if current_user.with_shelter?
       @current_pets = []

@@ -10,9 +10,7 @@ class PetController < ApplicationController
   def update
     update_service = UpdatePet.new(update_params)
     @pet           = update_service.call
-    unless @pet.errors.blank?
-      set_flash('failure', 'Failed to update pet')
-    end
+    set_flash('failure', 'Failed to update pet') unless @pet.errors.blank?
     flash = set_flash('success', 'Pet has been updated!')
     render action: 'show'
   end
@@ -24,12 +22,12 @@ class PetController < ApplicationController
 
   def delete
     if Pet.delete(pet_id_param)
-      render json: {status: 'success' }
+      render json: { status: 'success' }
     else
-      render json: {status: 'failure' }
+      render json: { status: 'failure' }
     end
   rescue => e
-    render json: {status: 'failure'}
+    render json: { status: 'failure' }
   end
 
   def update_params

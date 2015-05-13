@@ -9,21 +9,23 @@ gem 'slim-rails'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+gem 'therubyracer'
+gem 'less-rails' # Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails'
 
 gem 'turbolinks'
 
+gem 'rubocop', require: false
+
 group :development, :test do
-  #gem 'byebug'
+  # gem 'byebug'
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-byebug'
   gem 'forgery'
 
   gem 'jasmine'
-  
+
   gem 'rspec-rails'
   gem 'capybara'
   gem 'capybara-email'
@@ -40,4 +42,5 @@ end
 
 group :development do
   gem 'better_errors'
+  gem 'brakeman', require: false
 end

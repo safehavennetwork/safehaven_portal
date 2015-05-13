@@ -16,7 +16,7 @@ class CreateClientWithPets
     )
 
     unless !pet_hash || pet_hash.empty?
-      pet_hash.each do | pet |
+      pet_hash.each do |pet|
         @client.pets << Pet.create(pet)
       end
     end
