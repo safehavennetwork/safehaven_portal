@@ -15,6 +15,8 @@ gem "twitter-bootstrap-rails"
 
 gem 'turbolinks'
 
+gem 'rubocop', require: false
+
 group :development, :test do
   #gem 'byebug'
   gem 'pry'
@@ -40,4 +42,5 @@ end
 
 group :development do
   gem 'better_errors'
+  gem 'brakeman', require: false
 end
