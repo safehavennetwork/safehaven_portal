@@ -1,0 +1,17 @@
+nav.navbar.navbar-default role="navigation"
+  .container-fluid
+    .navbar-header
+      button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href="http://thesafehavennetwork.org" id="logoA"
+        = image_tag "SHN-side-logo-2.png", id: "logoImg"
+
+    .collapse.navbar-collapse.pull-right id="navbar-collapse-1" style='margin-top: 1em; width: 10em;'
+      - if current_user
+        li
+          = link_to "Dashboard", root_url, style: 'font-weight: 900;'
+        li
+          = link_to "Sign out", destroy_user_session_path, :method => :delete, style: 'font-weight: 900;'

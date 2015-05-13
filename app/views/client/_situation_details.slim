@@ -1,0 +1,93 @@
+form.form-horizontal action="/organization/#{@org_id}/new_client" method="post"
+  .form-group
+    label.col-sm-5.control-label
+      p  Approximately how long will temporary housing be required? (Please note that our program is currently limited to 30 day placement.)
+    .col-sm-7
+      textarea.form-control row='3' name='housing_term'
+  .form-group.form-inline
+    label.col-sm-5.control-label
+      p Are the police currently involved?
+    .col-sm-7
+      .radio-inline
+        label
+          input type="radio" name="police_involved" value="yes" style='padding: 10px;'
+            | Yes
+      .radio-inline
+        label
+          input type="radio" name="police_involved" value="no"
+            | No
+
+  .form-group.form-inline
+    label.col-sm-5.control-label
+      p Does the client have a protective order?
+    .col-sm-7
+      .radio-inline
+        label
+          input type="radio" name="protective_order" value="yes" style='padding: 10px;'
+            | Yes
+      .radio-inline
+        label
+          input type="radio" name="protective_order" value="no"
+            | No
+  .form-group
+    label.col-sm-5.control-label
+      p Please add any details about the abuser that may be helpful for protection. (frequent locations, names of friends, phone numbers used, etc)
+    .col-sm-7
+      textarea.form-control rows=3 name='abuser_notes'
+  .form-group.form-inline
+    label.col-sm-5.control-label
+      p Is the pet covered in the protective order?
+    .col-sm-7
+      .radio-inline
+        label
+          input type="radio" name="protective_order_pet_covered" value="yes" style='padding: 10px;'
+            | Yes
+      .radio-inline
+        label
+          input type="radio" name="protective_order_pet_covered" value="no"
+            | No
+      .radio-inline
+        label
+          input type="radio" name="protective_order_pet_covered" value="" checked='checked'
+            | NA
+  .form-group.form-inline
+    label.col-sm-5.control-label
+      p Does the client have any paperwork or evidence indicating ownership of the pet? (i.e. vet receipts, pictures, etc)
+    .col-sm-7
+      .radio-inline
+        label
+          input type="radio" name="client_has_ownership_evidence" value="yes" style='padding: 10px;'
+            | Yes
+      .radio-inline
+        label
+          input type="radio" name="client_has_ownership_evidence" value="no"
+            | No
+  .form-group.form-inline
+    label.col-sm-5.control-label
+      p Does the abuser have any paperwork or evidence indicating ownership of the pet? (i.e. vet receipts, pictures, etc)
+    .col-sm-7
+      .radio-inline
+        label
+          input type="radio" name="abuser_has_ownership_evidence" value="yes" style='padding: 10px;'
+            | Yes
+      .radio-inline
+        label
+          input type="radio" name="abuser_has_ownership_evidence" value="no"
+            | No
+
+  .form-group.form-inline
+    label.col-sm-5.control-label
+      p Has the client explored other boarding options (i.e. friends, family, private vet or boarding)
+    .col-sm-7
+      .radio-inline
+        label
+          input type="radio" name="other_boarding_options_available" value="yes" style='padding: 10px;'
+            | Yes
+      .radio-inline
+        label
+          input type="radio" name="other_boarding_options_available" value="no"
+            | No
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      button.btn.btn-success type="submit" Update Client

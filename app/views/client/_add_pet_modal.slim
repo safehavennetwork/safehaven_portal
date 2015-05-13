@@ -1,0 +1,28 @@
+.modal.fade id='sign-up-modal'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title Add a new pet
+      .modal-body
+        .row
+          .col-sm-6.col-md-6
+            .thumbnail
+              = image_tag 'shelter.png', style: 'height: 14em;'
+              .caption
+                h2 Shelter
+                p Shelters help place pets in to great temporary foster homes!
+                p style='text-align:center;'
+                  a.btn.btn-primary href='/organization/sign-up/shelter' Sign up!
+
+          .col-sm-6.col-md-6
+            .thumbnail
+              = image_tag 'advocate.png'
+              .caption
+                h2 Advocate
+                p Advocates work with clients and shelters to place pets!
+                p style='text-align:center;'
+                  a.btn.btn-primary href='/organization/sign-up/advocate' Sign up!
+
+      .modal-footer
+        a.btn.btn-primary href='#' Not sure? Click here!

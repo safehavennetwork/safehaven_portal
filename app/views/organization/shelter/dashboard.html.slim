@@ -1,0 +1,17 @@
+.row
+  .col-md-12
+    .pull-left
+      h1 = @org.name
+    .pull-right
+      a.btn.btn-primary href="/organization/#{@org.id}/edit" Edit Profile
+      a.btn.btn-primary href="mailto:safe@thesafehavennetwork.org" Contact Safe Haven
+.row
+  .col-md-10.col-md-offset-1
+    h2 Current pets (#{@current_pets.count})
+    = render 'organization/shelter/pet_list', pet_list: @current_pets
+    
+
+.row
+  .col-md-10.col-md-offset-1
+    h2 Pets in need (#{@pets_in_need.count})
+    = render 'organization/shelter/pet_list', pet_list: @pets_in_need

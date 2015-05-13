@@ -1,0 +1,45 @@
+.row
+  .col-md-10
+    table.table.table-hover id='pet_list'
+      th
+        td
+          p Pet Type
+        td
+          p Breed
+        td
+          p Weight
+        td
+      - unless pet_list.blank?
+        - for pet in pet_list
+          tr id="pet_#{pet.id}" persisted='true'
+            td
+              a href='/pet/#{pet.id}'
+                span.glyphicon.glyphicon-pencil
+            td
+              strong = "#{pet.pet_type.pet_type}"
+            td
+              strong = "#{pet.breed}"
+            td
+              strong = "#{pet.weight}"
+            td
+              span.glyphicon.glyphicon-remove style='color:red;' onclick="deletePetRow('pet_#{pet.id}');"
+
+javascript:
+  function deletePetRow(row_id){
+    console.info(row_id);
+    row = $('#'+row_id);
+    if (row.attr('persisted') == 'true'){
+      url = '/pet/' + row_id.split('_')[1] + '/delete';
+      $.post(url, function( data ) {
+          if (data.status == 'failure'){
+            row.animate({ backgroundColor: '#FDACAC'}, 1).animate({ backgroundColor: orig_color}, 1500)
+          }
+          else {
+            row.remove();
+          }
+        });
+    }
+    else {
+      row.remove();
+    }
+  }

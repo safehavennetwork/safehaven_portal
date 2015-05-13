@@ -1,0 +1,64 @@
+form action="/client/#{@client.id}/pet/new" method="post"
+  .form-group
+    label.col-sm-5.control-label  for="pet_breed" Type
+    .col-sm-7
+      select.form-control style='width: 100%' name='pet_type'
+        option value='dog'    Dog
+        option value='cat'    Cat
+        option value= 'other' other
+  .form-group
+    label.col-sm-5.control-label  for="pet_breed" Breed
+    .col-sm-7
+      input.form-control type="text" id="pet_breed"  style='margin-bottom:4px;' name='breed'
+  .form-group style='margin-bottom:4px;'
+    label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
+    .col-sm-7
+      input.form-control type="text" id="pet_weight" name='weight'
+    br
+  button.btn.btn-success.pull-right type='submit' style='margin-top: 10px; margin-bottom: 10px;' Add Pet
+
+.row
+  .col-md-12
+    table.table.table-hover id='pet_list'
+      th
+        td
+          p Pet Type
+        td
+          p Breed
+        td
+          p Weight
+        td
+      - unless @client.pets.blank?
+        - for pet in @client.pets
+          tr id="pet_#{pet.id}" persisted='true'
+            td
+              a href='/pet/#{pet.id}'
+                span.glyphicon.glyphicon-pencil
+            td
+              strong = "#{pet.pet_type.pet_type}"
+            td
+              strong = "#{pet.breed}"
+            td
+              strong = "#{pet.weight}"
+            td
+              span.glyphicon.glyphicon-remove style='color:red;' onclick="deletePetRow('pet_#{pet.id}');"
+
+javascript:
+  function deletePetRow(row_id){
+    console.info(row_id);
+    row = $('#'+row_id);
+    if (row.attr('persisted') == 'true'){
+      url = '/pet/' + row_id.split('_')[1] + '/delete';
+      $.post(url, function( data ) {
+          if (data.status == 'failure'){
+            row.animate({ backgroundColor: '#FDACAC'}, 1).animate({ backgroundColor: orig_color}, 1500)
+          }
+          else {
+            row.remove();
+          }
+        });
+    }
+    else {
+      row.remove();
+    }
+  }

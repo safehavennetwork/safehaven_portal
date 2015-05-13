@@ -1,0 +1,56 @@
+.login-form-panel
+  h2 Log in
+  .row
+    .col-sm-6
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-group
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, class: 'form-control'
+
+        .form-group
+          = f.label :password
+          br
+          = f.password_field :password, class: 'form-control'
+
+        .actions
+          = f.submit "Log in" , class: 'btn btn-primary'
+
+      br
+      - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+        = link_to "Forgot your password?", new_password_path(resource_name)
+
+      br
+      br
+      br
+      a.btn.btn-primary href='#sign-up-modal' role='button' data-toggle='modal' New here?  Sign up!
+
+.modal.fade id='sign-up-modal'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title What type of organization are you?
+      .modal-body
+        .row
+          .col-sm-6.col-md-6
+            .thumbnail
+              = image_tag 'shelter.png', style: 'height: 14em;'
+              .caption
+                h2 Shelter
+                p Shelters help place pets in to great temporary foster homes!
+                p style='text-align:center;'
+                  a.btn.btn-primary href='/organization/sign-up/shelter' Sign up!
+
+          .col-sm-6.col-md-6
+            .thumbnail
+              = image_tag 'advocate.png'
+              .caption
+                h2 Advocate
+                p Advocates work with clients and shelters to place pets!
+                p style='text-align:center;'
+                  a.btn.btn-primary href='/organization/sign-up/advocate' Sign up!
+
+      .modal-footer
+        a.btn.btn-primary href='#' Not sure? Click here!
+

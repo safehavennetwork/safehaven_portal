@@ -1,0 +1,77 @@
+.row style='min-height: 35%;'
+  .col-md-6 style='min-height: 20em;'
+    h2 Pending users (#{@pending_users.count})
+    - unless @pending_users.blank?
+      .table-responsive
+        table.table.table-hover
+          th
+            td
+              td Name
+              td Organization
+              td Email
+              td
+            - for user in @pending_users
+              tr
+                td
+                  a href='user/#{user.id}'
+                    span.glyphicon.glyphicon-pencil
+                td = "#{user.first_name} #{user.last_name}"
+                td = user.organization.name
+                td = user.email
+                td
+                  input.form-control checked=('checked' unless user.disabled?) type='checkbox' name="toggle_application_status" id="toggle_user_#{user.id}"
+
+  .col-md-6 style='min-height: 20em;'
+     h2 Recent Activity
+
+.row
+  .col-md-6 style='min-height: 20em;'
+    h2 All Users (#{@all_users.count})
+    - unless @all_users.blank?
+      .table-responsive
+        table.table.table-hover
+          th
+            td
+            td Name
+            td Organization
+            td Email
+            td Last Sign In
+            td
+          - for user in @all_users
+            tr
+              td
+              td
+                a href='#'
+                  span.glyphicon.glyphicon-pencil
+              td = "#{user.first_name} #{user.last_name}"
+              td = user.organization.try(:name)  || ''
+              td = user.email
+              td = user.last_sign_in_at.try(:strftime, '%m/%d/%Y') || ''
+              td
+                input.form-control checked=('checked' unless user.disabled?) type='checkbox' name="toggle_application_status" id="toggle_user_#{user.id}"
+
+  .col-md-6 style='min-height: 20em;'
+     h2 Stats
+
+javascript:
+  $("[name='toggle_application_status']").bootstrapSwitch(
+    { onText:  'Enabled',
+      offText: 'Disabled',
+      size:    'small',
+      onSwitchChange: function(event, state){
+        str_split = event.target.id.split('_');
+        url = '/toggle/' + str_split[1] + '/' + str_split[2] + '/' + state;
+        $.post( url, function( data ) {
+          row = $('#' + event.target.id).parent().parent().parent().parent();
+          orig_color = row.css('background-color')
+          if (data.status == 'failure'){
+            row.animate({ backgroundColor: '#FDACAC'}, 1).animate({ backgroundColor: orig_color}, 1500)
+          }
+          else {
+            row.animate({ backgroundColor: '#ACFDC5'}, 1).animate({ backgroundColor: orig_color}, 1500)
+          }
+        });
+      }
+    }
+  );
+

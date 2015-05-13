@@ -1,0 +1,21 @@
+- unless client_list.empty?
+  .table-responsive
+    table.table.table-hover
+      th
+        td Client Name
+        td Application Date
+        td Zip Code
+        td Pet Count
+      - for client in client_list
+        tr
+          td
+            a href='/client/#{client.id}'
+              span.glyphicon.glyphicon-folder-close
+          td
+            p = client.name
+          td
+            p = client.created_at.strftime("%d/%m/%Y")
+          td
+            p = client.address.zip_code.zip_code
+          td
+            p = client.pets.count

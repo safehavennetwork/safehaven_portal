@@ -1,0 +1,15 @@
+html
+  head
+    title @title
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application',               'data-turbolinks-track' => true
+    = csrf_meta_tags
+    / link rel="stylesheet" media="screen" href="/stylesheets/bootstrap.min.css"
+    / link rel="stylesheet" media="screen" href="/stylesheets/main.css"
+    / link rel="shortcut icon" type="image/png" href="/images/favicon.png"
+    
+  
+  body    
+    = render 'shared/navbar'
+    .body-with-gutter style='margin-left: 1em; margin-right: 1em;'
+      = yield

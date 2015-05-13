@@ -1,0 +1,6 @@
+.container
+  .row
+    - if flash[:notice]
+      .flash class=flash[:status]
+        = flash[:notice]
+        .close.fa.fa-times
