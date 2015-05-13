@@ -1,9 +1,9 @@
 class InitialSchema < ActiveRecord::Migration
   def up
-    execute "create table IF NOT EXISTS cities    (city_id     bigint auto_increment not null, city     varchar(191), constraint pk_cities    primary key (city_id));"
-    execute "create table IF NOT EXISTS states    (state_id    bigint auto_increment not null, state    varchar(2),   constraint pk_states    primary key (state_id));"
-    execute "create table IF NOT EXISTS zip_codes (zip_code_id bigint auto_increment not null, zip_code smallint,     constraint pk_zip_codes primary key (zip_code_id));"
-    
+    execute 'create table IF NOT EXISTS cities    (city_id     bigint auto_increment not null, city     varchar(191), constraint pk_cities    primary key (city_id));'
+    execute 'create table IF NOT EXISTS states    (state_id    bigint auto_increment not null, state    varchar(2),   constraint pk_states    primary key (state_id));'
+    execute 'create table IF NOT EXISTS zip_codes (zip_code_id bigint auto_increment not null, zip_code smallint,     constraint pk_zip_codes primary key (zip_code_id));'
+
     execute <<-SQL
       create table IF NOT EXISTS addresses (
         address_id            bigint auto_increment not null,
@@ -21,7 +21,7 @@ class InitialSchema < ActiveRecord::Migration
         phone_number_type_id             bigint auto_increment not null,
         phone_number_type                varchar(191),
         constraint pk_phone_number_types primary key (phone_number_type_id)
-      ); 
+      );
     SQL
 
     execute <<-SQL
@@ -30,7 +30,7 @@ class InitialSchema < ActiveRecord::Migration
         phone_number                varchar(191),
         phone_number_type_id        smallint,
         constraint pk_phone_numbers primary key (phone_number_id)
-      ); 
+      );
     SQL
 
     execute <<-SQL
@@ -65,7 +65,7 @@ class InitialSchema < ActiveRecord::Migration
         explored_boarding_options           tinyint(1) default 0,
         created_at                          datetime,
         constraint pk_advocate_applications primary key (advocate_application_id)
-      ); 
+      );
     SQL
 
     execute <<-SQL
@@ -78,7 +78,7 @@ class InitialSchema < ActiveRecord::Migration
         address_id                 bigint,
         created_at                datetime,
         constraint pk_organizations primary key (organization_id)
-      ); 
+      );
     SQL
 
     execute <<-SQL
@@ -112,7 +112,7 @@ class InitialSchema < ActiveRecord::Migration
         temperament                varchar(191),
         additional_info            varchar(191),
         constraint pk_pets primary  key (pet_id)
-      );  
+      );
     SQL
 
     execute <<-SQL
@@ -123,7 +123,7 @@ class InitialSchema < ActiveRecord::Migration
         last_name                  varchar(191),
         password                   varchar(191),
         primary_phone_number_id    int,
-        secondary_phone_number_id  int,        
+        secondary_phone_number_id  int,
         organization_id            bigint,
         constraint pk_users primary key (user_id)
       );
@@ -139,7 +139,7 @@ class InitialSchema < ActiveRecord::Migration
         address_id                bigint,
         created_at                datetime,
         constraint pk_clients     primary key (client_id)
-        ); 
+        );
     SQL
 
     execute <<-SQL

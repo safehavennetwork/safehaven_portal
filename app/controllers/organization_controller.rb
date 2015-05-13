@@ -6,9 +6,7 @@ class OrganizationController < ApplicationController
     @user            = current_user
     @org             = current_user.organization
 
-    if current_user.disabled
-      render 'users/registrations/pending' and return
-    end
+    render('users/registrations/pending') && return if current_user.disabled
 
     if current_user.site_admin?
       @pending_users = User.pending
@@ -81,7 +79,7 @@ class OrganizationController < ApplicationController
   end
 
   def status_update
-    return_hash = {status: 'failure'}
+    return_hash = { status: 'failure' }
     case params[:type]
     when 'user'
       if params[:status] == 'true'
