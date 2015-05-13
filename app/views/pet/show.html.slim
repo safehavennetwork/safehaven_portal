@@ -1,6 +1,9 @@
 .row
   .col-md-2
-    a.btn.btn-primary href="/client/#{@pet.client.id}" Back to client
+    - if !current_user.with_shelter?
+      a.btn.btn-primary href="/client/#{@pet.client.id}" Back to client
+    - else
+      a.btn.btn-primary href="/" Back to dashboard
   .col-md-2.pull-right
     - if @pet.organization_id == nil && current_user.with_shelter?
       form action="/organization/accept-pet/#{@pet.id}" method="post"
