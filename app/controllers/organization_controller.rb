@@ -26,22 +26,22 @@ class OrganizationController < ApplicationController
   end
 
   def accept_client
-    Client.find(params[:id]).update_attributes(organization: current_user.organization)
+    Client.find(params[:id]).update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
     redirect_to :root
   end
 
   def release_client
-    Client.find(params[:id]).update_attributes(organization: nil)
+    Client.find(params[:id]).update_attributes(organization: nil, updated_at: Time.now, update_action: 'released' )
     redirect_to :root
   end
 
   def accept_pet
-    Pet.find(params[:id]).update_attributes(organization: current_user.organization)
+    Pet.find(params[:id]).update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted' )
     redirect_to :root
   end
 
   def release_pet
-    Pet.find(params[:id]).update_attributes(organization: nil)
+    Pet.find(params[:id]).update_attributes(organization: nil, updated_at: Time.now, update_action: 'released' )
     redirect_to :root
   end
 
