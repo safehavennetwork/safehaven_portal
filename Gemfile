@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.5'
+gem 'puma'
 gem 'mysql2'
 gem 'devise'
 gem 'activeadmin', '~> 1.0.0.pre1'
