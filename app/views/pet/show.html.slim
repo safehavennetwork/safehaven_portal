@@ -24,7 +24,8 @@
       .form-group.form-inline
         label.col-sm-5.control-label  for="org_name" Current Shelter
         .col-sm-7
-          label.form-control style='width: 50%;' type="text" = ("#{@pet.organization.try(:organization_name)  || 'Not yet placed'}")
+          label.form-control style='width: 50%;' type="text" = ("#{@pet.organization.try(:name)  || 'Not yet placed'}")
+          a.pull-right href="/organization/#{@pet.organization.try(:id)}" Shelter Details
 
       .form-group.form-inline
           label.col-sm-5.control-label Pet Type

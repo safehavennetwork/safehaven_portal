@@ -1,57 +1,18 @@
 .row style='min-height: 35%;'
   .col-md-6 style='min-height: 20em;'
-    h2 Pending users (#{@pending_users.count})
     - unless @pending_users.blank?
-      .table-responsive
-        table.table.table-hover
-          th
-            td
-              td Name
-              td Organization
-              td Email
-              td
-            - for user in @pending_users
-              tr
-                td
-                  a href='user/#{user.id}'
-                    span.glyphicon.glyphicon-pencil
-                td = "#{user.first_name} #{user.last_name}"
-                td = user.organization.name
-                td = user.email
-                td
-                  input.form-control checked=('checked' unless user.disabled?) type='checkbox' name="toggle_application_status" id="toggle_user_#{user.id}"
+      = render 'admin/pending_users'
+    - else
+      = render 'admin/all_users'
 
   .col-md-6 style='min-height: 20em;'
-     h2 Recent Activity
+    = render 'admin/recent_activity'
+     
 
 .row
   .col-md-6 style='min-height: 20em;'
-    h2 All Users (#{@all_users.count})
-    - unless @all_users.blank?
-      .table-responsive
-        table.table.table-hover
-          th
-            td
-            td Name
-            td Organization
-            td Email
-            td Last Sign In
-            td
-          - for user in @all_users
-            tr
-              td
-              td
-                a href='#'
-                  span.glyphicon.glyphicon-pencil
-              td = "#{user.first_name} #{user.last_name}"
-              td = user.organization.try(:name)  || ''
-              td = user.email
-              td = user.last_sign_in_at.try(:strftime, '%m/%d/%Y') || ''
-              td
-                input.form-control checked=('checked' unless user.disabled?) type='checkbox' name="toggle_application_status" id="toggle_user_#{user.id}"
-
-  .col-md-6 style='min-height: 20em;'
-     h2 Stats
+    - unless @pending_users.blank?
+      = render 'admin/all_users'
 
 javascript:
   $("[name='toggle_application_status']").bootstrapSwitch(
