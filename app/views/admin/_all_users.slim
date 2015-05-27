@@ -1,0 +1,23 @@
+h2 All Users (#{@all_users.count})
+- unless @all_users.blank?
+  .table-responsive
+    table.table.table-hover
+      th
+        td
+        td Name
+        td Organization
+        td Email
+        td Last Sign In
+        td
+      - for user in @all_users
+        tr
+          td
+          td
+            a href='#'
+              span.glyphicon.glyphicon-pencil
+          td = "#{user.first_name} #{user.last_name}"
+          td = user.organization.try(:name)  || ''
+          td = user.email
+          td = user.last_sign_in_at.try(:strftime, '%m/%d/%Y') || ''
+          td
+            input.form-control checked=('checked' unless user.disabled?) type='checkbox' name="toggle_application_status" id="toggle_user_#{user.id}"
