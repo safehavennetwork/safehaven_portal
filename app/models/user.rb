@@ -33,11 +33,11 @@ class User < ActiveRecord::Base
   end
 
   def with_shelter?
-    org_type == 'shelter'
+    org_type == 'shelter' || site_admin?
   end
 
   def org_type
-    organization.organization_type.organization_type
+    organization.try(:organization_type).try(:organization_type)
   end
 
   def org_id

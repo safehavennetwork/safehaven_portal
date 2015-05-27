@@ -2,6 +2,10 @@ class OrganizationController < ApplicationController
   before_action :authenticate_user!, except: [:sign_up_form, :sign_up]
   skip_before_action :verify_authenticity_token
 
+  def show
+    @organization = Organization.find(params[:id])
+  end
+
   def dashboard
     @user            = current_user
     @org             = current_user.organization
@@ -9,8 +13,9 @@ class OrganizationController < ApplicationController
     render('users/registrations/pending') && return if current_user.disabled
 
     if current_user.site_admin?
-      @pending_users = User.pending
-      @all_users     = User.all
+      @pending_users     = User.pending
+      @all_users         = User.all
+      @recent_activities = GetRecentActivity.call
       render 'admin/dashboard'
     else
       if current_user.with_shelter?
@@ -83,15 +88,15 @@ class OrganizationController < ApplicationController
     case params[:type]
     when 'user'
       if params[:status] == 'true'
-        return_hash[:status] = 'success' if User.find(params[:id]).update_attributes(disabled: nil, groups: [Group.find_by(name: 'user')])
+        return_hash[:status] = 'success' if User.find(params[:id]).update_attributes(disabled: nil, groups: [Group.find_by(name: 'user')], updated_at: Time.now, update_action: 'enabled')
       else
-        return_hash[:status] = 'success' if User.find(params[:id]).update_attributes(disabled: Date.today)
+        return_hash[:status] = 'success' if User.find(params[:id]).update_attributes(disabled: Date.today, updated_at: Time.now, update_action: 'disabled')
       end
     when 'advocate', 'shelter'
       if params[:status] == 'true'
-        return_hash[:status] = 'success' if Organization.find(params[:id]).update_attributes(disabled: nil)
+        return_hash[:status] = 'success' if Organization.find(params[:id]).update_attributes(disabled: nil, updated_at: Time.now, update_action: 'enabled')
       else
-        return_hash[:status] = 'success' if Organization.find(params[:id]).update_attributes(disabled: Date.today)
+        return_hash[:status] = 'success' if Organization.find(params[:id]).update_attributes(disabled: Date.today, updated_at: Time.now, update_action: 'disabled')
       end
     else
     end
