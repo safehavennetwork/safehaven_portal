@@ -20,6 +20,7 @@ class CreateClientWithPets
         @client.pets << Pet.create(pet)
       end
     end
+    UserMailer.new_client(@client).deliver
     @client
   end
 end
