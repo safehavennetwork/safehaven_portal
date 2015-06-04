@@ -23,7 +23,6 @@ class UserMailer < ActionMailer::Base
   end
 
   def site_admin_email
-    #Rails.env.staging? ? 'safe@thesafehavennetwork.org' : 'adam@themoffatt.com'
-    'adam@themoffatt.com'
+    'safe@thesafehavennetwork.org'
   end
 end
