@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526020133) do
+ActiveRecord::Schema.define(version: 20150604015228) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -185,6 +185,7 @@ ActiveRecord::Schema.define(version: 20150526020133) do
     t.datetime "disabled",                              default: '2015-05-26 00:22:39'
     t.date     "updated_at"
     t.text     "update_action"
+    t.date     "welcome_email_sent"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
