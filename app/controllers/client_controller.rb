@@ -3,7 +3,7 @@ class ClientController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    @client = Client.find(params.permit(:id)[:id])
+    @client = Client.includes(:pets, :client_application).find(params.permit(:id)[:id])
   end
 
   def update
@@ -12,6 +12,16 @@ class ClientController < ApplicationController
     client_hash[:address] = GetAddress.call(address_params[:address])
     @client.update_attributes(client_hash)
 
+    redirect_to "/client/#{@client.id}"
+  end
+
+  def client_application_update
+    @client = Client.find(params.permit(:id)[:id])
+    if @client.client_application
+      @client.client_application.update_attributes(client_application_params)
+    else
+      @client.update_attributes(client_application: ClientApplication.create(client_application_params))
+    end
     redirect_to "/client/#{@client.id}"
   end
 
@@ -81,5 +91,21 @@ class ClientController < ApplicationController
         :zip_code
       ]
     )
+  end
+
+  def client_application_params
+    params.permit([
+      :client_id                   ,
+      :status                      ,
+      :abuser_visiting_spots       ,
+      :estimated_length_of_housing ,
+      :police_involved             ,
+      :protective_order            ,
+      :pet_protective_order        ,
+      :client_legal_owner_of_pet   ,
+      :abuser_legal_owner_of_pet   ,
+      :abuser_notes                ,
+      :explored_boarding_options
+    ])
   end
 end
