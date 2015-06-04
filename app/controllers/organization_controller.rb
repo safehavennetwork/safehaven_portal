@@ -31,7 +31,9 @@ class OrganizationController < ApplicationController
   end
 
   def accept_client
-    Client.find(params[:id]).update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
+    client = Client.find(params[:id])
+    client.update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
+    UserMailer.client_accepted(client).deliver
     redirect_to :root
   end
 
@@ -41,7 +43,9 @@ class OrganizationController < ApplicationController
   end
 
   def accept_pet
-    Pet.find(params[:id]).update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted' )
+    pet = Pet.find(params[:id])
+    pet.update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted' )
+    UserMailer.pet_accepted(pet).deliver
     redirect_to :root
   end
 
@@ -88,6 +92,8 @@ class OrganizationController < ApplicationController
     case params[:type]
     when 'user'
       if params[:status] == 'true'
+        user = User.find(params[:id])
+        UserMailer.new_user_welcome(user).deliver unless user.welcome_email_sent
         return_hash[:status] = 'success' if User.find(params[:id]).update_attributes(disabled: nil, groups: [Group.find_by(name: 'user')], updated_at: Time.now, update_action: 'enabled')
       else
         return_hash[:status] = 'success' if User.find(params[:id]).update_attributes(disabled: Date.today, updated_at: Time.now, update_action: 'disabled')
