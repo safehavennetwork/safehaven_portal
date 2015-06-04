@@ -21,12 +21,13 @@ Rails.application.routes.draw do
   end
 
   scope 'client' do
-    get ':id'         => 'client#show'
-    post ':id'         => 'client#update'
-    post ':id/pets'    => 'client#pets'
-    post ':id/delete'  => 'client#delete'
-    post ':id/release' => 'client#release'
-    post ':id/pet/new' => 'client#new_pet'
+    get ':id'              => 'client#show'
+    post ':id'             => 'client#update'
+    post ':id/application' => 'client#client_application_update'
+    post ':id/pets'        => 'client#pets'
+    post ':id/delete'      => 'client#delete'
+    post ':id/release'     => 'client#release'
+    post ':id/pet/new'     => 'client#new_pet'
   end
 
   scope 'pet' do
