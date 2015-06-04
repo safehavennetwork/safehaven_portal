@@ -1,0 +1,13 @@
+.login-form-panel
+  h2 Forgot your password?
+  .row
+    .col-sm-6
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
+        .form-group
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, class: 'form-control'
+
+        .actions
+          = f.submit "Send me reset password instructions", class: 'btn btn-primary'
