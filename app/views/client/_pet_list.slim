@@ -1,22 +1,3 @@
-form action="/client/#{@client.id}/pet/new" method="post"
-  .form-group
-    label.col-sm-5.control-label  for="pet_breed" Type
-    .col-sm-7
-      select.form-control style='width: 100%' name='pet_type'
-        option value='dog'    Dog
-        option value='cat'    Cat
-        option value= 'other' other
-  .form-group
-    label.col-sm-5.control-label  for="pet_breed" Breed
-    .col-sm-7
-      input.form-control type="text" id="pet_breed"  style='margin-bottom:4px;' name='breed'
-  .form-group style='margin-bottom:4px;'
-    label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
-    .col-sm-7
-      input.form-control type="text" id="pet_weight" name='weight'
-    br
-  button.btn.btn-success.pull-right type='submit' style='margin-top: 10px; margin-bottom: 10px;' Add Pet
-
 .row
   .col-md-12
     table.table.table-hover id='pet_list'
@@ -42,6 +23,26 @@ form action="/client/#{@client.id}/pet/new" method="post"
               strong = "#{pet.weight}"
             td
               span.glyphicon.glyphicon-remove style='color:red;' onclick="deletePetRow('pet_#{pet.id}');"
+
+h2 Add Pet
+form action="/client/#{@client.id}/pet/new" method="post"
+  .form-group
+    label.col-sm-5.control-label  for="pet_breed" Type
+    .col-sm-7
+      select.form-control style='width: 100%' name='pet_type'
+        option value='dog'    Dog
+        option value='cat'    Cat
+        option value= 'other' other
+  .form-group
+    label.col-sm-5.control-label  for="pet_breed" Breed
+    .col-sm-7
+      input.form-control type="text" id="pet_breed"  style='margin-bottom:4px;' name='breed'
+  .form-group style='margin-bottom:4px;'
+    label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
+    .col-sm-7
+      input.form-control type="text" id="pet_weight" name='weight'
+    br
+  button.btn.btn-success.pull-right type='submit' style='margin-top: 10px; margin-bottom: 10px;' Add Pet
 
 javascript:
   function deletePetRow(row_id){
