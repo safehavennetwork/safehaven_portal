@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604015228) do
+ActiveRecord::Schema.define(version: 20150604033110) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -54,9 +54,12 @@ ActiveRecord::Schema.define(version: 20150604015228) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "advocate_applications", primary_key: "advocate_application_id", force: true do |t|
-    t.integer  "victim_id",                   limit: 8
-    t.integer  "advocate_id",                 limit: 8
+  create_table "cities", primary_key: "city_id", force: true do |t|
+    t.string "city", limit: 191
+  end
+
+  create_table "client_applications", primary_key: "client_application_id", force: true do |t|
+    t.integer  "client_id",                   limit: 8
     t.integer  "status"
     t.string   "abuser_visiting_spots",       limit: 191
     t.string   "estimated_length_of_housing", limit: 191
@@ -67,10 +70,8 @@ ActiveRecord::Schema.define(version: 20150604015228) do
     t.boolean  "abuser_legal_owner_of_pet",               default: false
     t.boolean  "explored_boarding_options",               default: false
     t.datetime "created_at"
-  end
-
-  create_table "cities", primary_key: "city_id", force: true do |t|
-    t.string "city", limit: 191
+    t.datetime "updated_at"
+    t.text     "abuser_notes"
   end
 
   create_table "clients", primary_key: "client_id", force: true do |t|
