@@ -44,8 +44,9 @@ RSpec.feature "adding a new client", js: true do
         address_verifier = AddressVerifier.new(client.address)
         pet_verifier = PetVerifier.new(client.pets.first)
 
+        expect(client.organization).to eq(org)
         expect(client_verifier).to have_basic_info(client_attributes)
-        expect(address_verifier).to have_full_address(
+        expect(address_verifier).to have_basic_address(
           client_address_attributes,
           client_address_city_attributes,
           client_address_state_attributes,
