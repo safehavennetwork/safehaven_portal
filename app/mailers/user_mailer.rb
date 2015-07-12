@@ -10,6 +10,12 @@ class UserMailer < ActionMailer::Base
     mail(to: user.email, subject: "Safehaven account enabled")
   end
 
+  def new_org_admin_welcome(user)
+    @user = user
+    user.update_attributes(welcome_email_sent: Date.today)
+    mail(to: user.email, subject: "Safehaven account enabled")
+  end
+
   def new_client(client)
     mail(to: site_admin_email, subject: 'A new client has been submitted')
   end
