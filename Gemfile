@@ -36,6 +36,9 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'nyan-cat-formatter'
 
+  gem 'factory_girl_rails'
+  gem 'faker'
+
   gem 'simplecov', require: false
   gem 'vcr',       require: false
   gem 'webmock',   require: false
