@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "adding a new client", js: true do
+RSpec.feature "managing clients as an organization", js: true do
   let!(:user) { create(:user) }
   let!(:org) { create(:advocate_organization, users: [user]) }
 
@@ -18,6 +18,8 @@ RSpec.feature "adding a new client", js: true do
       client_edit_page.add_pet(pet_type, pet_attributes)
 
       eventually do
+        pet_verifier = PetVerifier.new(Pet.last)
+
         expect(pet_verifier).to have_basic_info(pet_type, pet_attributes)
         expect(client_edit_page).to have_reset_pet_form
       end
