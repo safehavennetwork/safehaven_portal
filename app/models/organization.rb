@@ -19,10 +19,12 @@ class Organization < ActiveRecord::Base
       name:              org_hash[:organization_name],
       phone:             PhoneNumber.find_or_create_by!(phone_number: org_hash[:organization_phone_number]),
       admin:             User.get_user(user_hash),
-      organization_type: OrganizationType.find_by(organization_type: org_hash[:type])
+      organization_type: OrganizationType.find_by(organization_type: org_hash[:type]),
+      code:              GetUniqueOrgCode.execute
     )
     # FIXME: ugh
     org.admin.update_attributes(organization: org)
+    org.admin.groups << Group.find_by(name: 'org_admin')
     org
   end
 end
