@@ -7,8 +7,8 @@ class OrganizationController < ApplicationController
   end
 
   def dashboard
-    @user            = current_user
-    @org             = current_user.organization
+    @user = current_user
+    @org  = current_user.organization
 
     render('users/registrations/pending') && return if current_user.disabled
 
@@ -61,7 +61,7 @@ class OrganizationController < ApplicationController
   def sign_up
     @type = params[:type]
     if params[:organization_member] == 'on'
-      unless org = Organization.find_by(org_lookup_params)
+      unless org = Organization.find_by(code: org_lookup_params[:organization_code].upcase)
         render 'users/registration/failed'
       end
 
@@ -93,7 +93,13 @@ class OrganizationController < ApplicationController
     when 'user'
       if params[:status] == 'true'
         user = User.find(params[:id])
-        UserMailer.new_user_welcome(user).deliver unless user.welcome_email_sent
+        unless user.welcome_email_sent
+          if user.org_admin?
+            UserMailer.new_org_admin_welcome(user).deliver
+          else
+            UserMailer.new_user_welcome(user).deliver
+          end
+        end
         return_hash[:status] = 'success' if User.find(params[:id]).update_attributes(disabled: nil, groups: [Group.find_by(name: 'user')], updated_at: Time.now, update_action: 'enabled')
       else
         return_hash[:status] = 'success' if User.find(params[:id]).update_attributes(disabled: Date.today, updated_at: Time.now, update_action: 'disabled')
