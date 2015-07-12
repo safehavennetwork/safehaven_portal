@@ -14,4 +14,4 @@ nav.navbar.navbar-default role="navigation"
         li
           = link_to "Dashboard", root_url, style: 'font-weight: 900;'
         li
-          = link_to "Sign out", destroy_user_session_path, :method => :delete, style: 'font-weight: 900;'
+          = link_to "Sign out", destroy_user_session_path, :method => :delete, style: 'font-weight: 900;', class: "qa-sign-out"

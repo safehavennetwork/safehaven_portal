@@ -1,20 +1,21 @@
 .login-form-panel
   h2 Log in
+
   .row
     .col-sm-6
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .form-group
           = f.label :email
           br
-          = f.email_field :email, autofocus: true, class: 'form-control'
+          = f.email_field :email, autofocus: true, class: 'form-control qa-email'
 
         .form-group
           = f.label :password
           br
-          = f.password_field :password, class: 'form-control'
+          = f.password_field :password, class: 'form-control qa-password'
 
         .actions
-          = f.submit "Log in" , class: 'btn btn-primary'
+          = f.submit "Log in" , class: 'btn btn-primary qa-login-submit'
 
       br
       - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
@@ -53,4 +54,3 @@
 
       .modal-footer
         a.btn.btn-primary href='#' Not sure? Click here!
-
