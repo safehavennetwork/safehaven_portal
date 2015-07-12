@@ -1,0 +1,3 @@
+class AdvocateDashboardPage < DashboardPage
+
+end
