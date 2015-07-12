@@ -93,6 +93,10 @@ javascript:
 
     if (pet_type == '' || pet_breed == '' || pet_weight == ''){
       return null;
+    } else {
+      $('#pet_type').val('dog');
+      $('#pet_breed').val('');
+      $('#pet_weight').val('');
     }
 
     pet_row_count = $('#pet_list tr').length;
