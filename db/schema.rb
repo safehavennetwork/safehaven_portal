@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604033110) do
+ActiveRecord::Schema.define(version: 20150815013638) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -53,6 +53,21 @@ ActiveRecord::Schema.define(version: 20150604033110) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "advocate_applications", primary_key: "advocate_application_id", force: true do |t|
+    t.integer  "victim_id",                   limit: 8
+    t.integer  "advocate_id",                 limit: 8
+    t.integer  "status"
+    t.string   "abuser_visiting_spots",       limit: 191
+    t.string   "estimated_length_of_housing", limit: 191
+    t.boolean  "police_involved",                         default: false
+    t.boolean  "protective_order",                        default: false
+    t.boolean  "pet_protective_order",                    default: false
+    t.boolean  "client_legal_owner_of_pet",               default: false
+    t.boolean  "abuser_legal_owner_of_pet",               default: false
+    t.boolean  "explored_boarding_options",               default: false
+    t.datetime "created_at"
+  end
 
   create_table "cities", primary_key: "city_id", force: true do |t|
     t.string "city", limit: 191
@@ -151,6 +166,7 @@ ActiveRecord::Schema.define(version: 20150604033110) do
     t.date     "relinguished_at"
     t.date     "updated_at"
     t.text     "update_action"
+    t.boolean  "completed"
   end
 
   create_table "phone_number_types", primary_key: "phone_number_type_id", force: true do |t|
@@ -183,7 +199,7 @@ ActiveRecord::Schema.define(version: 20150604033110) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "disabled",                              default: '2015-05-26 00:22:39'
+    t.datetime "disabled",                              default: '2015-07-12 17:11:06'
     t.date     "updated_at"
     t.text     "update_action"
     t.date     "welcome_email_sent"

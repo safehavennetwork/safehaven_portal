@@ -40,21 +40,8 @@ class ClientController < ApplicationController
   def new
     @client_hash = client_params
     @org         = current_user.organization
-    render "organization/#{current_user.org_id}/new_client_form" && return unless @new_client = CreateClientWithPets.call(client_params, params[:pets])
-
-    flash[:status]  = 'success'
-    flash[:message] = 'Client added successfully!'
-    # render "organization/#{current_user.org_type}/dashboard"
-
-    if current_user.with_shelter?
-      @current_pets = []
-      @pets_in_need = []
-      render 'organization/shelter/dashboard'
-    end
-
-    @current_clients = []
-    @clients_in_need = []
-    render 'organization/advocate/dashboard'
+    @new_client  = CreateClientWithPets.call(client_params, params[:pets])
+    redirect_to apply_pet_details_form_path(id: @new_client.pets.first.id)
   rescue => e
     render 'shared/oops'
   end
