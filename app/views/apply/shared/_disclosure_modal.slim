@@ -1,0 +1,12 @@
+.modal.fade id='application-disclosure-modal'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title Application Submission Acknowledgement
+      .modal-body
+        .row
+          .col-sm-12.col-md-12
+            p I understand that this application will be reviewed by The Safe Haven Network’s partner Safe Haven Providers, which includes animal shelters and foster homes. I understand that some of these Safe Haven Providers are independent programs that may require additional information from me and may have different guidelines for admission.
+            form action="/apply/confirm/@client.id" method="post"
+              button.btn.sh-default-btn style='width:100%; margin-top: 20px;' type="submit"I understand

@@ -15,7 +15,7 @@
       .form-group
         label.col-sm-5.control-label  for="org_phone_number" Email
         .col-sm-7
-          input.form-control.qa-client-email type="text" id="client_email" name='email'
+          input.form-control.qa-client-email type="text" name='email'
 
       .form-group
         label.col-sm-5.control-label  for="org_phone_number" Preferred contact method
@@ -25,22 +25,22 @@
       .form-group
         label.col-sm-5.control-label  for="org_phone_number" Address
         .col-sm-7
-          input.form-control.qa-client-address-line-1 type="text" id="client_email" name='address[line1]'
+          input.form-control.qa-client-address-line-1 type="text" name='address[line1]'
 
       .form-group
         label.col-sm-5.control-label  for="org_phone_number" City
         .col-sm-7
-          input.form-control.qa-client-address-city type="text" id="client_email" name='address[city]'
+          input.form-control.qa-client-address-city type="text" name='address[city]'
 
       .form-group
         label.col-sm-5.control-label  for="org_phone_number" State
         .col-sm-7
-          input.form-control.qa-client-address-state type="text" id="client_email" name='address[state]'
+          = select_tag 'address[state]', options_for_select(us_states, selected: 'IL'), class: 'form-control'
 
       .form-group
         label.col-sm-5.control-label  for="org_phone_number" Zip
         .col-sm-7
-          input.form-control.qa-client-address-zip-code type="text" id="client_email" name='address[zip_code]'
+          input.form-control.qa-client-address-zip-code type="text" name='address[zip_code]'
 
       .form-group
         label.col-sm-5
@@ -103,9 +103,9 @@ javascript:
     row_id = "pet_row_" + (pet_row_count - 1)
     new_row = "<tr id='"+ row_id + "' class=\"pet_listing_" + (pet_row_count - 1) + "\"'>";
     new_row += "<td></td>";
-    new_row += "<td><input disabled='disabled' class='form-control' type='text' name='pets[pet"+pet_row_count+"[pet_type]]' value='" + pet_type   + "'></input></td>";
-    new_row += "<td><input class='form-control' type='text'                     name='pets[pet"+pet_row_count+"[breed]]'    value='" + pet_breed  + "'></input></td>";
-    new_row += "<td><input class='form-control' type='text'                     name='pets[pet"+pet_row_count+"[weight]]'   value='" + pet_weight + "'></input></td>";
+    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[pet_type]]' value='" + pet_type   + "'></input></td>";
+    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[breed]]'    value='" + pet_breed  + "'></input></td>";
+    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[weight]]'   value='" + pet_weight + "'></input></td>";
     new_row += "<td><span class='glyphicon glyphicon-remove' style='color:red;' onclick='deletePetRow("+ row_id + ");'></span></td>";
     new_row += '</tr>';
 

@@ -17,10 +17,13 @@ class CreateClientWithPets
 
     unless !pet_hash || pet_hash.empty?
       pet_hash.each do |pet|
-        @client.pets << Pet.create(pet)
+        pet.last['pet_type'] = PetType.find_by(pet_type: pet.last['pet_type'])
+        @client.pets << Pet.create(pet.last)
       end
     end
-    UserMailer.new_client(@client).deliver
+    unless Rails.env.development?
+      UserMailer.new_client(@client).deliver
+    end
     @client
   end
 end

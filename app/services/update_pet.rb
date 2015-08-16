@@ -17,6 +17,10 @@ class UpdatePet
     pet
   end
 
+  def success?
+    !errors.present?
+  end
+
   def convert_bools(pet_hash)
     pet = pet_hash.deep_dup
     pet[:spayed]                = true_or_false( pet[:spayed] )

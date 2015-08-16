@@ -14,6 +14,14 @@
  *= require_self
  */
 
+.sh-default-btn {
+  color:            white;
+  width:            100%;
+  margin-top:       4px;
+  margin-bottom:    4px;
+  background-color: #7842F4;
+}
+
 #giveSpace {
   margin: 20px;
 }

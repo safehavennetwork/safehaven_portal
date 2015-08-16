@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   scope 'client' do
-    get ':id'              => 'client#show'
+    get  ':id'             => 'client#show', as: 'client'
     post ':id'             => 'client#update'
     post ':id/application' => 'client#client_application_update'
     post ':id/pets'        => 'client#pets'
@@ -30,10 +30,24 @@ Rails.application.routes.draw do
     post ':id/pet/new'     => 'client#new_pet'
   end
 
+  scope 'apply' do
+    get  ''           => 'apply#new'
+
+    get  'pet/:id'    => 'apply#pet', as: 'apply_pet_details'
+    post 'pet/:id'    => 'apply#update_pet'
+
+    get  'client/:id' => 'apply#client', as: 'apply_client_details'
+    post 'client/:id' => 'apply#update_client_application'
+
+    get  'review/:id'  => 'apply#review', as: 'application_review'
+    post 'confirm/:id' => 'apply#confirm'
+  end
+
   scope 'pet' do
-    get ':id'        => 'pet#show'
+    get ':id'         => 'pet#show'
     post ':id'        => 'pet#update'
     post ':id/delete' => 'pet#delete'
+    post 'new/:id'    => 'pet#new_pet', as: 'new_pet'
   end
 
   post 'toggle/:type/:id/:status' => 'organization#status_update'
