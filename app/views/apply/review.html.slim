@@ -1,0 +1,32 @@
+h1 Application Review
+
+.row
+  .col-sm-10.col-sm-offset-1
+    button.btn.sh-default-btn href='#application-disclosure-modal' role='button' data-toggle='modal' Submit Client
+.row
+  .col-sm-5.col-sm-offset-1
+    .panel.panel-default
+      .panel-heading
+        h3 Client info
+      .panel-body
+        = render 'client/personal_details'
+  .col-sm-5
+    .panel.panel-default
+      .panel-heading
+        h3 Client's Pets
+      .panel-body
+        .row
+          .col-md-12
+            = render 'client/pet_list'
+.row
+  .col-sm-10.col-sm-offset-1
+    .panel.panel-default
+      .panel-heading
+        h3 Client Application
+      .panel-body
+        = render 'client/situation_details', client_application: @client.client_application
+.row
+  .col-sm-10.col-sm-offset-1
+    button.btn.sh-default-btn href='#application-disclosure-modal' role='button' data-toggle='modal' Submit Client
+
+= render 'apply/shared/disclosure_modal'

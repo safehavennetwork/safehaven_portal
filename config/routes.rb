@@ -31,9 +31,16 @@ Rails.application.routes.draw do
   end
 
   scope 'apply' do
-    get  ''        => 'apply#new'
-    get  'pet/:id' => 'apply#pet', as: 'apply_pet_details_form'
-    post 'pet/:id' => 'apply#update_pet'
+    get  ''           => 'apply#new'
+
+    get  'pet/:id'    => 'apply#pet', as: 'apply_pet_details'
+    post 'pet/:id'    => 'apply#update_pet'
+
+    get  'client/:id' => 'apply#client', as: 'apply_client_details'
+    post 'client/:id' => 'apply#update_client_application'
+
+    get  'review/:id'  => 'apply#review', as: 'application_review'
+    post 'confirm/:id' => 'apply#confirm'
   end
 
   scope 'pet' do

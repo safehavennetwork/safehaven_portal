@@ -21,7 +21,9 @@ class CreateClientWithPets
         @client.pets << Pet.create(pet.last)
       end
     end
-    UserMailer.new_client(@client).deliver
+    unless Rails.env.development?
+      UserMailer.new_client(@client).deliver
+    end
     @client
   end
 end
