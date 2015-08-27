@@ -6,6 +6,24 @@ class OrganizationController < ApplicationController
     @organization = Organization.find(params[:id])
   end
 
+  def update
+    org = Organization.find(params[:id])
+    org.update_attributes(update_params)
+    redirect_to organization_path, id: params[:id]
+  end
+
+  def update_params
+    params.permit(
+      :name,
+      :phone,
+      :email,
+      :services,
+      :office_hours,
+      :website_url,
+      :geographic_area_served
+    )
+  end
+
   def dashboard
     @user = current_user
     @org  = current_user.organization
