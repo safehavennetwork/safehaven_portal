@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   root 'organization#dashboard'
 
   scope 'organization' do
-    get ':id' => 'organization#show'
+    get  ':id' => 'organization#show', as: 'organization'
+    post ':id' => 'organization#update'
+    post ':id/contact_info' => 'organization#update_contact_info'
 
-    get 'sign-up/:type' => 'organization#sign_up_form'
+    get  'sign-up/:type' => 'organization#sign_up_form'
     post 'sign-up/:type' => 'organization#sign_up'
 
     get  ':id/new_client' => 'client#new_client_form'

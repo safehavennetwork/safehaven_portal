@@ -22,6 +22,10 @@
   background-color: #7842F4;
 }
 
+.btn {
+  margin-left: 4px;
+}
+
 #giveSpace {
   margin: 20px;
 }

@@ -1,11 +1,74 @@
+
 .row
-  .col-md-10
+  .col-sm-6
     .panel.panel-default
-      .panel-heading @organization.name
+      .panel-heading
+        h3  Shelter Details
       .panel-body
-        label.col-sm-5.control-label  Contact
-        .col-sm-7
-          .form-control "#{@organization.admin.first_name} #{@organization.admin.last_name}"
-        label.col-sm-5.control-label  Contact
-        .col-sm-7
-          .form-control "#{@organization.admin.first_name} #{@organization.admin.last_name}"
+        form.form-horizontal action="/organization/#{@organization.id}" method="post"
+          .form-group
+            label.col-sm-5.control-label  for="name" Name
+            .col-sm-7
+              input.form-control type="text" id="name" name='name' value="#{@organization.name}"
+          .form-group
+            label.col-sm-5.control-label  for="name" Code
+            .col-sm-7
+              label.form-control = @organization.code
+          .form-group
+            label.col-sm-5.control-label  for="name" Services
+            .col-sm-7
+              input.form-control type="text" name='services' value="#{@organization.services}"
+          .form-group
+            label.col-sm-5.control-label  for="name" Office Hours
+            .col-sm-7
+              input.form-control type="text" name='office_hours' value="#{@organization.office_hours}"
+          .form-group
+            label.col-sm-5.control-label  for="name" Website URL
+            .col-sm-7
+              input.form-control type="text" name='website_url' value="#{@organization.website_url}"
+          .form-group
+            label.col-sm-5.control-label  for="name" Geographic Service Area
+            .col-sm-7
+              input.form-control type="text" name='geographic_area_served' value="#{@organization.geographic_area_served}"
+          .form-group
+            label.col-sm-5.control-label  for="name" Organization Admin
+            .col-sm-7
+              = select("user", "email", @organization.users.collect{|u|[u.email, u.email]}, {selected: @organization.admin.email}, class: 'form-control')
+          button.btn.btn-success.pull-right type="submit" Save details
+  .col-sm-6
+    .panel.panel-default
+      .panel-heading
+        h3  Contact Information
+      .panel-body
+        form.form-horizontal action="/organization/#{@organization.id}/contact_info" method="post"
+          .form-group
+            label.col-sm-5.control-label  for="name" Phone
+            .col-sm-7
+              input.form-control type="text"  name='phone' value="#{@organization.phone}"
+          .form-group
+            label.col-sm-5.control-label  for="name" Email
+            .col-sm-7
+              input.form-control type="text" name='email' value="#{@organization.email}"
+          h3 Mailing Address
+          - address = @organization.address
+          .form-group
+            label.col-sm-5.control-label  for="name" Line 1
+            .col-sm-7
+              input.form-control type="text" name='address[line1]' value="#{address.try(:line1)}"
+          .form-group
+            label.col-sm-5.control-label  for="name" Line 2
+            .col-sm-7
+              input.form-control type="text" name='address[line2]' value="#{address.try(:line2)}"
+          .form-group
+            label.col-sm-5.control-label  for="name" City
+            .col-sm-7
+              input.form-control type="text" name='address[city]' value="#{address.try(:city)}"
+          .form-group
+            label.col-sm-5.control-label  for="name" State
+            .col-sm-7
+              input.form-control type="text" name='address[state]' value="#{address.try(:state)}"
+          .form-group
+            label.col-sm-5.control-label  for="name" ZipCode
+            .col-sm-7
+              input.form-control type="text" name='address[zip_code]' value="#{address.try(:zip_code)}"
+          button.btn.btn-success.pull-right type="submit" Save details
