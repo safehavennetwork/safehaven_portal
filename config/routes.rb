@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   scope 'organization' do
     get  ':id' => 'organization#show', as: 'organization'
     post ':id' => 'organization#update'
+    post ':id/contact_info' => 'organization#update_contact_info'
 
     get  'sign-up/:type' => 'organization#sign_up_form'
     post 'sign-up/:type' => 'organization#sign_up'

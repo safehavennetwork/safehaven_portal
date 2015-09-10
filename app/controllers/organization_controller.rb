@@ -8,7 +8,20 @@ class OrganizationController < ApplicationController
 
   def update
     org = Organization.find(params[:id])
-    org.update_attributes(update_params)
+    admin_id = org.users.find_by(email: params.fetch(:user, {})[:email]).try(:id)
+    unless org.update_attributes(update_params.merge(admin_id: admin_id))
+      flash[:status] = 'error'
+      flash[:notice] = 'Error updating organization'
+    end
+    redirect_to organization_path, id: params[:id]
+  end
+
+  def update_contact_info
+    org = Organization.find(params[:id])
+    unless UpdateOrgContactInfo.new(org, update_contact_info_params).call
+      flash[:status] = 'error'
+      flash[:notice] = 'Error updating organization contact info'
+    end
     redirect_to organization_path, id: params[:id]
   end
 
@@ -21,6 +34,24 @@ class OrganizationController < ApplicationController
       :office_hours,
       :website_url,
       :geographic_area_served
+    )
+  end
+
+  def admin_id
+
+  end
+
+  def update_contact_info_params
+    params.permit(
+      :phone,
+      :email,
+      address: [
+        :line1,
+        :line2,
+        :city,
+        :state,
+        :zip_code
+      ]
     )
   end
 
