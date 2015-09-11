@@ -37,10 +37,6 @@ class OrganizationController < ApplicationController
     )
   end
 
-  def admin_id
-
-  end
-
   def update_contact_info_params
     params.permit(
       :phone,

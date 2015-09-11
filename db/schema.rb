@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826233229) do
+ActiveRecord::Schema.define(version: 20150910053157) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150826233229) do
     t.integer  "organization_id"
     t.date     "updated_at"
     t.text     "update_action"
+    t.integer  "pets_count"
   end
 
   create_table "groups", primary_key: "group_id", force: true do |t|

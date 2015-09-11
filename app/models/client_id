@@ -1,0 +1,37 @@
+client_id
+pet_types.uniq
+breeds.uniq
+weights.uniq
+
+ pets = Pet.where(organization_id: nil).group('client_id').all
+
+ pets = Pet.joins(:pet_type).where(organization_id: nil).group('client_id').pluck(:client_id, :breed, :pet_type, :weight)
+
+select
+  p.client_id
+  t.types
+  b.breeds
+  w.weights
+from pets as p
+join
+(select unique p.pet_type 'types') as t
+(select unique p.breed 'breeds') as b
+(select unique p.weight 'weights') as w
+where p.organization_id is null
+
+
+Pet.select("client_id, DISTINCT(weight) as weights, DISTINCT(breed) as breeds, DISTINCT(pet_type_id) as pet_types").group("client_id")
+
+Pet.select("DISTINCT weight, client_id").group("client_id")
+
+
+ pets = Client.all.includes(:pets).where('pets.organization' => nil).map do |c|
+   pets = c.pets.includes(:pet_type)
+    {
+      client_id: c.id,
+      pet_count: c.pets.size,
+      breeds:    pets.map(&:breed).uniq,
+      types:     pets.map{|p| p.pet_type.try(:pet_type)}.uniq,
+      weights:   pets.map(&:weight).uniq
+    }
+  end

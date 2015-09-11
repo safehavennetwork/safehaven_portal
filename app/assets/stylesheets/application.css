@@ -14,6 +14,22 @@
  *= require_self
  */
 
+.detail-group {
+  width: 100%;
+  display: table-cell;
+  float: left;
+}
+
+.detail-title {
+
+}
+
+.pet-summary-panel {
+  width: 45%;
+  float: left;
+  margin: 4px;
+}
+
 .sh-default-btn {
   color:            white;
   width:            100%;

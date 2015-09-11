@@ -1,5 +1,5 @@
 class Pet < ActiveRecord::Base
-  belongs_to :client
+  belongs_to :client, counter_cache: true
   belongs_to :organization
   belongs_to :pet_type
 

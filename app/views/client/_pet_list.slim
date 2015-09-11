@@ -16,7 +16,7 @@
               a href='/pet/#{pet.id}'
                 span.glyphicon.glyphicon-pencil
             td
-              strong = "#{pet.pet_type.pet_type}"
+              strong = "#{pet.pet_type.try(:pet_type)}"
             td
               strong = "#{pet.breed}"
             td

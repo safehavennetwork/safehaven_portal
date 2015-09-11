@@ -1,0 +1,13 @@
+.row
+  .pull-left
+    a.btn.btn-success href='/' Back to Dashboard
+  .pull-right
+    - if  @client.pets.first.organization && @client.pets.first.organization.id == current_user.organization.id
+      form action="/client/#{@client.id}/release_pets" method="post"
+        a.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Release Pets
+    - else
+      form action="/client/#{@client.id}/accept_pets" method="post"
+        a.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Accept Pets
+  .col-sm-12
+    -for pet in @client.pets
+      = render 'pet/summary', pet: pet
