@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826233229) do
+ActiveRecord::Schema.define(version: 20150910053157) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150826233229) do
     t.integer  "organization_id"
     t.date     "updated_at"
     t.text     "update_action"
+    t.integer  "pets_count"
   end
 
   create_table "groups", primary_key: "group_id", force: true do |t|
@@ -204,7 +205,7 @@ ActiveRecord::Schema.define(version: 20150826233229) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "disabled",                              default: '2015-07-12 17:11:06'
+    t.datetime "disabled",                              default: '2015-09-12 14:00:32'
     t.date     "updated_at"
     t.text     "update_action"
     t.date     "welcome_email_sent"

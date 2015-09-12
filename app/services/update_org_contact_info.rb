@@ -7,7 +7,6 @@ class UpdateOrgContactInfo
   end
 
   def call
-    raise 'BOOM!'
     update_contact_info
     update_address
     true

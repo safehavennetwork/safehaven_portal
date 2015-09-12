@@ -18,8 +18,9 @@ Rails.application.routes.draw do
 
     post 'accept-client/:id'  => 'organization#accept_client'
     post 'release-client/:id' => 'organization#release_client'
-    post 'accept-pet/:id'     => 'organization#accept_pet'
-    post 'release-pet/:id'    => 'organization#release_pet'
+
+    post 'accept-pets/:client_id' => 'organization#accept_pets'
+    post 'release-pets/:client_id' => 'organization#release_pets'
   end
 
   scope 'client' do

@@ -1,0 +1,14 @@
+.row
+  .pull-left
+    a.btn.btn-success href='/' Back to Dashboard
+  .pull-right
+    - if  @client.pets.first.organization && @client.pets.first.organization.id == current_user.organization.id
+      form action="/organization/release-pets/#{@client.id}" method="post"
+        button.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Release Pets
+    - else
+      button.btn.sh-default-btn href='#pet-acceptance-modal' role='button' data-toggle='modal' Accept Pets
+  .col-sm-12
+    -for pet in @client.pets
+      = render 'pet/summary', pet: pet
+
+= render 'legal/disclosure/pet_acceptance'

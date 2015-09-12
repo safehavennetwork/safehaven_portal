@@ -37,10 +37,6 @@ class OrganizationController < ApplicationController
     )
   end
 
-  def admin_id
-
-  end
-
   def update_contact_info_params
     params.permit(
       :phone,
@@ -91,16 +87,24 @@ class OrganizationController < ApplicationController
     redirect_to :root
   end
 
-  def accept_pet
-    pet = Pet.find(params[:id])
-    pet.update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted' )
-    UserMailer.pet_accepted(pet).deliver
-    redirect_to :root
+  def accept_pets
+    if AcceptPets.new(shelter: current_user.organization, client: Client.find(params[:client_id])).call
+      redirect_to :root
+    else
+      flash[:notice] = 'Error accepting pets'
+      flash[:status] = 'error'
+      render "client/#{params[:client_id]}"
+    end
   end
 
-  def release_pet
-    Pet.find(params[:id]).update_attributes(organization: nil, updated_at: Time.now, update_action: 'released' )
-    redirect_to :root
+  def release_pets
+    if ReleasePets.new(shelter: current_user.organization, client: Client.find(params[:client_id])).call
+      redirect_to :root
+    else
+      flash[:notice] = 'Error releasing pets'
+      flash[:status] = 'error'
+      render "client/#{params[:client_id]}"
+    end
   end
 
   def sign_up_form
