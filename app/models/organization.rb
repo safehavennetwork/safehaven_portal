@@ -4,6 +4,7 @@ class Organization < ActiveRecord::Base
   belongs_to :address
   belongs_to :admin, class_name: 'User'
   has_many :users
+  has_many :pets
 
   def self.get_organization(org_hash)
     return organization if organization = Organization.find_by(code: org_hash['organization_code'])

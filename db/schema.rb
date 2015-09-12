@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 20150910053157) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "disabled",                              default: '2015-07-12 17:11:06'
+    t.datetime "disabled",                              default: '2015-09-12 14:00:32'
     t.date     "updated_at"
     t.text     "update_action"
     t.date     "welcome_email_sent"
