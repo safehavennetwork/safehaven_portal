@@ -6,6 +6,18 @@ class ClientController < ApplicationController
     @client = Client.includes(:pets, :client_application).find(params.permit(:id)[:id])
   end
 
+  def anonymous_signup
+    if @client = CreateClientWithPets.call(client_params, params[:pets])
+      VolunteerMailer.new_client(@client).deliver
+      ClientMailer.confirm_signup(@client).deliver if params[:confirmation_email]
+      render 'client/signup_confirmation'
+    else
+      flash[:status] = 'error'
+      flash[:notice] = 'Error during sign up'
+      render 'client/short_form'
+    end
+  end
+
   def update
     @client = Client.find(params.permit(:id)[:id])
     client_hash = client_params

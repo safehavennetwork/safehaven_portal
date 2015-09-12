@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   root 'organization#dashboard'
 
+  get  'getHelp'          => 'client#short_form'
+  post 'anonymous-signup' => 'client#anonymous_signup'
+
   scope 'organization' do
     get  ':id' => 'organization#show', as: 'organization'
     post ':id' => 'organization#update'
