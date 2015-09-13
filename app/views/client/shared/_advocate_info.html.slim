@@ -1,0 +1,36 @@
+- organization = @client.organization
+.panel.panel-default
+  .panel-heading
+    h3.sh-panel-title = "#{organization.name}"
+  .panel-body
+    .row
+      .col-sm-4
+        .detail-group
+          .detail-title
+            strong Phone
+          .detail-value
+            p = organization.phone
+        .detail-group
+          .detail-title
+            strong Email
+          .detail-value
+            p = organization.email
+      .col-sm-4
+        .detail-group
+          .detail-title
+            strong Address
+          .detail-value
+            - address = organization.address || OpenStruct.new {}
+            span.address = address.line1
+            - if address.line2
+              span.address = address.line2
+            span.address = "#{address.city}, #{address.state}"
+            span.address = address.zip_code
+      .col-sm-4
+        .detail-group
+          .detail-title
+            strong Contact
+          .detail-value
+            p = organization.admin.try(:name)
+            p = organization.admin.try(:email)
+

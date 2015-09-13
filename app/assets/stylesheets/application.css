@@ -20,6 +20,10 @@
   float: left;
 }
 
+.address {
+  display: block;
+}
+
 .sh-more-info {
   position: relative;
   top: 20%;
