@@ -88,13 +88,11 @@ class OrganizationController < ApplicationController
   end
 
   def accept_pets
-    if AcceptPets.new(shelter: current_user.organization, client: Client.find(params[:client_id])).call
-      redirect_to :root
-    else
+    unless AcceptPets.new(shelter: current_user.organization, client: Client.find(params[:client_id])).call
       flash[:notice] = 'Error accepting pets'
       flash[:status] = 'error'
-      render "client/#{params[:client_id]}"
     end
+    redirect_to client_path params[:client_id]
   end
 
   def release_pets
