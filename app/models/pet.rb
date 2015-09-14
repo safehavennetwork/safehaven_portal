@@ -2,6 +2,7 @@ class Pet < ActiveRecord::Base
   belongs_to :client, counter_cache: true
   belongs_to :organization
   belongs_to :pet_type
+  belongs_to :release_status
 
   def cat?
     pet_type.pet_type == 'cat'

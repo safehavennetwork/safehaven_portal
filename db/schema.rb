@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910053157) do
+ActiveRecord::Schema.define(version: 20150913154145) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 20150910053157) do
     t.date     "updated_at"
     t.text     "update_action"
     t.boolean  "completed"
+    t.integer  "release_status_id"
   end
 
   create_table "phone_number_types", primary_key: "phone_number_type_id", force: true do |t|
@@ -182,6 +183,10 @@ ActiveRecord::Schema.define(version: 20150910053157) do
   create_table "phone_numbers", primary_key: "phone_number_id", force: true do |t|
     t.string  "phone_number",         limit: 191
     t.integer "phone_number_type_id", limit: 2
+  end
+
+  create_table "release_statuses", primary_key: "release_status_id", force: true do |t|
+    t.string "release_status"
   end
 
   create_table "states", primary_key: "state_id", force: true do |t|

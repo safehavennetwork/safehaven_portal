@@ -77,7 +77,7 @@ class OrganizationController < ApplicationController
 
   def accept_client
     client = Client.find(params[:id])
-    client.update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
+    client.update_attributes( organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
     UserMailer.client_accepted(client).deliver
     redirect_to :root
   end
@@ -96,7 +96,9 @@ class OrganizationController < ApplicationController
   end
 
   def release_pets
-    if ReleasePets.new(shelter: current_user.organization, client: Client.find(params[:client_id])).call
+    if ReleasePets.new( shelter: current_user.organization,
+                        client:  Client.find(params[:client_id]),
+                        reason:  params[:release_status]).call
       redirect_to :root
     else
       flash[:notice] = 'Error releasing pets'

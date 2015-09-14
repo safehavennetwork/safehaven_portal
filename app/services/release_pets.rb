@@ -7,7 +7,12 @@ class ReleasePets
 
   def call
     client.pets.each do |pet|
-      pet.update_attributes(organization: nil)
+      pet.update_attributes(
+        organization:   nil,
+        release_status: ReleaseStatus[release_status],
+        updated_at: Time.now,
+        update_action: "released by #{shelter.name}"
+      )
     end
     true
   rescue => e
@@ -17,6 +22,10 @@ class ReleasePets
   end
 
   private
+
+  def release_status
+    request_hash[:reason].underscore
+  end
 
   def client
     request_hash[:client]

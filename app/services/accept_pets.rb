@@ -7,7 +7,11 @@ class AcceptPets
 
   def call
     client.pets.each do |pet|
-      pet.update_attributes(organization: shelter)
+      pet.update_attributes(
+        organization: shelter,
+        updated_at: Time.now,
+        update_action: "accepted by #{shelter.name}"
+      )
     end
     true
   rescue => e
