@@ -4,8 +4,7 @@
     a.btn.btn-success href='/' Back to Dashboard
   .pull-right
     - if  pets_accepted
-      form action="/organization/release-pets/#{@client.id}" method="post"
-        button.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Release Pets
+      button.btn.sh-default-btn href='#pet-release-modal' role='button' data-toggle='modal' Release Pets
     - else
       button.btn.sh-default-btn href='#pet-acceptance-modal' role='button' data-toggle='modal' Accept Pets
 
@@ -18,3 +17,4 @@
       = render 'pet/summary', pet: pet
 
 = render 'legal/disclosure/pet_acceptance'
+= render 'client/shared/release_pets'
