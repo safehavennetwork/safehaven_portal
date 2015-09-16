@@ -57,4 +57,9 @@ Rails.application.routes.draw do
   end
 
   post 'toggle/:type/:id/:status' => 'organization#status_update'
+
+  scope 'user' do
+    get  ':id' => 'users#show', as: 'user'
+    post ':id' => 'users#update'
+  end
 end

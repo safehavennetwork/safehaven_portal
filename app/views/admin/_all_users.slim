@@ -13,7 +13,7 @@ h2 All Users (#{@all_users.count})
         tr
           td
           td
-            a href='#'
+            a href="/user/#{user.id}"
               span.glyphicon.glyphicon-pencil
           td = "#{user.first_name} #{user.last_name}"
           td = user.organization.try(:name)  || ''
