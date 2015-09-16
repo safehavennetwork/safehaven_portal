@@ -33,7 +33,7 @@
           .form-group
             label.col-sm-5.control-label  for="name" Organization Admin
             .col-sm-7
-              = select("user", "email", @organization.users.collect{|u|[u.email, u.email]}, {selected: @organization.admin.email}, class: 'form-control')
+              = select("user", "email", @organization.users.collect{|u|[u.email, u.email]}, {selected: @organization.admin.try(:email)}, class: 'form-control')
           button.btn.btn-success.pull-right type="submit" Save details
   .col-sm-6
     .panel.panel-default
