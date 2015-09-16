@@ -38,7 +38,7 @@ class GetRecentActivity
     User.order(:updated_at).limit(5).pluck(:email, :user_id, :update_action, :updated_at).each do | user |
       unless user[2].blank?
         @activities << OpenStruct.new(
-          link: '#', #"/user/#{user[1]}",
+          link: "/user/#{user[1]}",
           description: "User  #{user[0]} was #{user[2]} on #{user[3]}"
         )
       end

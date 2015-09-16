@@ -1,5 +1,5 @@
 class ClientController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:short_form, :anonymous_signup]
   skip_before_action :verify_authenticity_token
 
   def show
