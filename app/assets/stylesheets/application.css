@@ -47,7 +47,6 @@
 .sh-default-btn {
   color:            white;
   width:            100%;
-  margin-top:       4px;
   margin-bottom:    4px;
   background-color: #7842F4;
 }
@@ -62,8 +61,8 @@
 
 .navbar {
   background-color: #2c3135;
-  padding-bottom:   80px;
-  padding-left:     90px;
+  padding-bottom:   2em;
+  padding-left:     auto;
 }
 
 #logoA {

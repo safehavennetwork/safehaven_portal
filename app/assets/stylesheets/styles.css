@@ -15,10 +15,10 @@ body {
   -webkit-font-smoothing: antialiased;
   font: normal 14px Roboto,arial,sans-serif;
 }
-.navbar-default {background-color:#f4f4f4;margin-top:50px;border-width:0;z-index:5;}
+.navbar-default {background-color:#f4f4f4;border-width:0;z-index:5;}
 .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > li:hover > a {border:0 solid #4285f4;border-bottom-width:2px;font-weight:800;background-color:transparent;}
 .navbar-default .dropdown-menu {background-color:#ffffff;}
-.navbar-default .dropdown-menu li > a {padding-left:30px;}
+.navbar-default .dropdown-menu li > a {padding-bottom: 6px;}
 
 .header {background-color:#ffffff;border-width:0;}
 .header .navbar-collapse {background-color:#ffffff;}

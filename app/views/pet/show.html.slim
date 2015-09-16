@@ -1,20 +1,12 @@
 .row
   .col-md-2
-    - if !current_user.with_shelter?
+    - if current_user.with_shelter?
+      a.btn.sh-default-btn href="/" Back to dashboard
+    - else
       a.btn.btn-primary href="/client/#{@pet.client.id}" Back to client
-    - else
-      a.btn.btn-primary href="/" Back to dashboard
-  .col-md-2.pull-right
-    - if @pet.organization_id == nil && current_user.with_shelter?
-      form action="/organization/accept-pet/#{@pet.id}" method="post"
-        button.btn.btn-success style='width:100%; margin-top: 20px;' type="submit" Accept Pet
-    - else
-      form action="/organization/release-pet/#{@pet.id}" method="post"
-        button.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Release Pet
 
 .row
   .col-md-10
-    = render 'shared/flash'
     form.form-horizontal action="/pet/#{@pet.id}" method="post"
       .form-group id='organization_name_group'
         label.col-sm-5.control-label  for="name" Pet Name
