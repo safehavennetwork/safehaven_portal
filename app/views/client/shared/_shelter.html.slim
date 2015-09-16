@@ -1,7 +1,7 @@
 - pets_accepted =  @client.pets.first.organization && @client.pets.first.organization.id == current_user.organization.id
 .row
   .pull-left
-    a.btn.btn-success href='/' Back to Dashboard
+    a.btn.sh-default-btn href='/' Back to Dashboard
   .pull-right
     - if  pets_accepted
       button.btn.sh-default-btn href='#pet-release-modal' role='button' data-toggle='modal' Release Pets

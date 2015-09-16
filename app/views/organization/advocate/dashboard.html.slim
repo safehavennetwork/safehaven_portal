@@ -1,5 +1,5 @@
 .row
-  .col-md-10.col-md-offset-1
+  .col-md-12
     .pull-left
       h1 = @org.name
     .pull-right
@@ -7,7 +7,7 @@
       a.btn.btn-primary style='margin-left: 10px;' href="/organization/#{@org.id}" Edit Profile
       a.btn.btn-primary style='margin-left: 10px;' href="mailto:safe@thesafehavennetwork.org" Contact Safe Haven
 .row
-  .col-md-10.col-md-offset-1
+  .col-md-12
     h2 Current Clients (#{@current_clients.try(:count)})
     - if @current_clients.blank?
       .row
@@ -16,6 +16,6 @@
     - else
       = render 'organization/advocate/client_list', client_list: @current_clients
 .row
-  .col-md-10.col-md-offset-1
+  .col-md-12
     h2 Clients in need (#{@clients_in_need.try(:count)})
     = render 'organization/advocate/client_list', client_list: @clients_in_need
