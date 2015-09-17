@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'organization#dashboard'
+  post 'live-search' => 'search#live_search'
 
   get  'getHelp'          => 'client#short_form'
   post 'anonymous-signup' => 'client#anonymous_signup'

@@ -2,8 +2,8 @@
   .pull-left
     a.btn.sh-default-btn href='/' Back to Dashboard
 .row
-  .col-sm-offset-1
-    .panel.panel-default.pet-summary-panel
+  .col-md-8
+    .panel.panel-default
       .panel-heading
         h3.sh-panel-title = "#{@user.first_name.try(:titleize)} #{@user.last_name.try(:titleize)}"
       .panel-body
@@ -51,7 +51,7 @@
               .form-group
                 label.col-sm-5.control-label  for="org_phone_number" Last Sign In
                 .col-sm-7
-                  label.form-control type="text" id="client_email" = @user.last_sign_in_at
+                  label.form-control type="text" id="client_email" = @user.last_sign_in_at.to_date.to_s(:long)
               .form-group
                 label.col-sm-5.control-label  for="org_phone_number" Disabled?
                 .col-sm-7
