@@ -10,5 +10,37 @@ nav.navbar.navbar-default role="navigation"
           p.pull-right style='color:white;' = "Logged in as #{current_user.email}"
       .row
         .col-sm-12
-          = link_to "Sign out", destroy_user_session_path, :method => :delete, style: 'font-weight: 900; width:auto;', class: "qa-sign-out pull-right btn sh-default-btn"
-          = link_to "Dashboard", root_url, style: 'font-weight: 900; width:auto;', class: 'pull-right btn sh-default-btn'
+          = link_to "Sign out", destroy_user_session_path, :method => :delete, style: 'font-weight: 900; width:auto; padding: 2px', class: "qa-sign-out pull-right sh-default-btn"
+          = link_to "Dashboard", root_url, style: 'font-weight: 900; width:auto; padding: 2px; margin-right: 4px;', class: 'pull-right sh-default-btn'
+      .row
+        .col-sm-12
+          form.pull-right id="live-search-form" style='width: 20%; margin-top:6px;' method="get" action="<%= search_path %>" autocomplete='off'
+            input.form-control id="live-search-box" name="q" type="text" placeholder='search'
+
+.search-results id='live-search-results'
+
+javascript:
+  $("#live-search-box").keypress(
+    function(event){
+     if (event.which == '13') { event.preventDefault(); }
+  });
+
+  $('#live-search-results').on('click', function(e) {
+      e.stopPropagation();
+  });
+
+    $("#live-search-box").bind("blur", function() {
+      $("#live-search-results").slideToggle();
+    });
+
+  $("#live-search-box").bind("keyup", function() {
+    var url      = "/live-search";
+    var form     = $("#live-search-form");
+    var formData = form.serialize();
+    if ($("#live-search-box").val() == null || $("#live-search-box").val() == ''){ $("#live-search-results").html(''); return; }
+    $.post(url, formData, function(html) {
+      $("#live-search-results").css('top', ($("#live-search-box").offset().top + $("#live-search-form").height()));
+      $("#live-search-results").css('left', $("#live-search-box").offset().left);
+      $("#live-search-results").html(html);
+    });
+  });

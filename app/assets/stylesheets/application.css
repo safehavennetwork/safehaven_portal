@@ -13,6 +13,19 @@
  *= require_tree .
  *= require_self
  */
+.search-results {
+  z-index: 3001;
+  position: absolute;
+  background-color: rgba(115, 51, 183, 0.83);
+  width: 20em;
+  color: white;
+  border-radius: 6px;
+}
+
+.search-result a {
+  margin-left: 2px;
+  padding: 4px;
+}
 
 .detail-group {
   width: 100%;
