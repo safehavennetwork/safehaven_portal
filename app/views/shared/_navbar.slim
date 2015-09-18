@@ -27,31 +27,38 @@ javascript:
   $("#live-search-box").keypress(
     function(event){
      //Capture enter key
-     if (event.keyCode == '13') { event.preventDefault(); }
+      if (event.keyCode == '13') {
+        event.preventDefault();
+        url = $('.focussed-search-result a').attr('href')
+        if  (url == undefined || url == ''){return;}
+        window.location.replace(url);
+      }
      //Capture down arrow
      if (event.keyCode == '40') {
         if ($('.focussed-search-result').length == 0){
           $('.result').first().addClass('focussed-search-result');
           return;
         }
-        $('.result').each(function(r){
-          $result = $(r);
-          console.info($result)
+
+        $.each( $('.result'), function(i, item){
+          $result = $(item);
           if ($result.hasClass('focussed-search-result')){
-            console.info("focussed result found! updating the next in line");
-            $result.removeClass('focussed-search-result')
+            if ($result.next().length == 0){return false}
+            $result.removeClass('focussed-search-result');
             $result.next().addClass('focussed-search-result');
-         }
+            return false;
+          }
        });
      }
      //Capture up arrow
      if (event.keyCode == '38') {
-        $('.result').each(function(r){
-          $result = $(r)
+        $.each( $('.result'), function(i, item){
+          $result = $(item);
           if ($result.hasClass('focussed-search-result')){
-           $result.removeClass('focussed-search-result')
-           $result.previous().addClass('focussed-search-result');
-         }
+            $result.removeClass('focussed-search-result');
+            $result.prev().addClass('focussed-search-result');
+            return false;
+          }
        });
      }
   });
@@ -61,7 +68,7 @@ javascript:
   });
 
     $searchBox.bind("blur", function() {
-      //$("#live-search-results").slideUp();
+      $("#live-search-results").slideUp();
     });
 
   $searchBox.bind("keyup", function(e) {
