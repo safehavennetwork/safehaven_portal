@@ -51,7 +51,7 @@
               .form-group
                 label.col-sm-5.control-label  for="org_phone_number" Last Sign In
                 .col-sm-7
-                  label.form-control type="text" id="client_email" = @user.last_sign_in_at.to_date.to_s(:long)
+                  label.form-control type="text" id="client_email" = "#{@user.last_sign_in_at ? @user.last_sign_in_at.to_date.to_s(:long) : 'Never'}"
               .form-group
                 label.col-sm-5.control-label  for="org_phone_number" Disabled?
                 .col-sm-7
