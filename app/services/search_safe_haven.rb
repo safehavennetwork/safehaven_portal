@@ -7,7 +7,12 @@ class SearchSafeHaven
 
   def call
     return [] unless query.present?
-    (search_user_by_first_name + search_user_by_last_name + search_user_by_email + search_pet_by_name).uniq
+    ( search_user_by_first_name +
+      search_user_by_last_name  +
+      search_user_by_email      +
+      search_pet_by_name        +
+      search_client_by_name     +
+      search_client_by_email).uniq
   rescue => e
     Rails.logger.info e.message
     Rails.logger.info e.backtrace[(0..5)].join '\n'
@@ -42,6 +47,18 @@ class SearchSafeHaven
   def search_client_by_name
     Client.where("lower(name) like lower(?)", "%#{query}%")
       .limit(4).pluck(:client_id, :name)
+      .map{ |u| ["/client/#{u[0]}", "#{u[1]}"] }.compact
+  end
+
+  def search_client_by_name
+    Client.where("lower(name) like lower(?)", "%#{query}%")
+      .limit(4).pluck(:client_id, :name)
+      .map{ |u| ["/client/#{u[0]}", "#{u[1]}"] }.compact
+  end
+
+  def search_client_by_email
+    Client.where("lower(email) like lower(?)", "%#{query}%")
+      .limit(4).pluck(:client_id, :email)
       .map{ |u| ["/client/#{u[0]}", "#{u[1]}"] }.compact
   end
 end
