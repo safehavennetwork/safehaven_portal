@@ -1,6 +1,5 @@
 .row
   .col-md-10
-    = render 'shared/flash'
     form.form-horizontal action="/apply/pet/#{@pet.id}" method="post"
       .form-group id='organization_name_group'
         label.col-sm-5.control-label  for="name" Pet Name
