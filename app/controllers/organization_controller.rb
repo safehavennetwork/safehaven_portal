@@ -3,7 +3,7 @@ class OrganizationController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    @organization = Organization.find(params[:id])
+    @organization = Organization.friendly.find(params[:id])
   end
 
   def update
