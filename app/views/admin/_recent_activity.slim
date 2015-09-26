@@ -1,8 +1,8 @@
 h2 Recent Activity
-- unless @recent_activities.blank?
+- unless recent_activities.blank?
   .table-responsive
     table.table.table-hover
-      - for activity in @recent_activities
+      - for activity in recent_activities
         tr
           td
             a href="#{activity.link}"

@@ -1,6 +1,6 @@
 .row
   .col-md-2
-    - if current_user.with_shelter?
+    - if current_user.shelter?
       a.btn.sh-default-btn href="/" Back to dashboard
     - else
       a.btn.btn-primary href="/client/#{@pet.client.id}" Back to client

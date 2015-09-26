@@ -1,4 +1,4 @@
-- pets_accepted =  @client.pets.first.organization && @client.pets.first.organization.id == current_user.organization.id
+- pets_accepted =  @client.pets.present? && @client.pets.first.organization && @client.pets.first.organization.id == current_user.organization.id
 .row
   .pull-left
     a.btn.sh-default-btn href='/' Back to Dashboard
