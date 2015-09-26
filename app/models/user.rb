@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  extend FriendlyId
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -8,6 +9,11 @@ class User < ActiveRecord::Base
   belongs_to :secondary_phone_number, class_name: 'PhoneNumber'
   belongs_to :organization
   has_and_belongs_to_many :groups
+  friendly_id :full_name, use: :slugged
+
+  def full_name
+    "#{first_name}-#{last_name}"
+  end
 
   def self.pending
     includes(:groups).where(groups: { group_id: nil })
@@ -33,11 +39,11 @@ class User < ActiveRecord::Base
   end
 
   def shelter?
-    org_type == 'shelter' || site_admin?
+    org_type == 'shelter'
   end
 
   def advocate?
-    org_type == 'advocate' || site_admin?
+    org_type == 'advocate'
   end
 
   def org_type
