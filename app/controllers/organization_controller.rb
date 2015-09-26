@@ -59,7 +59,7 @@ class OrganizationController < ApplicationController
 
     if current_user.site_admin?
       @pending_users     = User.pending
-      @all_users         = User.all
+      @all_users         = User.all.except{ |u| u.email == 'admin@safehaven.org'}
       @recent_activities = GetRecentActivity.call
       render 'admin/dashboard'
     else
