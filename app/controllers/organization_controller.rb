@@ -4,12 +4,15 @@ class OrganizationController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
+    authorize @organization, :show_form?
   end
 
   def update
     org = Organization.find(params[:id])
+    authorize org
+    binding.pry
     admin_id = org.users.find_by(email: params.fetch(:user, {})[:email]).try(:id)
-    unless org.update_attributes(update_params.merge(admin_id: admin_id))
+    unless org.update_attributes(update_params[:organization].merge(admin_id: admin_id))
       flash[:status] = 'error'
       flash[:notice] = 'Error updating organization'
     end
@@ -27,6 +30,7 @@ class OrganizationController < ApplicationController
 
   def update_params
     params.permit(
+      organization: [
       :name,
       :phone,
       :email,
@@ -34,6 +38,7 @@ class OrganizationController < ApplicationController
       :office_hours,
       :website_url,
       :geographic_area_served
+      ]
     )
   end
 

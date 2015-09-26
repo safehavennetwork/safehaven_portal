@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+ .disabled-form {
+  
+ }
 .search-results {
   z-index: 3001;
   position: absolute;
