@@ -1,4 +1,4 @@
+- if current_user.site_admin? || current_user.advocate?
+  = render 'client/shared/advocate'
 - if current_user.shelter?
   = render 'client/shared/shelter'
-- else
-  = render 'client/shared/advocate'

@@ -2,14 +2,16 @@
   .col-sm-12
     .pull-left
       a.btn.sh-default-btn href='/' Back to Dashboard
-    - if @client.organization_id == nil
-      form.pull-right action="/organization/accept-client/#{@client.id}" method="post"
-        button.btn.btn-success style='width:100%;' type="submit" Accept Client
-    - else
-      form.pull-right action="/organization/release-client/#{@client.id}" method="post"
-        button.btn.sh-default-btn style='' type="submit" Release Client
-      form.pull-right action="/client/#{@client.id}/release" method="post"
-        button.btn.btn-danger type="submit" Delete Client
+    - unless current_user.site_admin?
+      - if @client.organization_id == nil
+        form.pull-right action="/organization/accept-client/#{@client.id}" method="post"
+          button.btn.btn-success style='width:100%;' type="submit" Accept Client
+      - else
+        form.pull-right action="/organization/release-client/#{@client.id}" method="post"
+          button.btn.sh-default-btn style='' type="submit" Release Client
+        form.pull-right action="/client/#{@client.id}/release" method="post"
+          //Hide until we're ready to setup deleting clients
+          //button.btn.btn-danger type="submit" Delete Client
 .row
   .col-sm-12
     .panel.panel-default
