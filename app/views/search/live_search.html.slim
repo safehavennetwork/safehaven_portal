@@ -1,4 +1,9 @@
-- for item in @results
+- if @results.present?
+  - for item in @results
+    .result
+      a href="#{item[0]}" style='color: white; margin-top: 6px; margin-bottom: 6px; padding:4px;' = item[1]
+
+- else
   br
-  a href="#{item[0]}" style='color: white; margin-top: 2px; margin-bottom: 2px; padding:4px;' = item[1]
+  strong style='padding-left: 4px;' No results
   br
