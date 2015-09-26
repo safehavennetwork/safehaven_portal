@@ -10,7 +10,7 @@ h2 Pending users (#{pending_users.count})
       - for user in pending_users
         tr
           td
-            a href='user/#{user.id}'
+            a href='user/#{user.slug || user.id}'
               span.glyphicon.glyphicon-pencil
           td = "#{user.first_name} #{user.last_name}"
           td = user.organization.name

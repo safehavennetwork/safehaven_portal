@@ -3,7 +3,7 @@ class ClientController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    @client = Client.includes(:pets, :client_application).find(params.permit(:id)[:id])
+    @client = Client.includes(:pets, :client_application).friendly.find(params.permit(:id)[:id])
   end
 
   def anonymous_signup

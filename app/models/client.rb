@@ -1,8 +1,10 @@
 class Client < ActiveRecord::Base
+  extend FriendlyId
   has_many   :pets
   belongs_to :address
   belongs_to :organization
   has_one    :client_application
+  friendly_id :name, use: :slugged
 
   validates :email, uniqueness: true
 
