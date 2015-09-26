@@ -1,5 +1,5 @@
-h2 All Users (#{@all_users.count})
-- unless @all_users.blank?
+h2 All Users (#{all_users.count})
+- unless all_users.blank?
   .table-responsive
     table.table.table-hover
       th
@@ -9,7 +9,7 @@ h2 All Users (#{@all_users.count})
         td Email
         td Last Sign In
         td
-      - for user in @all_users
+      - for user in all_users
         tr
           td
           td

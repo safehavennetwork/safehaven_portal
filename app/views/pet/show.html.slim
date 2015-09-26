@@ -1,6 +1,6 @@
 .row
   .col-md-2
-    - if current_user.with_shelter?
+    - if current_user.shelter?
       a.btn.sh-default-btn href="/" Back to dashboard
     - else
       a.btn.btn-primary href="/client/#{@pet.client.id}" Back to client
@@ -17,7 +17,8 @@
         label.col-sm-5.control-label  for="org_name" Current Shelter
         .col-sm-7
           label.form-control style='width: 50%;' type="text" = ("#{@pet.organization.try(:name)  || 'Not yet placed'}")
-          a.pull-right href="/organization/#{@pet.organization.try(:id)}" Shelter Details
+          - if @pet.organization.present?
+            a.pull-right href="/organization/#{@pet.organization.try(:id)}" Shelter Details
 
       .form-group.form-inline
           label.col-sm-5.control-label Pet Type

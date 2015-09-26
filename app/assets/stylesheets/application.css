@@ -81,6 +81,7 @@
   background-color: #2c3135;
   padding-bottom:   2em;
   padding-left:     auto;
+  min-height:       100px;
 }
 
 #logoA {

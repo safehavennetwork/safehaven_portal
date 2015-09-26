@@ -52,27 +52,9 @@ class OrganizationController < ApplicationController
   end
 
   def dashboard
-    @user = current_user
-    @org  = current_user.organization
-
     render('users/registrations/pending') && return if current_user.disabled
-
-    if current_user.site_admin?
-      @pending_users     = User.pending
-      @all_users         = User.all
-      @recent_activities = GetRecentActivity.call
-      render 'admin/dashboard'
-    else
-      if current_user.with_shelter?
-        @current_pets = GetCurrentPets.call(@org.id)
-        @pets_in_need = GetPetsInNeed.call
-        render 'organization/shelter/dashboard'
-      else
-        @current_clients = GetCurrentClients.call(@org.id)
-        @clients_in_need = GetClientsInNeed.call
-        render 'organization/advocate/dashboard'
-      end
-    end
+    @dashboard = DashboardFacade.new(current_user).dashboard
+    render @dashboard.view
   end
 
   def accept_client

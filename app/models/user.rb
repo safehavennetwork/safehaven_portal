@@ -32,8 +32,12 @@ class User < ActiveRecord::Base
     groups.include? Group.find_by(name: 'org_admin')
   end
 
-  def with_shelter?
+  def shelter?
     org_type == 'shelter' || site_admin?
+  end
+
+  def advocate?
+    org_type == 'advocate' || site_admin?
   end
 
   def org_type
