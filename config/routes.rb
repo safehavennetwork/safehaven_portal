@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   get  'getHelp'          => 'client#short_form'
   post 'anonymous-signup' => 'client#anonymous_signup'
 
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+  end
+
   scope 'organization' do
     get  ':id' => 'organization#show', as: 'organization'
     post ':id' => 'organization#update'
