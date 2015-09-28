@@ -64,3 +64,9 @@
                 label.col-sm-5.control-label  for="org_phone_number" Last Update Action:
                 .col-sm-7
                   label.form-control type="text" id="client_email" = "#{@user.update_action}"
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        h3.sh-panel-title Reset Password
+      .panel-body
+        = render 'client/shared/reset_password'

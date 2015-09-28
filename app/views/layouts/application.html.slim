@@ -6,6 +6,17 @@ html
     = csrf_meta_tags
   .container-fluid
     body
+      - flash.each do |type, message|
+          div class="alert alert-#{bootstrap_class_for(type)}"
+            button.close data-dismiss="alert" ×
+            p = message
       = render 'shared/navbar'
       .body-with-gutter style='margin-left: 1em; margin-right: 1em;'
         = yield
+
+javascript:
+  setTimeout(function(){
+    $(".alert").fadeTo(500,0,function(){
+        $(this).remove()
+        })
+  },3500)

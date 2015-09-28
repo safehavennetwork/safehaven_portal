@@ -11,6 +11,7 @@ nav.navbar.navbar-default role="navigation"
       .row
         .col-sm-12
           = link_to "Sign out", destroy_user_session_path, :method => :delete, style: 'font-weight: 900; width:auto; padding: 2px', class: "qa-sign-out pull-right sh-default-btn"
+          = link_to "My Account", "/user/#{current_user.slug || current_user.id}", style: 'font-weight: 900; width:auto; padding: 2px; margin-right: 4px;', class: 'pull-right sh-default-btn'
           = link_to "Dashboard", root_url, style: 'font-weight: 900; width:auto; padding: 2px; margin-right: 4px;', class: 'pull-right sh-default-btn'
       .row
         .col-sm-12
