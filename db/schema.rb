@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926152645) do
+ActiveRecord::Schema.define(version: 20150930010927) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150926152645) do
     t.text     "update_action"
     t.integer  "pets_count"
     t.string   "slug"
+    t.integer  "release_status_id"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
