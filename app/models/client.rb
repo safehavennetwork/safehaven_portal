@@ -3,6 +3,7 @@ class Client < ActiveRecord::Base
   has_many   :pets
   belongs_to :address
   belongs_to :organization
+  belongs_to :release_status
   has_one    :client_application
   friendly_id :name, use: :slugged
 
