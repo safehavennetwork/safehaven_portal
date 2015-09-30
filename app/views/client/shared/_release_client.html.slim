@@ -1,0 +1,26 @@
+.modal.fade id='client-release-modal'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h3 Client Release
+      .modal-body
+        .row
+          .col-sm-12.col-md-12
+            p Please select the reason for release.  A release announcment will be sent out to the appropriate Shelter and Safe Haven volunteers.
+        br
+        .row
+          .col-sm-12.col-md-12
+            form action="/organization/release-client/#{@client.id}" method="post"
+              .row
+                .col-sm-12.col-md-12
+                    select.pull-right name='release_status'
+                      option value='completed' Services Completed
+                      option value='services-not-provided' Services Not Provided
+                      option value='no-longer-needed' Services no longer needed
+                    br
+                    br
+              .row
+                .col-sm-12.col-md-12
+                  button.pull-left type="button" class="close" data-dismiss="modal" aria-hidden="true" Cancel
+                  button.pull-right.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Release Client

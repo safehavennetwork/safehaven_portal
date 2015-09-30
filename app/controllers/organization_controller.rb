@@ -65,7 +65,7 @@ class OrganizationController < ApplicationController
   end
 
   def release_client
-    Client.find(params[:id]).update_attributes(organization: nil, updated_at: Time.now, update_action: 'released' )
+    Client.find(params[:id]).update_attributes(organization: nil, updated_at: Time.now, update_action: 'released', release_status: ReleaseStatus[params[:release_status]] )
     redirect_to :root
   end
 
