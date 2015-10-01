@@ -14,6 +14,7 @@ class DashboardFacade
     OpenStruct.new(defaults.merge({
       pending_users:      User.pending,
       all_users:          User.all.except{ |u| u.email == 'admin@safehaven.org'},
+      all_clients:        Client.all,
       recent_activities:  GetRecentActivity.call,
       view:               'admin/dashboard'
     }))
