@@ -1,0 +1,9 @@
+.row
+  .col-md-3
+    = render 'admin/stats/user_signups',             stat: stats.user_signups
+  .col-md-3
+    = render 'admin/stats/client_signups',           stat: stats.client_signups
+  .col-md-3
+    = render 'admin/stats/acceptances',              stat: stats.acceptances
+  .col-md-3
+    = render 'admin/stats/oldest_unaccepted_client', stat: stats.oldest_unaccepted_client

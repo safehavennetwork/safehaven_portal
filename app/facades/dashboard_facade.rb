@@ -16,7 +16,8 @@ class DashboardFacade
       all_users:          User.all.except{ |u| u.email == 'admin@safehaven.org'},
       all_clients:        Client.all,
       recent_activities:  GetRecentActivity.call,
-      view:               'admin/dashboard'
+      view:               'admin/dashboard',
+      stats:              AdminDashboardStats.call
     }))
   end
 

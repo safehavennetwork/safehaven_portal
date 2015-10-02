@@ -14,6 +14,21 @@
  *= require_self
  */
 
+.admin-stat-icon{
+  font-size: 6em;
+  color: white;
+}
+
+.admin-stat{
+  font-size: 4em;
+  float: left;
+}
+
+.admin-stat-label{
+  font-weight: 900;
+  padding: 8px;
+}
+
  .focussed-search-result{
   background-color: rgba(157, 89, 212, 0.51);
  }

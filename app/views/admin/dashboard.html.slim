@@ -1,17 +1,13 @@
-.row style='min-height: 35%;'
-  .col-md-6 style='min-height: 20em;'
-    - unless @dashboard.pending_users.blank?
-      = render 'admin/pending_users', pending_users: @dashboard.pending_users
-    - else
-      = render 'admin/all_users', all_users: @dashboard.all_users
-
-  .col-md-6 style='min-height: 20em;'
-    = render 'admin/recent_activity', recent_activities: @dashboard.recent_activities
+= render 'admin/stats_bar', stats: @dashboard.stats
 
 .row
   .col-md-6 style='min-height: 20em;'
+    = render 'admin/recent_activity', recent_activities: @dashboard.recent_activities
+    = render 'admin/client_list', clients: @dashboard.all_clients
+  .col-md-6
     - unless @dashboard.pending_users.blank?
-      = render 'admin/all_users', all_users: @dashboard.all_users
+      = render 'admin/pending_users', pending_users: @dashboard.pending_users
+    = render 'admin/all_users', all_users: @dashboard.all_users
 
 javascript:
   $("[name='toggle_application_status']").bootstrapSwitch(
