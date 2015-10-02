@@ -1,0 +1,27 @@
+.panel.panel-default style="overflow: auto; max-height: 70%"
+  .panel-heading
+    h3 Clients (#{clients.count})
+  .panel-body
+    - unless clients.blank?
+      .table-responsive
+        table.table.table-hover.sortable.sortable-theme-bootstrap data-sortable=true id='client-list'
+          thead
+            tr
+              th
+              th Name
+              th Pet Count
+              th Organization
+              th Last Update Action
+          tbody
+            - for client in clients
+              tr
+                td
+                  a href="/client/#{client.slug || client.id}"
+                    span.glyphicon.glyphicon-pencil
+                td = "#{client.name}"
+                td = client.pets.size
+                td = client.organization.try(:name)  || 'Not Accepted'
+                td = client.update_action
+
+javascript:
+  Sortable.initTable(document.querySelector('#client-list'));
