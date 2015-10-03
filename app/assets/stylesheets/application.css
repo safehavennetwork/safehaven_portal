@@ -14,6 +14,9 @@
  *= require_self
  */
 
+.pending-user{
+  background-color: rgba(123, 10, 123, 0.29);
+}
 .admin-stat-icon{
   font-size: 6em;
   color: white;
