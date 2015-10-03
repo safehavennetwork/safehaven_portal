@@ -4,7 +4,7 @@
       h1 = @dashboard.org.name
     .pull-right
       a.btn.btn-primary.qa-add-new-client href="/apply" New Client
-      a.btn.btn-primary style='margin-left: 10px;' href="/organization/#{@dashboard.org.slug}" Edit Profile
+      a.btn.btn-primary style='margin-left: 10px;' href="/organization/#{@dashboard.org.slug || @dashboard.org.id}" Edit Profile
       a.btn.btn-primary style='margin-left: 10px;' href="mailto:safe@thesafehavennetwork.org" Contact Safe Haven
 .row
   .col-md-12

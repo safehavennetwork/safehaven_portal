@@ -50,6 +50,7 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    cancancan (1.12.0)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -300,6 +301,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   brakeman
+  cancancan
   capybara
   capybara-email
   capybara-screenshot
@@ -333,3 +335,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   vcr
   webmock
+
+BUNDLED WITH
+   1.10.6

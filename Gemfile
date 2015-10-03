@@ -4,6 +4,7 @@ gem 'rails', '4.1.5'
 gem 'puma'
 gem 'mysql2'
 gem 'devise'
+gem 'cancancan'
 gem 'friendly_id'
 
 gem 'slim-rails'

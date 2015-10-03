@@ -41,4 +41,5 @@ form.form-horizontal action="/client/#{@client.id}" method="post"
         input.form-control type="text" id="client_email" name='address[zip_code]' value="#{@client.address.try(:zip_code).try(:zip_code)}"
     .form-group
       .col-sm-offset-2.col-sm-10
-        button.btn.btn-success style='width:100%'  type="submit" Save details
+        -if can? :update, @client
+          button.btn.btn-success style='width:100%'  type="submit" Save details

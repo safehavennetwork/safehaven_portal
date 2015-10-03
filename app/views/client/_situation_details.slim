@@ -2,4 +2,5 @@ form.form-horizontal action="/client/#{@client.id}/application" method="post"
   = render 'client/shared/client_application_form_fields', client_application: @client.client_application
   .form-group
     .col-sm-offset-2.col-sm-10
-      button.btn.btn-success type="submit" Update Client
+      -if can? :update, @client
+        button.btn.btn-success type="submit" Update Client
