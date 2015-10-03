@@ -1,7 +1,7 @@
-- organization = @client.organization
+- organization = @client.organization || OpenStruct.new({})
 .panel.panel-default
   .panel-heading
-    h3.sh-panel-title = "#{organization.try(:name)}"
+    h3.sh-panel-title = "#{organization.name}"
   .panel-body
     .row
       .col-sm-4
