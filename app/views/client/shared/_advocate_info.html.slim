@@ -1,7 +1,7 @@
 - organization = @client.organization
 .panel.panel-default
   .panel-heading
-    h3.sh-panel-title = "#{organization.name}"
+    h3.sh-panel-title = "#{organization.try(:name)}"
   .panel-body
     .row
       .col-sm-4
