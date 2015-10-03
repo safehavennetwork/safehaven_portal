@@ -35,8 +35,12 @@
           .form-group
             label.col-sm-5.control-label  for="name" Organization Admin
             .col-sm-7
-              = select("user", "email", @organization.users.collect{|u|[u.email, u.email]}, {selected: @organization.admin.try(:email)}, class: 'form-control')
-          button.btn.btn-success.pull-right type="submit" Save details
+              - if can? :update, @organization
+                = select("user", "email", @organization.users.collect{|u|[u.email, u.email]}, {selected: @organization.admin.try(:email)}, class: 'form-control')
+              - else
+                label.form-control = @organization.admin.try(:email)
+          - if can? :update, @organization
+            button.btn.btn-success.pull-right type="submit" Save details
   .col-sm-6
     .panel.panel-default
       .panel-heading
@@ -46,7 +50,7 @@
           .form-group
             label.col-sm-5.control-label  for="name" Phone
             .col-sm-7
-              input.form-control type="text"  name='phone' value="#{@organization.phone}"
+              input.form-control type="text"  name='phone' value="#{@organization.phone.try(:phone_number)}"
           .form-group
             label.col-sm-5.control-label  for="name" Email
             .col-sm-7
@@ -73,4 +77,5 @@
             label.col-sm-5.control-label  for="name" ZipCode
             .col-sm-7
               input.form-control type="text" name='address[zip_code]' value="#{address.try(:zip_code)}"
-          button.btn.btn-success.pull-right type="submit" Save details
+          - if can? :edit, @organization
+            button.btn.btn-success.pull-right type="submit" Save details

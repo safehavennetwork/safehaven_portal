@@ -35,7 +35,8 @@
                   input.form-control type="text" name='email' value= @user.email
               .form-group
                 .col-sm-offset-2.col-sm-10
-                  button.btn.btn-success style='width:100%'  type="submit" Save
+                  - if can? :update, @user
+                    button.btn.btn-success style='width:100%'  type="submit" Save
 
             .col-sm-6
               .form-group
@@ -43,30 +44,33 @@
                 .col-sm-7
                   //If current user is an admin, this should be a drop down of all Organizations so an admin can change who they belong to
                   label.form-control type="text" id="client_email" name='address[line1]' = @user.organization.try(:name)
-                  a.pull-right href="/organization/#{@user.organization.try(:id)}" details
-              .form-group
-                label.col-sm-5.control-label  for="org_phone_number" Sign in Count
-                .col-sm-7
-                  label.form-control type="text" id="client_email" = @user.sign_in_count
-              .form-group
-                label.col-sm-5.control-label  for="org_phone_number" Last Sign In
-                .col-sm-7
-                  label.form-control type="text" id="client_email" = "#{@user.last_sign_in_at ? @user.last_sign_in_at.to_date.to_s(:long) : 'Never'}"
-              .form-group
-                label.col-sm-5.control-label  for="org_phone_number" Disabled?
-                .col-sm-7
-                  label.form-control type="text" id="client_email" = "#{@user.disabled ? 'Yes' : 'No'}"
-              .form-group
-                label.col-sm-5.control-label  for="org_phone_number" Last Update At:
-                .col-sm-7
-                  label.form-control type="text" id="client_email" = @user.updated_at
-              .form-group
-                label.col-sm-5.control-label  for="org_phone_number" Last Update Action:
-                .col-sm-7
-                  label.form-control type="text" id="client_email" = "#{@user.update_action}"
-  .col-md-3
-    .panel.panel-default
-      .panel-heading
-        h3.sh-panel-title Reset Password
-      .panel-body
-        = render 'client/shared/reset_password'
+                  - if @user.organization
+                    a.pull-right href="/organization/#{@user.organization.try(:id)}" details
+              - if current_user.site_admin? || current_user.id == @user.id
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Sign in Count
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = @user.sign_in_count
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Last Sign In
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = "#{@user.last_sign_in_at ? @user.last_sign_in_at.to_date.to_s(:long) : 'Never'}"
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Disabled?
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = "#{@user.disabled ? 'Yes' : 'No'}"
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Last Update At:
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = @user.updated_at
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Last Update Action:
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = "#{@user.update_action}"
+  - if can? :update, @user
+    .col-md-3
+      .panel.panel-default
+        .panel-heading
+          h3.sh-panel-title Reset Password
+        .panel-body
+          = render 'client/shared/reset_password'

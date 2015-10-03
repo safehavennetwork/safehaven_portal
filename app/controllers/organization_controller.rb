@@ -10,45 +10,19 @@ class OrganizationController < ApplicationController
     org = Organization.find(params[:id])
     admin_id = org.users.find_by(email: params.fetch(:user, {})[:email]).try(:id)
     unless org.update_attributes(update_params.merge(admin_id: admin_id))
-      flash[:status] = 'error'
-      flash[:notice] = 'Error updating organization'
+      flash[:error] = 'Error updating organization'
     end
+    flash[:success] = 'Update successful'
     redirect_to organization_path, id: params[:id]
   end
 
   def update_contact_info
     org = Organization.find(params[:id])
     unless UpdateOrgContactInfo.new(org, update_contact_info_params).call
-      flash[:status] = 'error'
-      flash[:notice] = 'Error updating organization contact info'
+      flash[:error] = 'Error updating organization contact info'
     end
+    flash[:success] = 'Update successful'
     redirect_to organization_path, id: params[:id]
-  end
-
-  def update_params
-    params.permit(
-      :name,
-      :phone,
-      :email,
-      :services,
-      :office_hours,
-      :website_url,
-      :geographic_area_served
-    )
-  end
-
-  def update_contact_info_params
-    params.permit(
-      :phone,
-      :email,
-      address: [
-        :line1,
-        :line2,
-        :city,
-        :state,
-        :zip_code
-      ]
-    )
   end
 
   def dashboard
@@ -61,7 +35,7 @@ class OrganizationController < ApplicationController
     client = Client.find(params[:id])
     client.update_attributes( organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
     UserMailer.client_accepted(client).deliver
-    redirect_to :root
+    redirect_to client_path params[:client_id]
   end
 
   def release_client
@@ -71,8 +45,7 @@ class OrganizationController < ApplicationController
 
   def accept_pets
     unless AcceptPets.new(shelter: current_user.organization, client: Client.find(params[:client_id])).call
-      flash[:notice] = 'Error accepting pets'
-      flash[:status] = 'error'
+      flash[:error] = 'Error accepting pets'
     end
     redirect_to client_path params[:client_id]
   end
@@ -83,8 +56,7 @@ class OrganizationController < ApplicationController
                         reason:  params[:release_status]).call
       redirect_to :root
     else
-      flash[:notice] = 'Error releasing pets'
-      flash[:status] = 'error'
+      flash[:error] = 'Error releasing pets'
       render "client/#{params[:client_id]}"
     end
   end
@@ -171,6 +143,32 @@ class OrganizationController < ApplicationController
       :type,
       :organization_name,
       :organization_phone_number
+    )
+  end
+
+  def update_params
+    params.permit(
+      :name,
+      :phone,
+      :email,
+      :services,
+      :office_hours,
+      :website_url,
+      :geographic_area_served
+    )
+  end
+
+  def update_contact_info_params
+    params.permit(
+      :phone,
+      :email,
+      address: [
+        :line1,
+        :line2,
+        :city,
+        :state,
+        :zip_code
+      ]
     )
   end
 end
