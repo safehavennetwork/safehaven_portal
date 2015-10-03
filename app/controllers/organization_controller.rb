@@ -35,7 +35,7 @@ class OrganizationController < ApplicationController
     client = Client.find(params[:id])
     client.update_attributes( organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
     UserMailer.client_accepted(client).deliver
-    redirect_to client_path params[:client_id]
+    redirect_to client_path params[:id]
   end
 
   def release_client
