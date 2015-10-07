@@ -7,8 +7,11 @@
         .pull-right
           .row.admin-stat
             .col-md-12
-              span = stat.days_in_waiting
+              span = stat.try(:days_in_waiting) || 0
           .row
             .col-md-12
-              span.admin-stat-label style='font-size: 12px;' days in waiting for
-              a href="#{stat.link}" = "#{stat.client_name}"
+              -if stat
+                span.admin-stat-label style='font-size: 12px;' days in waiting for
+                a href="#{stat.link}" = "#{stat.client_name}"
+              -else
+                span.admin-stat-label style='font-size: 12px;' days in waiting for any clients!
