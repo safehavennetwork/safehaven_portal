@@ -12,6 +12,7 @@ class AdminDashboardStats
 
   def self.oldest_unaccepted_client
     client = Client.where(release_status: nil, organization: nil).order(:created_at).first
+    return nil unless client
     OpenStruct.new({
       days_in_waiting: (DateTime.now.to_date - client.created_at.to_date).to_i,
       client_name:     client.name,
