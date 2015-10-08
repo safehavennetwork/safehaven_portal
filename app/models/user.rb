@@ -31,11 +31,11 @@ class User < ActiveRecord::Base
   end
 
   def site_admin?
-    groups.include? Group.find_by(name: 'site_admin')
+    groups.include? Group['site_admin']
   end
 
   def org_admin?
-    groups.include? Group.find_by(name: 'org_admin')
+    groups.include? Group['org_admin']
   end
 
   def shelter?
