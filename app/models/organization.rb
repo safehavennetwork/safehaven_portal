@@ -27,7 +27,7 @@ class Organization < ActiveRecord::Base
     )
     # FIXME: ugh
     org.admin.update_attributes(organization: org)
-    org.admin.groups << Group.find_by(name: 'org_admin')
+    org.admin.groups << Group['org_admin']
     org
   end
 end

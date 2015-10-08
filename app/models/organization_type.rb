@@ -1,3 +1,3 @@
 class OrganizationType < ActiveRecord::Base
-  include LookupBy
+  lookup_by :organization_type
 end
