@@ -1,29 +1,24 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
   pool: 5
-  username: safehaven
-  password:
-  socket: <%= ENV['MYSQL_SOCK'] %>
+  username: secure_portal
 
 development:
   <<: *default
   database: safehaven_development
-  username: safehaven
 
 test:
   <<: *default
-  database: safehaven_test
-  username: safehaven
+  database: secure_portal_test
 
 staging:
   <<: *default
-  database: safehaven_staging
-  socket: /var/run/mysqld/mysqld.sock
+  database: secure_portal_staging
+  username: <%= ENV['SP_STAGING_DATABASE_U'] %>
+  password: <%= ENV['SP_STAGING_DATABASE_P'] %>
 
 production:
   <<: *default
-  host:     <%= ENV['DATABASE_URL'] %>
-  database: 'safehavenDb'
-  username: <%= ENV['DATABASE_U'] %>
-  password: <%= ENV['DATABASE_P'] %>
+  database: 'secure_portal_production'
+  username: <%= ENV['SP_PROD_DATABASE_U'] %>
+  password: <%= ENV['SP_PROD_DATABASE_P'] %>

@@ -127,6 +127,8 @@ GEM
       sprockets (> 2, < 4)
       tilt
     libv8 (3.16.14.11)
+    lookup_by (0.10.5)
+      activerecord (>= 4.0.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -135,7 +137,6 @@ GEM
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.2)
-    mysql2 (0.3.18)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     nyan-cat-formatter (0.11)
@@ -143,6 +144,7 @@ GEM
     orm_adapter (0.5.0)
     parser (2.3.0.pre.2)
       ast (>= 1.1, < 3.0)
+    pg (0.18.3)
     phantomjs (1.9.8.0)
     poltergeist (1.6.0)
       capybara (~> 2.1)
@@ -314,8 +316,9 @@ DEPENDENCIES
   jasmine
   jquery-rails
   less-rails
-  mysql2
+  lookup_by
   nyan-cat-formatter
+  pg
   poltergeist
   pry
   pry-byebug
@@ -335,6 +338,3 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   vcr
   webmock
-
-BUNDLED WITH
-   1.10.6

@@ -1,4 +1,4 @@
 class State < ActiveRecord::Base
-  include LookupBy
+  lookup_by :state, find_or_create: true
   has_many :addresses
 end
