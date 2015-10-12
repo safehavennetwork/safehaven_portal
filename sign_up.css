@@ -1,0 +1,63 @@
+html {
+	font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+}
+
+header {
+	background-color: #2c3135;
+}
+
+nav {
+	display: inline;
+}
+
+ul {
+	padding-top: 40px;
+	float: right;
+}
+
+li {
+	display: inline;
+	padding: 0 50px 0 0;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+}
+
+a:hover {
+	color: #fff;
+}
+
+body {
+	background-color: #e0e0e0;
+}
+
+footer {
+	background-color: #2c3135;
+	color: #fff;
+	text-align: center;
+	height: 150px;
+}
+
+.container {
+	width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+ul#social {
+	clear: both;
+	float: none;
+}
+
+.jumbotron {
+	height: 600px;
+	background-image: url("app/assets/images/happy_cat_and_dog_hires.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	color: #fff;
+}
+
