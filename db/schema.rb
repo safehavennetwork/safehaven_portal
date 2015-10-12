@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930010927) do
+ActiveRecord::Schema.define(version: 20151010153536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,7 +100,6 @@ ActiveRecord::Schema.define(version: 20150930010927) do
 
   create_table "clients", primary_key: "client_id", force: true do |t|
     t.text    "name"
-    t.text    "phone"
     t.text    "email"
     t.text    "best_way_to_reach"
     t.integer "address_id"
@@ -111,6 +110,7 @@ ActiveRecord::Schema.define(version: 20150930010927) do
     t.integer "pets_count"
     t.string  "slug"
     t.integer "release_status_id"
+    t.integer "phone_number_id"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 20150930010927) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "disabled",                  default: '2015-10-08 01:37:50'
+    t.datetime "disabled",                  default: '2015-10-10 15:33:37'
     t.date     "updated_at"
     t.text     "update_action"
     t.date     "welcome_email_sent"

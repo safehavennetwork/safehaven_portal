@@ -39,7 +39,12 @@ class OrganizationController < ApplicationController
   end
 
   def release_client
-    Client.find(params[:id]).update_attributes(organization: nil, updated_at: Time.now, update_action: 'released', release_status: ReleaseStatus[params[:release_status]] )
+    @client = Client.find(params[:id])
+    @client.update_attributes(organization: nil, updated_at: Time.now, update_action: 'released', release_status: ReleaseStatus[params[:release_status]] )
+    unless @client.all_pets_released?
+      OrganizationMailer.client_released_with_active_pets(@client)
+    end
+    OrganizationMailer.client_released(@client)
     redirect_to :root
   end
 
@@ -66,29 +71,37 @@ class OrganizationController < ApplicationController
   end
 
   def sign_up
-    @type = params[:type]
+    @organization_type = params[:type]
+    @params = params
     if params[:organization_member] == 'on'
       unless org = Organization.find_by(code: org_lookup_params[:organization_code].upcase)
+        flash[:error] = 'The organization code entered could not be found'
         render 'users/registration/failed'
       end
 
-      unless @user = User.get_user(user_params.merge(organization: org))
-        @errors = user.errors.messages
-        render 'users/registrations/failed'
+      @user = User.get_user(user_params.merge(organization: org))
+      if @user.errors
+        flash[:error] = @user.errors.messages.map {|k,v| "#{k.to_s} #{v[0]}"}.join(', ')
+        render "organization/sign_up_form" && return
       end
       UserMailer.new_user_email.deliver
       render 'users/registrations/pending'
     else
       unless @org = Organization.create_with_admin(organization_params, user_params)
-        @errors = @org.errors.messages
-
-        render 'users/registrations/pending'
+        flash[:error] = 'Error creating new Organization!'
+        render 'users/registrations/failed' && return
       end
       @user = @org.admin
-      UserMailer.new_user_email.deliver
-      render 'organization/pending_registration'
+      if @user.errors
+        flash[:error] = @user.errors.messages.map {|k,v| "#{k.to_s} #{v[0]}"}.join(', ')
+        render "organization/sign_up_form"
+      else
+        UserMailer.new_user_email.deliver unless Rails.env.development?
+        render 'organization/pending_registration'
+      end
     end
   rescue => e
+    flash[:error] = e.message
     Rails.logger.error(e.message)
     Rails.logger.error(e.backtrace)
     render 'users/registrations/failed'

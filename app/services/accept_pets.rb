@@ -13,6 +13,7 @@ class AcceptPets
         update_action: "accepted by #{shelter.name}"
       )
     end
+    OrganizationMailer.pets_accepted(client).deliver
     true
   rescue => e
     Rails.logger.info e.message

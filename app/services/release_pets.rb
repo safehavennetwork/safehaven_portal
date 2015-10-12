@@ -14,6 +14,7 @@ class ReleasePets
         update_action: "released by #{shelter.name}"
       )
     end
+    OrganizationMailer.pets_released(client).deliver
     true
   rescue => e
     Rails.logger.info e.message

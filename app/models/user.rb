@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     return nil unless user_hash
     user_hash[:primary_phone_number] = PhoneNumber.find_or_create_by(phone_number: user_hash.delete(:phone_number))
     user_hash[:password]             = password(user_hash)
-    User.find_or_create_by!(user_hash)
+    User.find_or_create_by(user_hash)
   end
 
   def self.password(user_hash)

@@ -9,14 +9,12 @@ class PetController < ApplicationController
   def update
     update_service = UpdatePet.new(update_params)
     @pet           = update_service.call
-    set_flash('failure', 'Failed to update pet') unless @pet.errors.blank?
-    flash = set_flash('success', 'Pet has been updated!')
+    flash[:error] = 'Failed to update pet' unless @pet.errors.blank?
+    if update_service.success?
+      @pet.update_attributes(completed: true)
+    end
+    flash[:success] = 'Pet has been updated!'
     render action: 'show'
-  end
-
-  def set_flash(status, message)
-    flash[:status]  = status
-    flash[:message] = message
   end
 
   def delete

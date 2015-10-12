@@ -7,43 +7,42 @@
         .col-sm-7
           input id='organization_member' type='checkbox' name='organization_member' style='height:auto;'
 
-
       .form-group id='organization_id_group' style='display: none;'
         label.col-sm-5.control-label  for="org_name" Organization Code
         .col-sm-7
-          input.form-control type="text" id="org_name" name='organization_code'
+          input.form-control type="text" id="org_name" name='organization_code' value="#{@params['organization_code']}"
 
       .form-group id='organization_name_group'
         label.col-sm-5.control-label  for="org_name" Organization Name
         .col-sm-7
-          input.form-control type="text" id="org_name" name='organization_name'
+          input.form-control type="text" id="org_name" name='organization_name' value="#{@params['organization_name']}"
 
       .form-group id='organization_phone_number_group'
         label.col-sm-5.control-label  for="org_phone_number" Organization Phone Number
         .col-sm-7
-          input.form-control type="phone" id="org_phone_number" name='organization_phone_number'
+          input.form-control type="phone" id="org_phone_number" name='organization_phone_number' value="#{@params['organization_phone_number']}"
 
       hr style='width:75%; margin-left: 12em;'
 
       .form-group
         label.col-sm-5.control-label  for="first_name" First Name
         .col-sm-7
-          input.form-control type="text" id="first_name" name='first_name'
+          input.form-control type="text" id="first_name" name='first_name' value="#{@params['first_name']}"
 
       .form-group
         label.col-sm-5.control-label  for="last_name" Last Name
         .col-sm-7
-          input.form-control type="text" id="last_name" name='last_name'
+          input.form-control type="text" id="last_name" name='last_name' value="#{@params['last_name']}"
 
       .form-group
         label.col-sm-5.control-label  for="email" Email
         .col-sm-7
-          input.form-control type="email" id="email" name='email'
+          input.form-control type="email" id="email" name='email' value="#{@params['email']}"
 
       .form-group
         label.col-sm-5.control-label  for="primary_phone_number_attributes_phone_number" Contact Phone Number
         .col-sm-7
-          input.form-control type="phone" id="primary_phone_number_attributes[phone_number]" name='phone_number'
+          input.form-control type="phone" id="primary_phone_number_attributes[phone_number]" name='phone_number' value="#{@params['phone_number']}"
 
       .form-group
         label.col-sm-5.control-label  for="user_password" Password

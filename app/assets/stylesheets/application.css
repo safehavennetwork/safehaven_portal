@@ -14,6 +14,16 @@
  *= require_self
  */
 
+.warning-label{
+  border: 1px solid orange;
+  background-color: rgba(255, 180, 41, 0.59);
+  text-align: center;
+  color: white;
+  position: absolute;
+  left: 45%;
+}
+
+
 .pending-user{
   background-color: rgba(123, 10, 123, 0.29);
 }
