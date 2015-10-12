@@ -8,6 +8,10 @@
 .row
   .col-md-10
     form.form-horizontal action="/pet/#{@pet.id}" method="post"
+      .form-group
+          .col-sm-offset-11.col-sm-10
+            - if can? :update, @pet
+              button.btn.btn-success type="submit" Save
       .form-group id='organization_name_group'
         label.col-sm-5.control-label  for="name" Pet Name
         .col-sm-7
@@ -115,7 +119,7 @@
             textarea.form-control row='3' name='vet_needs' = "#{@pet.vet_needs}"
 
         .form-group
-          label.col-sm-5.control-label Please describe the pets behavior and temperament
+          label.col-sm-5.control-label Please describe the pet's behavior and temperament
           .col-sm-7
             textarea.form-control row='3' name='temperament' = "#{@pet.temperament}"
 

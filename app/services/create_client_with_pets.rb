@@ -1,10 +1,11 @@
 class CreateClientWithPets
   attr_accessor :errors, :client
-  def self.call(client_hash, pet_hash)
+  def self.call(client_hash, pet_hash, org = nil)
     address_hash = client_hash[:address]
     @client = Client.find_or_create_by!(
-      name: client_hash[:client_name],
-      phone: PhoneNumber.find_or_create_by!(phone_number: client_hash[:client_phone_number]),
+      organization: org,
+      name: client_hash[:name],
+      phone_number: PhoneNumber.find_or_create_by!(phone_number: client_hash[:phone_number]),
       email: client_hash[:email],
       best_way_to_reach: client_hash[:best_way_to_reach],
       address: Address.find_or_create_by!(

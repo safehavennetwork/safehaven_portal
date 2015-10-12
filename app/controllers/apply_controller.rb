@@ -49,7 +49,7 @@ class ApplyController < ApplicationController
   end
 
   def confirm
-    #FIXME: Send emails to all shelters with a link to this client ID
+    ClientMailer.application_completed
     redirect_to root_path
   end
 

@@ -3,42 +3,42 @@
     h1 style='text-align: center; color: rgb(255, 174, 0);' New Client Application
     form.form-horizontal action="anonymous-signup" method="post"
       .form-group
-        label.col-sm-5.control-label  for="client_name" Name
+        label.col-sm-5.control-label  for="name" Name
         .col-sm-7
-          input.form-control.qa-client-name type="text" id="client_name" name='client_name'
+          input.form-control.qa-client-name type="text" id="client_name" name='name'
 
       .form-group
-        label.col-sm-5.control-label  for="organization_name" Phone Number
+        label.col-sm-5.control-label  for="phone_number" Phone Number
         .col-sm-7
-          input.form-control.qa-client-phone type="text" id="client_phone_number" name='client_phone_number'
+          input.form-control.qa-client-phone type="text" id="phone_number" name='phone_number'
 
       .form-group
-        label.col-sm-5.control-label  for="org_phone_number" Email
+        label.col-sm-5.control-label  for="email" Email
         .col-sm-7
           input.form-control.qa-client-email type="text" name='email'
 
       .form-group
-        label.col-sm-5.control-label  for="org_phone_number" Preferred contact method
+        label.col-sm-5.control-label  for="best_way_to_reach" Preferred contact method
         .col-sm-7
           input.form-control.qa-client-best-way-to-reach type="text" id="best_way_to_reach" name='best_way_to_reach'
 
       .form-group
-        label.col-sm-5.control-label  for="org_phone_number" Address
+        label.col-sm-5.control-label  for="address_line_1" Address
         .col-sm-7
           input.form-control.qa-client-address-line-1 type="text" name='address[line1]'
 
       .form-group
-        label.col-sm-5.control-label  for="org_phone_number" City
+        label.col-sm-5.control-label  for="city" City
         .col-sm-7
           input.form-control.qa-client-address-city type="text" name='address[city]'
 
       .form-group
-        label.col-sm-5.control-label  for="org_phone_number" State
+        label.col-sm-5.control-label  for="state" State
         .col-sm-7
           = select_tag 'address[state]', options_for_select(us_states, selected: 'IL'), class: 'form-control'
 
       .form-group
-        label.col-sm-5.control-label  for="org_phone_number" Zip
+        label.col-sm-5.control-label  for="zip" Zip
         .col-sm-7
           input.form-control.qa-client-address-zip-code type="text" name='address[zip_code]'
 
@@ -46,7 +46,7 @@
         label.col-sm-5
           h2.pull-right Your pets
       .form-group
-        label.col-sm-5.control-label  for="pet_breed" Type
+        label.col-sm-5.control-label  for="pet_type" Type
         .col-sm-7
           select.form-control.qa-pet-type style='width: 50%;' id='pet_type'
             option value='dog' Dog

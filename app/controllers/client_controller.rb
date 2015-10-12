@@ -4,12 +4,17 @@ class ClientController < ApplicationController
 
   def show
     @client = Client.includes(:pets, :client_application).friendly.find(params.permit(:id)[:id])
+    unless @client.application_completed?
+      @apply_url = apply_pet_details_path(@client.pets.first.id)
+    end
   end
 
   def anonymous_signup
     if @client = CreateClientWithPets.call(client_params, params[:pets])
-      VolunteerMailer.new_client(@client).deliver
-      ClientMailer.confirm_signup(@client).deliver if params[:confirmation_email]
+      unless Rails.env.development?
+        VolunteerMailer.new_client(@client).deliver
+        ClientMailer.confirm_signup(@client).deliver if params[:confirmation_email]
+      end
       render 'client/signup_confirmation'
     else
       flash[:status] = 'error'
@@ -22,6 +27,7 @@ class ClientController < ApplicationController
     @client = Client.find(params.permit(:id)[:id])
     client_hash = client_params
     client_hash[:address] = GetAddress.call(address_params[:address])
+    client_hash[:phone_number] = PhoneNumber.find_or_create_by(phone_number: client_params[:phone_number])
     @client.update_attributes(client_hash)
 
     redirect_to "/client/#{@client.id}"
@@ -52,14 +58,10 @@ class ClientController < ApplicationController
   def new
     @client_hash = client_params
     @org         = current_user.organization
-    @new_client  = CreateClientWithPets.call(client_params, params[:pets])
+    @new_client  = CreateClientWithPets.call(client_params, params[:pets], @org)
     redirect_to apply_pet_details_path(id: @new_client.pets.first.id)
   rescue => e
     render 'shared/oops'
-  end
-
-  def release
-    # TODO:  Release a client back to 'in need' status
   end
 
   def address_params
@@ -79,8 +81,8 @@ class ClientController < ApplicationController
 
   def client_params
     params.permit(
-      :client_name,
-      :client_phone_number,
+      :name,
+      :phone_number,
       :email,
       :best_way_to_reach,
       address: [

@@ -1,0 +1,15 @@
+.modal.fade id='client-acceptance-modal'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h3 Client Acceptance Acknowledgement
+      .modal-body
+        .row
+          .col-sm-12.col-md-12
+            p Once a client is accepted, emails are sent to Shelters letting them know there are pets in need.  By clicking 'Accept Client' below, your organization is agreeing to work with the Shelters and Client to establish a temporary home for the pet or pets.
+        .row
+          .col-sm-12.col-md-12
+            button.pull-left type="button" class="close" data-dismiss="modal" aria-hidden="true" Go back
+            form.pull-right action="/organization/accept-client/#{@client.id}" method="post"
+              button.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Accept Client
