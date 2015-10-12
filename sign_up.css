@@ -28,6 +28,7 @@ a {
 
 a:hover {
 	color: #fff;
+	text-decoration: underline;
 }
 
 body {
@@ -41,10 +42,28 @@ footer {
 	height: 150px;
 }
 
+footer p {
+	padding-top: 10px;
+}
+
+.textbox {
+	width: 300px;
+	height: 30px;
+	margin: 10px 0 10px 0;
+}
+
 .container {
 	width: 100%;
     max-width: 1024px;
     margin: 0 auto;
+}
+
+.column {
+	float: left;
+	width: 45%;
+	padding: 15px;
+	text-align: center;
+	margin-top: 100px;
 }
 
 ul#social {
@@ -54,10 +73,44 @@ ul#social {
 
 .jumbotron {
 	height: 600px;
-	background-image: url("app/assets/images/happy_cat_and_dog_hires.jpg");
-	background-size: cover;
+	background-image: url("app/assets/images/happy_cat_and_dog_opaque.png");
+	background-size: 100%;
 	background-repeat: no-repeat;
 	background-position: center;
-	color: #fff;
+	color: #2c3135;
 }
 
+.jumbotron a {
+	color: #2c3135;
+}
+
+.jumbotron a:hover {
+	color: purple;
+	text-decoration: underline;
+}
+
+.jumbotron p {
+	padding: 20px 0 20px 0;
+}
+
+.btn {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #8934d9;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #8934d9;
+  background-image: -webkit-linear-gradient(top, #8934d9, #d95a34);
+  background-image: -moz-linear-gradient(top, #8934d9, #d95a34);
+  background-image: -ms-linear-gradient(top, #8934d9, #d95a34);
+  background-image: -o-linear-gradient(top, #8934d9, #d95a34);
+  background-image: linear-gradient(to bottom, #8934d9, #d95a34);
+  text-decoration: none;
+}
