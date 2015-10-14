@@ -4,15 +4,52 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application',               'data-no-turbolink' => true
     = csrf_meta_tags
+  header
+    .container-fluid.sh-navbar-container
+      -if current_user
+        = render 'shared/navbar'
+      -else
+        nav.sh-header-bar
+          a.navbar-brand href="http://thesafehavennetwork.org" id="logoA"
+            = image_tag "SHN-side-logo-2.png", id: "logoImg"
+          ul.nav-bar-list
+            li
+              a href="http://thesafehavennetwork.org/" Home
+            li
+              a href="http://thesafehavennetwork.org/?page_id=327" About Us
+            li
+              a href="http://thesafehavennetwork.org/?page_id=343" Get Involved
+            li
+              a href="http://thesafehavennetwork.org/?page_id=347" Referral Program Info
+            li
+              a href="#social" Contact
+
   .container-fluid
     body
       - flash.each do |type, message|
           div class="alert alert-#{bootstrap_class_for(type)}"
             button.close data-dismiss="alert" ×
             p = message
-      = render 'shared/navbar'
       .body-with-gutter style='margin-left: 1em; margin-right: 1em;'
+        br
         = yield
+  footer
+    .container
+      ul id="social"
+        li
+          a href="https://www.facebook.com/SafeHavenNetwork"
+            = image_tag 'facebook.svg'
+        li
+          a href="https://twitter.com/SafeHavenNtwk"
+            = image_tag 'twitter.svg'
+        li
+          a href="https://www.linkedin.com/company/the-safe-haven-network"
+            = image_tag 'linkedin.svg'
+        li
+          a href="https://instagram.com/thesafehavennetwork/"
+            = image_tag 'instagram.svg'
+      p &copy Copyright 2015 The Safe Haven Network
+
 
 javascript:
   setTimeout(function(){

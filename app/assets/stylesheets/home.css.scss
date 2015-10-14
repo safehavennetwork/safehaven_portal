@@ -1,0 +1,110 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.login-panel{
+  padding: 24;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin-left: 30px;
+  margin-right: 30px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.42);
+  border-right: 1px solid rgba(128, 128, 128, 0.42);
+  border-radius: 12px;
+}
+
+html {
+  font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+}
+
+header {
+  background-color: #2c3135;
+}
+
+nav {
+  display: inline;
+}
+
+ul {
+  padding-top: 40px;
+  float: right;
+}
+
+li {
+  display: inline;
+  padding: 0 50px 0 0;
+  text-align: center;
+}
+
+.nav-bar-list a {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+body {
+  background-color: #e0e0e0;
+}
+
+footer {
+  background-color: #2c3135;
+  color: #fff;
+  text-align: center;
+  height: 150px;
+}
+
+footer p {
+  padding-top: 10px;
+}
+
+.textbox {
+  width: 300px;
+  height: 30px;
+  margin: 10px 0 10px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  min-height: 100px;
+}
+
+.column {
+  float: left;
+  width: 45%;
+  text-align: center;
+}
+
+ul#social {
+  clear: both;
+  float: none;
+}
+
+.jumbotron {
+  height: 600px;
+  background-image: url("happy_cat_and_dog_opaque.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #2c3135;
+}
+
+.btn-landing-page {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #8934d9;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.sh-header-bar{
+  min-height: 100px;
+}
