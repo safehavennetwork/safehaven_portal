@@ -1,6 +1,8 @@
 .panel.panel-default style="overflow: auto; max-height: 70%"
   .panel-heading
-    h3 Clients (#{clients.count})
+    .row
+      .col-md-12
+        p.pull-left style='font-size: 24px;' Clients (#{clients.count})
   .panel-body
     - unless clients.blank?
       .table-responsive

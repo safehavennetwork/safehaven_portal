@@ -14,7 +14,11 @@
  *= require_self
  */
 
- .organization-detail-group{
+ .sh-navbar-container{
+  min-height: 100px;
+ }
+
+.organization-detail-group{
     border-bottom: 2px solid rgba(0, 0, 0, 0.45);
     margin-bottom: 4px;
  }

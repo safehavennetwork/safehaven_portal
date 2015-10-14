@@ -2,10 +2,12 @@
 
 .row
   .col-md-6 style='min-height: 20em;'
-    = render 'admin/recent_activity', recent_activities: @dashboard.recent_activities
-    = render 'admin/client_list', clients: @dashboard.all_clients
-  .col-md-6
     = render 'admin/all_users', all_users: @dashboard.all_users
+  .col-md-6
+    = render 'admin/client_list', clients: @dashboard.all_clients
+.row
+  .col-md-6
+    = render 'admin/recent_activity', recent_activities: @dashboard.recent_activities
 
 javascript:
   $("[name='toggle_application_status']").bootstrapSwitch(

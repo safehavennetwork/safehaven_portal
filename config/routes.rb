@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'organization#dashboard'
+  authenticated :user do
+    root to: "organization#dashboard", as: :authenticated_root
+  end
+
+  unauthenticated do
+    root to: "home#index"
+  end
+
   get 'live-search' => 'search#live_search'
 
   get  'getHelp'          => 'client#short_form'
