@@ -17,6 +17,10 @@
             .col-sm-7
               label.form-control = @organization.code
           .form-group
+            label.col-sm-5.control-label  for="name" Tax ID (EIN)
+            .col-sm-7
+              input.form-control type="text" name='tax_id' value="#{@organization.tax_id}"
+          .form-group
             label.col-sm-5.control-label  for="name" Services
             .col-sm-7
               input.form-control type="text" name='services' value="#{@organization.services}"

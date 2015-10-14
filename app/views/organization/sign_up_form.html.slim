@@ -1,62 +1,69 @@
 .row
-  .col-md-6.col-sm-12
-    h1 style='text-align: center; color: rgb(255, 174, 0);' = "#{@organization_type.capitalize} sign up"
-    form.form-horizontal action="/organization/sign-up/#{@organization_type}" method="post"
-      .form-group
-        label.col-sm-5.control-label  for="org_name"  Already with an organization?
-        .col-sm-7
-          input id='organization_member' type='checkbox' name='organization_member' style='height:auto;'
+  .col-md-4.col-sm-12.col-md-offset-2
+    .panel.panel-default
+      .panel-heading
+        h3.sh-panel-title = "#{@organization_type.capitalize} sign up"
+      .panel-body
+        form.form-horizontal action="/organization/sign-up/#{@organization_type}" method="post"
+          .form-group
+            label.col-sm-5.control-label  for="org_name"  Already with an organization?
+            .col-sm-7
+              input id='organization_member' type='checkbox' name='organization_member' style='height:auto;'
 
-      .form-group id='organization_id_group' style='display: none;'
-        label.col-sm-5.control-label  for="org_name" Organization Code
-        .col-sm-7
-          input.form-control type="text" id="org_name" name='organization_code' value="#{@params['organization_code']}"
+          .organization-detail-group
+            .form-group id='organization_id_group' style='display: none;'
+              label.col-sm-5.control-label  for="org_name" Organization Code
+              .col-sm-7
+                input.form-control type="text" id="org_name" name='organization_code' value="#{@params['organization_code']}"
 
-      .form-group id='organization_name_group'
-        label.col-sm-5.control-label  for="org_name" Organization Name
-        .col-sm-7
-          input.form-control type="text" id="org_name" name='organization_name' value="#{@params['organization_name']}"
+            .form-group id='organization_name_group'
+              label.col-sm-5.control-label  for="org_name" Organization Name
+              .col-sm-7
+                input.form-control type="text" id="org_name" name='organization_name' value="#{@params['organization_name']}"
 
-      .form-group id='organization_phone_number_group'
-        label.col-sm-5.control-label  for="org_phone_number" Organization Phone Number
-        .col-sm-7
-          input.form-control type="phone" id="org_phone_number" name='organization_phone_number' value="#{@params['organization_phone_number']}"
+            .form-group id='organization_tax_id_group'
+              label.col-sm-5.control-label  for="org_name" Tax ID (EIN)
+              .col-sm-7
+                input.form-control type="text" id="org_name" name='tax_id' value="#{@params['tax_id']}"
 
-      hr style='width:75%; margin-left: 12em;'
+            .form-group id='organization_phone_number_group'
+              label.col-sm-5.control-label  for="org_phone_number" Organization Phone Number
+              .col-sm-7
+                input.form-control type="phone" id="org_phone_number" name='organization_phone_number' value="#{@params['organization_phone_number']}"
 
-      .form-group
-        label.col-sm-5.control-label  for="first_name" First Name
-        .col-sm-7
-          input.form-control type="text" id="first_name" name='first_name' value="#{@params['first_name']}"
+          .form-group
+            label.col-sm-5.control-label  for="first_name" First Name
+            .col-sm-7
+              input.form-control type="text" id="first_name" name='first_name' value="#{@params['first_name']}"
 
-      .form-group
-        label.col-sm-5.control-label  for="last_name" Last Name
-        .col-sm-7
-          input.form-control type="text" id="last_name" name='last_name' value="#{@params['last_name']}"
+          .form-group
+            label.col-sm-5.control-label  for="last_name" Last Name
+            .col-sm-7
+              input.form-control type="text" id="last_name" name='last_name' value="#{@params['last_name']}"
 
-      .form-group
-        label.col-sm-5.control-label  for="email" Email
-        .col-sm-7
-          input.form-control type="email" id="email" name='email' value="#{@params['email']}"
+          .form-group
+            label.col-sm-5.control-label  for="email" Email
+            .col-sm-7
+              input.form-control type="email" id="email" name='email' value="#{@params['email']}"
 
-      .form-group
-        label.col-sm-5.control-label  for="primary_phone_number_attributes_phone_number" Contact Phone Number
-        .col-sm-7
-          input.form-control type="phone" id="primary_phone_number_attributes[phone_number]" name='phone_number' value="#{@params['phone_number']}"
+          .form-group
+            label.col-sm-5.control-label  for="primary_phone_number_attributes_phone_number" Contact Phone Number
+            .col-sm-7
+              input.form-control type="phone" id="primary_phone_number_attributes[phone_number]" name='phone_number' value="#{@params['phone_number']}"
 
-      .form-group
-        label.col-sm-5.control-label  for="user_password" Password
-        .col-sm-7
-          input.form-control type="password" id="user[password]" name='password'
+          .form-group
+            label.col-sm-5.control-label  for="user_password" Password
+            .col-sm-7
+              input.form-control type="password" id="user[password]" name='password'
 
-      .form-group
-        label.col-sm-5.control-label  for="user_password_confirmation" Confirm Password
-        .col-sm-7
-          input.form-control type="password" id="user[password_confirmation]" name='password_confirmation'
+          .form-group
+            label.col-sm-5.control-label  for="user_password_confirmation" Confirm Password
+            .col-sm-7
+              input.form-control type="password" id="user[password_confirmation]" name='password_confirmation'
 
-      .form-group
-        .col-sm-offset-2.col-sm-10
-          button.btn.btn-success style='width:100%'  type="submit" Sign up
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-success style='width:100%'  type="submit" Sign up
   .col-md-6.col-sm-12
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
 
@@ -67,14 +74,16 @@ javascript:
       size:    'small',
       onSwitchChange: function(event, state){
         if (state == true){
-          $('#organization_id_group').show('slow')
+          $('#organization_id_group').show();
           $('#organization_name_group').hide();
           $('#organization_phone_number_group').hide();
+          $('#organization_tax_id_group').hide();
         }
         else {
           $('#organization_id_group').hide();
-          $('#organization_name_group').show('slow')
-          $('#organization_phone_number_group').show('slow')
+          $('#organization_name_group').show();
+          $('#organization_phone_number_group').show();
+          $('#organization_tax_id_group').show();
         }
       }
     }

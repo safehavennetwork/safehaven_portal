@@ -14,6 +14,11 @@
  *= require_self
  */
 
+ .organization-detail-group{
+    border-bottom: 2px solid rgba(0, 0, 0, 0.45);
+    margin-bottom: 4px;
+ }
+
 .warning-label{
   border: 1px solid orange;
   background-color: rgba(255, 180, 41, 0.59);

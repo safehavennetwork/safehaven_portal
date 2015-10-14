@@ -20,9 +20,11 @@ class Organization < ActiveRecord::Base
   def self.create_with_admin(org_hash, user_hash)
     org = Organization.create!(
       name:              org_hash[:organization_name],
-      phone:             PhoneNumber.find_or_create_by!(phone_number: org_hash[:organization_phone_number]),
+      # FIXME: this needs to be updated to an actual PhoneNumber object
+      phone:             org_hash[:organization_phone_number],
       admin:             User.get_user(user_hash),
       organization_type: OrganizationType.find_by(organization_type: org_hash[:type]),
+      tax_id:            org_hash[:tax_id],
       code:              GetUniqueOrgCode.execute
     )
     # FIXME: ugh

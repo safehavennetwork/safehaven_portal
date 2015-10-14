@@ -7,10 +7,16 @@
       a.btn.btn-primary href="mailto:safe@thesafehavennetwork.org" Contact Safe Haven
 .row
   .col-md-10.col-md-offset-1
-    h2 Current pets (#{@dashboard.current_pets.count})
-    = render 'organization/shelter/pet_list', pet_list: @dashboard.current_pets
+    .panel.panel-default
+        .panel-heading
+          h2 Current pets (#{@dashboard.current_pets.count})
+        .panel-body
+          = render 'organization/shelter/pet_list', pet_list: @dashboard.current_pets
 
 .row
   .col-md-10.col-md-offset-1
-    h2 Pets in need (#{@dashboard.pets_in_need.count})
-    = render 'organization/shelter/pet_list', pet_list: @dashboard.pets_in_need
+    .panel.panel-default
+        .panel-heading
+          h2 Pets in need (#{@dashboard.pets_in_need.count})
+        .panel-body
+          = render 'organization/shelter/pet_list', pet_list: @dashboard.pets_in_need

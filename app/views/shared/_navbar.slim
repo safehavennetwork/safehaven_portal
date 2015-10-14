@@ -11,12 +11,14 @@ nav.navbar.navbar-default role="navigation"
       .row
         .col-sm-12
           = link_to "Sign out", destroy_user_session_path, :method => :delete, style: 'font-weight: 900; width:auto; padding: 2px', class: "qa-sign-out pull-right sh-default-btn"
-          = link_to "My Account", "/user/#{current_user.slug || current_user.id}", style: 'font-weight: 900; width:auto; padding: 2px; margin-right: 4px;', class: 'pull-right sh-default-btn'
-          = link_to "Dashboard", root_url, style: 'font-weight: 900; width:auto; padding: 2px; margin-right: 4px;', class: 'pull-right sh-default-btn'
+          - unless current_user.disabled?
+            = link_to "My Account", "/user/#{current_user.slug || current_user.id}", style: 'font-weight: 900; width:auto; padding: 2px; margin-right: 4px;', class: 'pull-right sh-default-btn'
+            = link_to "Dashboard", root_url, style: 'font-weight: 900; width:auto; padding: 2px; margin-right: 4px;', class: 'pull-right sh-default-btn'
       .row
         .col-sm-12
-          form.pull-right id="live-search-form" style='width: 20%; margin-top:6px;' method="get" action="<%= search_path %>" autocomplete='off'
-            input.form-control id="live-search-box" name="q" type="text" placeholder='search'
+          - unless current_user.disabled?
+            form.pull-right id="live-search-form" style='width: 20%; margin-top:6px;' method="get" action="<%= search_path %>" autocomplete='off'
+              input.form-control id="live-search-box" name="q" type="text" placeholder='search'
 
 .search-results id='live-search-results'
 

@@ -8,14 +8,20 @@
       a.btn.btn-primary style='margin-left: 10px;' href="mailto:safe@thesafehavennetwork.org" Contact Safe Haven
 .row
   .col-md-12
-    h2 Current Clients (#{@dashboard.current_clients.try(:count)})
-    - if @dashboard.current_clients.blank?
-      .row
-        .col-md-6.col-md-offset-3
-          h2  No current clients!
-    - else
-      = render 'organization/advocate/client_list', client_list: @dashboard.current_clients
+    .panel.panel-default
+        .panel-heading
+          h2 Current Clients (#{@dashboard.current_clients.try(:count)})
+        .panel-body
+          - if @dashboard.current_clients.blank?
+            .row
+              .col-md-6.col-md-offset-3
+                h2  No current clients!
+          - else
+            = render 'organization/advocate/client_list', client_list: @dashboard.current_clients
 .row
   .col-md-12
-    h2 Clients in need (#{@dashboard.clients_in_need.try(:count)})
-    = render 'organization/advocate/client_list', client_list: @dashboard.clients_in_need
+    .panel.panel-default
+        .panel-heading
+          h2 Clients in need (#{@dashboard.clients_in_need.try(:count)})
+        .panel-body
+          = render 'organization/advocate/client_list', client_list: @dashboard.clients_in_need

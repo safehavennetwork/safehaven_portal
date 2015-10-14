@@ -68,6 +68,7 @@ class OrganizationController < ApplicationController
 
   def sign_up_form
     @organization_type = params[:type]
+    @params = params
   end
 
   def sign_up
@@ -92,7 +93,7 @@ class OrganizationController < ApplicationController
         render 'users/registrations/failed' && return
       end
       @user = @org.admin
-      if @user.errors
+      if @user.errors.messages.present?
         flash[:error] = @user.errors.messages.map {|k,v| "#{k.to_s} #{v[0]}"}.join(', ')
         render "organization/sign_up_form"
       else
@@ -162,6 +163,7 @@ class OrganizationController < ApplicationController
   def update_params
     params.permit(
       :name,
+      :tax_id,
       :phone,
       :email,
       :services,
