@@ -13,6 +13,11 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  config.logger = ActiveSupport::Logger.new(STDOUT)
+  config.logger.level = 0
+
+  config.force_ssl = true
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

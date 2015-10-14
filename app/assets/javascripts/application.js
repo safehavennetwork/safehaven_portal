@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.color.min
+//= require sortable
 //= require turbolinks
 //= require_tree .

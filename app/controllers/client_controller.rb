@@ -1,15 +1,33 @@
 class ClientController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:short_form, :anonymous_signup]
   skip_before_action :verify_authenticity_token
 
   def show
-    @client = Client.includes(:pets, :client_application).find(params.permit(:id)[:id])
+    @client = Client.includes(:pets, :client_application).friendly.find(params.permit(:id)[:id])
+    unless @client.application_completed?
+      @apply_url = apply_pet_details_path(@client.pets.first.id)
+    end
+  end
+
+  def anonymous_signup
+    if @client = CreateClientWithPets.call(client_params, params[:pets])
+      unless Rails.env.development?
+        VolunteerMailer.new_client(@client).deliver
+        ClientMailer.confirm_signup(@client).deliver if params[:confirmation_email]
+      end
+      render 'client/signup_confirmation'
+    else
+      flash[:status] = 'error'
+      flash[:notice] = 'Error during sign up'
+      render 'client/short_form'
+    end
   end
 
   def update
     @client = Client.find(params.permit(:id)[:id])
     client_hash = client_params
     client_hash[:address] = GetAddress.call(address_params[:address])
+    client_hash[:phone_number] = PhoneNumber.find_or_create_by(phone_number: client_params[:phone_number])
     @client.update_attributes(client_hash)
 
     redirect_to "/client/#{@client.id}"
@@ -40,27 +58,10 @@ class ClientController < ApplicationController
   def new
     @client_hash = client_params
     @org         = current_user.organization
-    render "organization/#{current_user.org_id}/new_client_form" && return unless @new_client = CreateClientWithPets.call(client_params, params[:pets])
-
-    flash[:status]  = 'success'
-    flash[:message] = 'Client added successfully!'
-    # render "organization/#{current_user.org_type}/dashboard"
-
-    if current_user.with_shelter?
-      @current_pets = []
-      @pets_in_need = []
-      render 'organization/shelter/dashboard'
-    end
-
-    @current_clients = []
-    @clients_in_need = []
-    render 'organization/advocate/dashboard'
+    @new_client  = CreateClientWithPets.call(client_params, params[:pets], @org)
+    redirect_to apply_pet_details_path(id: @new_client.pets.first.id)
   rescue => e
     render 'shared/oops'
-  end
-
-  def release
-    # TODO:  Release a client back to 'in need' status
   end
 
   def address_params
@@ -80,8 +81,8 @@ class ClientController < ApplicationController
 
   def client_params
     params.permit(
-      :client_name,
-      :client_phone_number,
+      :name,
+      :phone_number,
       :email,
       :best_way_to_reach,
       address: [

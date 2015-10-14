@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.5'
 gem 'puma'
-gem 'mysql2'
+gem 'pg'
+gem 'lookup_by'
 gem 'devise'
-gem 'activeadmin', '~> 1.0.0.pre1'
+gem 'cancancan'
+gem 'friendly_id'
 
 gem 'slim-rails'
 gem 'sass-rails', '~> 4.0.3'
@@ -20,6 +22,7 @@ gem 'rubocop', require: false
 
 group :development, :test do
   # gem 'byebug'
+  gem 'quiet_assets'
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-byebug'

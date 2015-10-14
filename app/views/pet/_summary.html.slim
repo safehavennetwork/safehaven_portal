@@ -1,0 +1,43 @@
+.panel.panel-default.pet-summary-panel
+  a.pull-right.sh-more-info style='padding: 10px;' href="/pet/#{pet.slug || pet.id}" More Info
+  .panel-heading
+    h3.sh-panel-title = "#{pet.name.try(:titleize)} #{' (incomplete)'unless pet.completed?}"
+  .panel-body
+    .row
+      .col-sm-4
+        .detail-group
+          .detail-title
+            strong Type
+          .detail-value
+            p = pet.pet_type.try(:pet_type)
+      .col-sm-4
+        .detail-group
+          .detail-title
+            strong Weight
+          .detail-value
+            p = pet.weight
+      .col-sm-4
+        .detail-group
+            .detail-title
+              strong Description
+            .detail-value
+              p = pet.description
+    .row
+      .col-sm-4
+        .detail-group
+          .detail-title
+            strong Breed
+          .detail-value
+            p = pet.breed
+      .col-sm-4
+        .detail-group
+          .detail-title
+            strong Age
+          .detail-value
+            p = pet.age
+      .col-sm-4
+        .detail-group
+            .detail-title
+              strong Spayed
+            .detail-value
+              p = "#{pet.spayed ? 'Yes' : 'No'}"

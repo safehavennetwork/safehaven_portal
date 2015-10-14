@@ -8,7 +8,7 @@ form.form-horizontal action="/client/#{@client.id}" method="post"
     .form-group
       label.col-sm-5.control-label  for="organization_name" Phone Number
       .col-sm-7
-        input.form-control type="text" id="phone" name='phone' value="#{@client.phone}"
+        input.form-control type="text" id="phone" name='phone_number' value="#{@client.phone_number.try(:phone_number)}"
 
     .form-group
       label.col-sm-5.control-label  for="org_phone_number" Email
@@ -41,4 +41,5 @@ form.form-horizontal action="/client/#{@client.id}" method="post"
         input.form-control type="text" id="client_email" name='address[zip_code]' value="#{@client.address.try(:zip_code).try(:zip_code)}"
     .form-group
       .col-sm-offset-2.col-sm-10
-        button.btn.btn-success style='width:100%'  type="submit" Save details
+        -if can? :update, @client
+          button.btn.btn-success style='width:100%'  type="submit" Save details

@@ -1,21 +1,17 @@
 .row
   .col-md-2
-    - if !current_user.with_shelter?
+    - if current_user.shelter?
+      a.btn.sh-default-btn href="/" Back to dashboard
+    - else
       a.btn.btn-primary href="/client/#{@pet.client.id}" Back to client
-    - else
-      a.btn.btn-primary href="/" Back to dashboard
-  .col-md-2.pull-right
-    - if @pet.organization_id == nil && current_user.with_shelter?
-      form action="/organization/accept-pet/#{@pet.id}" method="post"
-        button.btn.btn-success style='width:100%; margin-top: 20px;' type="submit" Accept Pet
-    - else
-      form action="/organization/release-pet/#{@pet.id}" method="post"
-        button.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Release Pet
 
 .row
   .col-md-10
-    = render 'shared/flash'
     form.form-horizontal action="/pet/#{@pet.id}" method="post"
+      .form-group
+          .col-sm-offset-11.col-sm-10
+            - if can? :update, @pet
+              button.btn.btn-success type="submit" Save
       .form-group id='organization_name_group'
         label.col-sm-5.control-label  for="name" Pet Name
         .col-sm-7
@@ -25,7 +21,8 @@
         label.col-sm-5.control-label  for="org_name" Current Shelter
         .col-sm-7
           label.form-control style='width: 50%;' type="text" = ("#{@pet.organization.try(:name)  || 'Not yet placed'}")
-          a.pull-right href="/organization/#{@pet.organization.try(:id)}" Shelter Details
+          - if @pet.organization.present?
+            a.pull-right href="/organization/#{@pet.organization.try(:id)}" Shelter Details
 
       .form-group.form-inline
           label.col-sm-5.control-label Pet Type
@@ -122,7 +119,7 @@
             textarea.form-control row='3' name='vet_needs' = "#{@pet.vet_needs}"
 
         .form-group
-          label.col-sm-5.control-label Please describe the pets behavior and temperament
+          label.col-sm-5.control-label Please describe the pet's behavior and temperament
           .col-sm-7
             textarea.form-control row='3' name='temperament' = "#{@pet.temperament}"
 
@@ -141,8 +138,9 @@
         .form-group
           label.col-sm-5.control-label Any other relevant information for this pet?
           .col-sm-7
-            textarea.form-control row='3' name='additional_info' value="#{@pet.additional_info}"
+            textarea.form-control row='3' name='additional_info' = "#{@pet.additional_info}"
 
         .form-group
           .col-sm-offset-2.col-sm-10
-            button.btn.btn-success type="submit" Save
+            - if can? :update, @pet
+              button.btn.btn-success type="submit" Save

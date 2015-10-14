@@ -1,0 +1,17 @@
+.panel.panel-default style='background-color: rgb(59, 2, 63); color: white'
+  .panel-body
+    .row
+      .col-md-4
+        span.glyphicon.glyphicon-warning-sign.pull-left.admin-stat-icon
+      .col-md-8
+        .pull-right
+          .row.admin-stat
+            .col-md-12
+              span = stat.try(:days_in_waiting) || 0
+          .row
+            .col-md-12
+              -if stat
+                span.admin-stat-label style='font-size: 12px;' days in waiting for
+                a href="#{stat.link}" = "#{stat.client_name}"
+              -else
+                span.admin-stat-label style='font-size: 12px;' days in waiting for any clients!

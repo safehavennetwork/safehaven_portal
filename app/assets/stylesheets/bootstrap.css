@@ -4689,6 +4689,11 @@ a.thumbnail.active {
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
+  width: 50%;
+  left: 25%;
+  position: fixed;
+  z-index: 3001;
+  top: 1%
 }
 .alert h4 {
   margin-top: 0;
@@ -5066,10 +5071,10 @@ a.list-group-item-danger.active:focus {
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .panel-body {
-  padding: 15px;
+  padding: 4px;
 }
 .panel-heading {
-  padding: 10px 15px;
+  padding: 4px;
   border-bottom: 1px solid transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -6329,4 +6334,4 @@ button.close {
     display: none !important;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
+

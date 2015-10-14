@@ -1,21 +1,27 @@
 .row
-  .col-md-10.col-md-offset-1
+  .col-md-12
     .pull-left
-      h1 = @org.name
+      h1 = @dashboard.org.name
     .pull-right
-      a.btn.btn-primary.qa-add-new-client href="/organization/#{@org.id}/new_client" New Client
-      a.btn.btn-primary style='margin-left: 10px;' href="/organization/#{@org.id}/edit" Edit Profile
+      a.btn.btn-primary.qa-add-new-client href="/apply" New Client
+      a.btn.btn-primary style='margin-left: 10px;' href="/organization/#{@dashboard.org.slug || @dashboard.org.id}" Edit Profile
       a.btn.btn-primary style='margin-left: 10px;' href="mailto:safe@thesafehavennetwork.org" Contact Safe Haven
 .row
-  .col-md-10.col-md-offset-1
-    h2 Current Clients (#{@current_clients.try(:count)})
-    - if @current_clients.blank?
-      .row
-        .col-md-6.col-md-offset-3
-          h2  No current clients!
-    - else
-      = render 'organization/advocate/client_list', client_list: @current_clients
+  .col-md-12
+    .panel.panel-default
+        .panel-heading
+          h2 Current Clients (#{@dashboard.current_clients.try(:count)})
+        .panel-body
+          - if @dashboard.current_clients.blank?
+            .row
+              .col-md-6.col-md-offset-3
+                h2  No current clients!
+          - else
+            = render 'organization/advocate/client_list', client_list: @dashboard.current_clients
 .row
-  .col-md-10.col-md-offset-1
-    h2 Clients in need (#{@clients_in_need.try(:count)})
-    = render 'organization/advocate/client_list', client_list: @clients_in_need
+  .col-md-12
+    .panel.panel-default
+        .panel-heading
+          h2 Clients in need (#{@dashboard.clients_in_need.try(:count)})
+        .panel-body
+          = render 'organization/advocate/client_list', client_list: @dashboard.clients_in_need

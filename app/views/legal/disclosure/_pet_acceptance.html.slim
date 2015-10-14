@@ -1,0 +1,15 @@
+.modal.fade id='pet-acceptance-modal'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h3 Pet Acceptance Acknowledgement
+      .modal-body
+        .row
+          .col-sm-12.col-md-12
+            p Once Pets are accepted, emails are sent to Advocates letting them know there is a Safe Haven waiting for them.  By clicking 'Accept Pets' below, your organization is agreeing to work with the Advocate and Client to establish a temporary home for the pet.
+        .row
+          .col-sm-12.col-md-12
+            button.pull-left type="button" class="close" data-dismiss="modal" aria-hidden="true" Go back
+            form.pull-right action="/organization/accept-pets/#{@client.id}" method="post"
+              button.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Accept Pets

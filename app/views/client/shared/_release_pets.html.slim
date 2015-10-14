@@ -1,0 +1,27 @@
+.modal.fade id='pet-release-modal'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h3 Pet Release
+      .modal-body
+        .row
+          .col-sm-12.col-md-12
+            p Please select the reason for release.  A release announcment will be sent out to the Advocate and Safe Haven volunteers.
+        br
+        .row
+          .col-sm-12.col-md-12
+            form action="/organization/release-pets/#{@client.id}" method="post"
+              .row
+                .col-sm-12.col-md-12
+                    select.pull-right name='release_status'
+                      option value='owner' Released To Owner
+                      option value='services-not-provided' Services Not Provided
+                      option value='adoption-pool' Released to adoption pool
+                      option value='not-admitted' Pets not admitted
+                    br
+                    br
+              .row
+                .col-sm-12.col-md-12
+                  button.pull-left type="button" class="close" data-dismiss="modal" aria-hidden="true" Cancel
+                  button.pull-right.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Release Pets

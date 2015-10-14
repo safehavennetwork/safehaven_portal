@@ -1,0 +1,83 @@
+.form-group
+  label.col-sm-5.control-label
+    p  Approximately how long will temporary housing be required? (Please note that our program is currently limited to 30 day placement.)
+  .col-sm-7
+    textarea.form-control row='3' name='estimated_length_of_housing' value="#{client_application.try(:estimated_length_of_housing)}" = client_application.try(:estimated_length_of_housing)
+.form-group.form-inline
+  label.col-sm-5.control-label
+    p Are the police currently involved?
+  .col-sm-7
+    .radio-inline
+      label
+        input type="radio" name="police_involved" value="true" style='padding: 10px;' checked=('checked' if client_application.try(:police_involved))
+          | Yes
+    .radio-inline
+      label
+        input type="radio" name="police_involved" value="false" checked=('checked' unless client_application.try(:police_involved))
+          | No
+
+.form-group.form-inline
+  label.col-sm-5.control-label
+    p Does the client have a protective order?
+  .col-sm-7
+    .radio-inline
+      label
+        input type="radio" name="protective_order" value="true" style='padding: 10px;' checked=('checked' if client_application.try(:protective_order))
+          | Yes
+    .radio-inline
+      label
+        input type="radio" name="protective_order" value="false" checked=('checked' unless client_application.try(:protective_order))
+          | No
+.form-group.form-inline
+  label.col-sm-5.control-label
+    p Is the pet covered in the protective order?
+  .col-sm-7
+    .radio-inline
+      label
+        input type="radio" name="pet_protective_order" value="true" style='padding: 10px;' checked=('checked' if client_application.try(:pet_protective_order))
+          | Yes
+    .radio-inline
+      label
+        input type="radio" name="pet_protective_order" value="false" checked=('checked' unless client_application.try(:pet_protective_order))
+          | No
+.form-group.form-inline
+  label.col-sm-5.control-label
+    p Does the client have any paperwork or evidence indicating ownership of the pet? (i.e. vet receipts, pictures, etc)
+  .col-sm-7
+    .radio-inline
+      label
+        input type="radio" name="client_legal_owner_of_pet" value="true" style='padding: 10px;' checked=('checked' if client_application.try(:client_legal_owner_of_pet))
+          | Yes
+    .radio-inline
+      label
+        input type="radio" name="client_legal_owner_of_pet" value="false" checked=('checked' unless client_application.try(:client_legal_owner_of_pet))
+          | No
+.form-group.form-inline
+  label.col-sm-5.control-label
+    p Does the abuser have any paperwork or evidence indicating ownership of the pet? (i.e. vet receipts, pictures, etc)
+  .col-sm-7
+    .radio-inline
+      label
+        input type="radio" name="abuser_legal_owner_of_pet" value="true" style='padding: 10px;' checked=('checked' if client_application.try(:abuser_legal_owner_of_pet))
+          | Yes
+    .radio-inline
+      label
+        input type="radio" name="abuser_legal_owner_of_pet" value="false" checked=('checked' unless client_application.try(:abuser_legal_owner_of_pet))
+          | No
+.form-group
+  label.col-sm-5.control-label
+    p Please add any details about the abuser that may be helpful for protection. (frequent locations, names of friends, phone numbers used, etc)
+  .col-sm-7
+    textarea.form-control rows=3 name='abuser_notes' value="#{client_application.try(:abuser_notes)}" = client_application.try(:abuser_notes)
+.form-group.form-inline
+  label.col-sm-5.control-label
+    p Has the client explored other boarding options (i.e. friends, family, private vet or boarding)
+  .col-sm-7
+    .radio-inline
+      label
+        input type="radio" name="explored_boarding_options" value="true" style='padding: 10px;' checked=('checked' if client_application.try(:explored_boarding_options)) 
+          | Yes
+    .radio-inline
+      label
+        input type="radio" name="explored_boarding_options" value="false" checked=('checked' unless client_application.try(:explored_boarding_options)) 
+          | No

@@ -3,21 +3,18 @@ class PetController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    @pet = Pet.find(pet_id_param)
-    @pet_type = @pet.pet_type.pet_type
+    @pet = Pet.friendly.find(pet_id_param)
   end
 
   def update
     update_service = UpdatePet.new(update_params)
     @pet           = update_service.call
-    set_flash('failure', 'Failed to update pet') unless @pet.errors.blank?
-    flash = set_flash('success', 'Pet has been updated!')
+    flash[:error] = 'Failed to update pet' unless @pet.errors.blank?
+    if update_service.success?
+      @pet.update_attributes(completed: true)
+    end
+    flash[:success] = 'Pet has been updated!'
     render action: 'show'
-  end
-
-  def set_flash(status, message)
-    flash[:status]  = status
-    flash[:message] = message
   end
 
   def delete

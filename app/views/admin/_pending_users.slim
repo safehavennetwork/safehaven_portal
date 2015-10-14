@@ -1,4 +1,4 @@
-h2 Pending users (#{@pending_users.count})    
+h2 Pending users (#{pending_users.count})
 .table-responsive
   table.table.table-hover
     th
@@ -7,10 +7,10 @@ h2 Pending users (#{@pending_users.count})
         td Organization
         td Email
         td
-      - for user in @pending_users
+      - for user in pending_users
         tr
           td
-            a href='user/#{user.id}'
+            a href='user/#{user.slug || user.id}'
               span.glyphicon.glyphicon-pencil
           td = "#{user.first_name} #{user.last_name}"
           td = user.organization.name

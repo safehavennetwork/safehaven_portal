@@ -14,14 +14,110 @@
  *= require_self
  */
 
+ .sh-navbar-container{
+  min-height: 100px;
+ }
+
+.organization-detail-group{
+    border-bottom: 2px solid rgba(0, 0, 0, 0.45);
+    margin-bottom: 4px;
+ }
+
+.warning-label{
+  border: 1px solid orange;
+  background-color: rgba(255, 180, 41, 0.59);
+  text-align: center;
+  color: white;
+  position: absolute;
+  left: 45%;
+}
+
+
+.pending-user{
+  background-color: rgba(123, 10, 123, 0.29);
+}
+.admin-stat-icon{
+  font-size: 6em;
+  color: white;
+}
+
+.admin-stat{
+  font-size: 4em;
+  float: left;
+}
+
+.admin-stat-label{
+  font-weight: 900;
+  padding: 8px;
+}
+
+ .focussed-search-result{
+  background-color: rgba(157, 89, 212, 0.51);
+ }
+
+.search-results {
+  z-index: 3001;
+  position: absolute;
+  background-color: rgba(115, 51, 183, 0.83);
+  width: 20em;
+  color: white;
+  border-radius: 6px;
+}
+
+.search-result a {
+  margin-left: 2px;
+  padding: 4px;
+}
+
+.detail-group {
+  width: 100%;
+  display: table-cell;
+  float: left;
+}
+
+.address {
+  display: block;
+}
+
+.sh-more-info {
+  position: relative;
+  top: 20%;
+}
+
+.sh-panel-title {
+  margin-top: 2px;
+}
+
+.detail-title {
+  text-decoration: underline;
+  margin-bottom: 4px;
+}
+
+.pet-summary-panel {
+  width: 40%;
+  float: left;
+  margin: 4px;
+}
+
+.sh-default-btn {
+  color:            white;
+  width:            100%;
+  margin-bottom:    4px;
+  background-color: #7842F4;
+}
+
+.btn {
+  margin-left: 4px;
+}
+
 #giveSpace {
   margin: 20px;
 }
 
 .navbar {
   background-color: #2c3135;
-  padding-bottom:   80px;
-  padding-left:     90px;
+  padding-left:     auto;
+  min-height:       100px;
 }
 
 #logoA {

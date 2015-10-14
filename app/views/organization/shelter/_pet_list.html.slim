@@ -3,25 +3,28 @@
     table.table.table-hover id='pet_list'
       th
         td
-          p Pet Type
+          p Client ID
         td
-          p Breed
+          p Pet Count
         td
-          p Weight
+          p Types
+        td
+          p Weights
         td
       - unless pet_list.blank?
-        - for pet in pet_list
-          tr id="pet_#{pet.id}" persisted='true'
+        - for client in pet_list
+          tr id="client_#{client.client_id}" persisted='true'
             td
-              a href='/pet/#{pet.id}'
+              a href='/client/#{client.client_id}'
                 span.glyphicon.glyphicon-pencil
             td
-              strong = "#{pet.pet_type.pet_type}"
+              strong = client.client_id
             td
-              strong = "#{pet.breed}"
+              strong = "#{client.pet_count}"
             td
-              strong = "#{pet.weight}"
-            
+              strong = "#{client.types}"
+            td
+              strong = "#{client.weights}"
 javascript:
   function deletePetRow(row_id){
     console.info(row_id);

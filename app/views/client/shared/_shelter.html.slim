@@ -1,0 +1,21 @@
+- pets_accepted =  @client.pets.present? && @client.pets.first.organization && @client.pets.first.organization.id == current_user.organization.try(:id)
+
+.row
+  .pull-left
+    a.btn.sh-default-btn href='/' Back to Dashboard
+  .pull-right
+    - if  pets_accepted
+      button.btn.sh-default-btn href='#pet-release-modal' role='button' data-toggle='modal' Release Pets
+    - else
+      button.btn.sh-default-btn href='#pet-acceptance-modal' role='button' data-toggle='modal' Accept Pets
+
+- if pets_accepted
+  = render 'client/shared/advocate_info'
+
+.row
+  .col-sm-12
+    -for pet in @client.pets
+      = render 'pet/summary', pet: pet
+
+= render 'legal/disclosure/pet_acceptance'
+= render 'client/shared/release_pets'

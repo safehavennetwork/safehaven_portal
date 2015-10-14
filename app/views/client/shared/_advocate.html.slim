@@ -1,0 +1,38 @@
+.row
+  .col-sm-12
+    .pull-left
+      a.btn.sh-default-btn href='/' Back to Dashboard
+    .pull-right
+      - unless @client.application_completed?
+        a.btn.warning-label href="#{@apply_url}" Client Application is Incomplete!  Click here to finish it!
+      - unless current_user.site_admin?
+        - unless @client.organization_id
+          button.btn.sh-default-btn.pull-right href='#client-acceptance-modal' role='button' data-toggle='modal' Accept Client
+        - else
+          button.btn.sh-default-btn.pull-right href='#client-release-modal' role='button' data-toggle='modal' Release Client
+          //form.pull-right action="/client/#{@client.id}/release" method="post"
+            //Hide until we're ready to setup deleting clients
+            //button.btn.btn-danger type="submit" Delete Client
+.row
+  .col-sm-12
+    .panel.panel-default
+      .panel-heading
+        h3 Client info
+      .panel-body
+        p <strong>Date Submitted:</strong> #{@client.created_at.strftime('%m/%d/%Y')}
+        = render 'client/personal_details'
+.row
+  .col-sm-12
+    -for pet in @client.pets
+      = render 'pet/summary', pet: pet
+
+.row
+  .col-sm-12
+    .panel.panel-default
+      .panel-heading
+        h3 = "Client Application #{'(incomplete)' unless @client.client_application}"
+      .panel-body
+        = render 'client/situation_details', client_application: @client.client_application
+
+= render 'client/shared/accept_client' unless @client.organization_id
+= render 'client/shared/release_client'

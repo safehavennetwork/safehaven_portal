@@ -3,85 +3,106 @@ class OrganizationController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    @organization = Organization.find(params[:id])
+    @organization = Organization.friendly.find(params[:id])
+  end
+
+  def update
+    org = Organization.find(params[:id])
+    admin_id = org.users.find_by(email: params.fetch(:user, {})[:email]).try(:id)
+    unless org.update_attributes(update_params.merge(admin_id: admin_id))
+      flash[:error] = 'Error updating organization'
+    end
+    flash[:success] = 'Update successful'
+    redirect_to organization_path, id: params[:id]
+  end
+
+  def update_contact_info
+    org = Organization.find(params[:id])
+    unless UpdateOrgContactInfo.new(org, update_contact_info_params).call
+      flash[:error] = 'Error updating organization contact info'
+    end
+    flash[:success] = 'Update successful'
+    redirect_to organization_path, id: params[:id]
   end
 
   def dashboard
-    @user = current_user
-    @org  = current_user.organization
-
     render('users/registrations/pending') && return if current_user.disabled
-
-    if current_user.site_admin?
-      @pending_users     = User.pending
-      @all_users         = User.all
-      @recent_activities = GetRecentActivity.call
-      render 'admin/dashboard'
-    else
-      if current_user.with_shelter?
-        @current_pets = GetCurrentPets.call(@org.id)
-        @pets_in_need = GetPetsInNeed.call
-        render 'organization/shelter/dashboard'
-      else
-        @current_clients = GetCurrentClients.call(@org.id)
-        @clients_in_need = GetClientsInNeed.call
-        render 'organization/advocate/dashboard'
-      end
-    end
+    @dashboard = DashboardFacade.new(current_user).dashboard
+    render @dashboard.view
   end
 
   def accept_client
     client = Client.find(params[:id])
-    client.update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
+    client.update_attributes( organization: current_user.organization, updated_at: Time.now, update_action: 'accepted')
     UserMailer.client_accepted(client).deliver
-    redirect_to :root
+    redirect_to client_path params[:id]
   end
 
   def release_client
-    Client.find(params[:id]).update_attributes(organization: nil, updated_at: Time.now, update_action: 'released' )
+    @client = Client.find(params[:id])
+    @client.update_attributes(organization: nil, updated_at: Time.now, update_action: 'released', release_status: ReleaseStatus[params[:release_status]] )
+    unless @client.all_pets_released?
+      OrganizationMailer.client_released_with_active_pets(@client)
+    end
+    OrganizationMailer.client_released(@client)
     redirect_to :root
   end
 
-  def accept_pet
-    pet = Pet.find(params[:id])
-    pet.update_attributes(organization: current_user.organization, updated_at: Time.now, update_action: 'accepted' )
-    UserMailer.pet_accepted(pet).deliver
-    redirect_to :root
+  def accept_pets
+    unless AcceptPets.new(shelter: current_user.organization, client: Client.find(params[:client_id])).call
+      flash[:error] = 'Error accepting pets'
+    end
+    redirect_to client_path params[:client_id]
   end
 
-  def release_pet
-    Pet.find(params[:id]).update_attributes(organization: nil, updated_at: Time.now, update_action: 'released' )
-    redirect_to :root
+  def release_pets
+    if ReleasePets.new( shelter: current_user.organization,
+                        client:  Client.find(params[:client_id]),
+                        reason:  params[:release_status]).call
+      redirect_to :root
+    else
+      flash[:error] = 'Error releasing pets'
+      render "client/#{params[:client_id]}"
+    end
   end
 
   def sign_up_form
     @organization_type = params[:type]
+    @params = params
   end
 
   def sign_up
-    @type = params[:type]
+    @organization_type = params[:type]
+    @params = params
     if params[:organization_member] == 'on'
       unless org = Organization.find_by(code: org_lookup_params[:organization_code].upcase)
+        flash[:error] = 'The organization code entered could not be found'
         render 'users/registration/failed'
       end
 
-      unless @user = User.get_user(user_params.merge(organization: org))
-        @errors = user.errors.messages
-        render 'users/registrations/failed'
+      @user = User.get_user(user_params.merge(organization: org))
+      if @user.errors
+        flash[:error] = @user.errors.messages.map {|k,v| "#{k.to_s} #{v[0]}"}.join(', ')
+        render "organization/sign_up_form" && return
       end
       UserMailer.new_user_email.deliver
       render 'users/registrations/pending'
     else
       unless @org = Organization.create_with_admin(organization_params, user_params)
-        @errors = @org.errors.messages
-
-        render 'users/registrations/pending'
+        flash[:error] = 'Error creating new Organization!'
+        render 'users/registrations/failed' && return
       end
       @user = @org.admin
-      UserMailer.new_user_email.deliver
-      render 'organization/pending_registration'
+      if @user.errors.messages.present?
+        flash[:error] = @user.errors.messages.map {|k,v| "#{k.to_s} #{v[0]}"}.join(', ')
+        render "organization/sign_up_form"
+      else
+        UserMailer.new_user_email.deliver unless Rails.env.development?
+        render 'organization/pending_registration'
+      end
     end
   rescue => e
+    flash[:error] = e.message
     Rails.logger.error(e.message)
     Rails.logger.error(e.backtrace)
     render 'users/registrations/failed'
@@ -136,6 +157,33 @@ class OrganizationController < ApplicationController
       :type,
       :organization_name,
       :organization_phone_number
+    )
+  end
+
+  def update_params
+    params.permit(
+      :name,
+      :tax_id,
+      :phone,
+      :email,
+      :services,
+      :office_hours,
+      :website_url,
+      :geographic_area_served
+    )
+  end
+
+  def update_contact_info_params
+    params.permit(
+      :phone,
+      :email,
+      address: [
+        :line1,
+        :line2,
+        :city,
+        :state,
+        :zip_code
+      ]
     )
   end
 end

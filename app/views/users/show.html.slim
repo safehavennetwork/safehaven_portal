@@ -1,0 +1,76 @@
+.row
+  .pull-left
+    a.btn.sh-default-btn href='/' Back to Dashboard
+.row
+  .col-md-8
+    .panel.panel-default
+      .panel-heading
+        h3.sh-panel-title = "#{@user.first_name.try(:titleize)} #{@user.last_name.try(:titleize)}"
+      .panel-body
+        form.form-horizontal action="/user/#{@user.id}" method="post"
+          .row
+            .col-sm-6
+              .form-group
+                label.col-sm-5.control-label  for="org_phone_number" First Name
+                .col-sm-7
+                  input.form-control type="text" name='first_name' value= @user.first_name
+              .form-group
+                label.col-sm-5.control-label  for="org_phone_number" Last Name
+                .col-sm-7
+                  input.form-control type="text" name='last_name' value= @user.last_name
+
+              .form-group
+                label.col-sm-5.control-label  for="org_phone_number" Primary Phone
+                .col-sm-7
+                  input.form-control type="text" name='primary_phone_number' value= @user.primary_phone_number.try(:phone_number)
+
+              .form-group
+                label.col-sm-5.control-label  for="org_phone_number" Secondary Phone
+                .col-sm-7
+                  input.form-control type="text" name='secondary_phone_number' value= @user.secondary_phone_number.try(:phone_number)
+
+              .form-group
+                label.col-sm-5.control-label  for="org_phone_number" Email
+                .col-sm-7
+                  input.form-control type="text" name='email' value= @user.email
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  - if can? :update, @user
+                    button.btn.btn-success style='width:100%'  type="submit" Save
+
+            .col-sm-6
+              .form-group
+                label.col-sm-5.control-label  for="org_phone_number" Organization
+                .col-sm-7
+                  //If current user is an admin, this should be a drop down of all Organizations so an admin can change who they belong to
+                  label.form-control type="text" id="client_email" name='address[line1]' = @user.organization.try(:name)
+                  - if @user.organization
+                    a.pull-right href="/organization/#{@user.organization.try(:id)}" details
+              - if current_user.site_admin? || current_user.id == @user.id
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Sign in Count
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = @user.sign_in_count
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Last Sign In
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = "#{@user.last_sign_in_at ? @user.last_sign_in_at.to_date.to_s(:long) : 'Never'}"
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Disabled?
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = "#{@user.disabled ? 'Yes' : 'No'}"
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Last Update At:
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = @user.updated_at
+                .form-group
+                  label.col-sm-5.control-label  for="org_phone_number" Last Update Action:
+                  .col-sm-7
+                    label.form-control type="text" id="client_email" = "#{@user.update_action}"
+  - if can? :update, @user
+    .col-md-3
+      .panel.panel-default
+        .panel-heading
+          h3.sh-panel-title Reset Password
+        .panel-body
+          = render 'client/shared/reset_password'

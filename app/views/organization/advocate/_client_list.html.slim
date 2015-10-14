@@ -9,7 +9,7 @@
       - for client in client_list
         tr
           td
-            a href='/client/#{client.id}'
+            a href='/client/#{client.slug}'
               span.glyphicon.glyphicon-folder-close
           td
             p = client.name
@@ -18,4 +18,4 @@
           td
             p = client.address.zip_code.zip_code
           td
-            p = client.pets.count
+            p = client.pets.size

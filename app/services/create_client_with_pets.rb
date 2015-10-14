@@ -1,10 +1,11 @@
 class CreateClientWithPets
   attr_accessor :errors, :client
-  def self.call(client_hash, pet_hash)
+  def self.call(client_hash, pet_hash, org = nil)
     address_hash = client_hash[:address]
     @client = Client.find_or_create_by!(
-      name: client_hash[:client_name],
-      phone: PhoneNumber.find_or_create_by!(phone_number: client_hash[:client_phone_number]),
+      organization: org,
+      name: client_hash[:name],
+      phone_number: PhoneNumber.find_or_create_by!(phone_number: client_hash[:phone_number]),
       email: client_hash[:email],
       best_way_to_reach: client_hash[:best_way_to_reach],
       address: Address.find_or_create_by!(
@@ -17,10 +18,13 @@ class CreateClientWithPets
 
     unless !pet_hash || pet_hash.empty?
       pet_hash.each do |pet|
-        @client.pets << Pet.create(pet)
+        pet.last['pet_type'] = PetType.find_by(pet_type: pet.last['pet_type'])
+        @client.pets << Pet.create(pet.last)
       end
     end
-    UserMailer.new_client(@client).deliver
+    unless Rails.env.development?
+      UserMailer.new_client(@client).deliver
+    end
     @client
   end
 end

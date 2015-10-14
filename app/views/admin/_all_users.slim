@@ -1,23 +1,34 @@
-h2 All Users (#{@all_users.count})
-- unless @all_users.blank?
-  .table-responsive
-    table.table.table-hover
-      th
-        td
-        td Name
-        td Organization
-        td Email
-        td Last Sign In
-        td
-      - for user in @all_users
-        tr
-          td
-          td
-            a href='#'
-              span.glyphicon.glyphicon-pencil
-          td = "#{user.first_name} #{user.last_name}"
-          td = user.organization.try(:name)  || ''
-          td = user.email
-          td = user.last_sign_in_at.try(:strftime, '%m/%d/%Y') || ''
-          td
-            input.form-control checked=('checked' unless user.disabled?) type='checkbox' name="toggle_application_status" id="toggle_user_#{user.id}"
+.panel.panel-default style="overflow: auto; max-height: 70%"
+  .panel-heading style='padding-bottom: 10px;'
+    .row
+      .col-md-12
+        p.pull-left style='font-size: 24px;' All Users (#{all_users.count})
+        //div.pull-right style='background-color: rgba(123, 10, 123, 0.29); height:30px; width:auto; padding: 6px; margin: 2px; color: white' = "pending users (#{all_users.select{|u| !u.welcome_email_sent?}.count})"
+        .badge.pull-right style='background-color: rgba(123, 10, 123, 0.29); color:purple' = "pending users (#{all_users.select{|u| !u.welcome_email_sent?}.count})"
+  .panel-body
+    - unless all_users.blank?
+      .table-responsive
+        table.table.table-hover.sortable.sortable-theme-bootstrap data-sortable=true id='user-list'
+          thead
+            tr
+              th
+              th
+              th Name
+              th Organization
+              th Email
+              th Status
+          tbody
+            - for user in all_users
+              tr class="#{user.welcome_email_sent? ? 'user' : 'pending-user'}"
+                td
+                td
+                  a href="/user/#{user.slug || user.id}"
+                    span.glyphicon.glyphicon-pencil
+                td = "#{user.first_name} #{user.last_name}"
+                td = user.organization.try(:name)  || ''
+                td = user.email
+                td
+                  input.form-control checked=('checked' unless user.disabled?) type='checkbox' name="toggle_application_status" id="toggle_user_#{user.id}"
+
+javascript:
+  Sortable.initTable(document.querySelector('#user-list'));

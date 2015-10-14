@@ -1,33 +1,4 @@
-.row
-  .col-sm-5.col-sm-offset-1
-    .panel.panel-default
-      .panel-heading
-        h3 Client info
-      .panel-body
-        p <strong>Date Submitted:</strong> #{@client.created_at.strftime('%m/%d/%Y')}
-        = render 'client/personal_details'
-  .col-sm-4
-    .panel.panel-default
-      .panel-heading
-        h3 Client's Pets
-      .panel-body
-        .row
-          .col-md-12
-            = render 'client/pet_list'
-  .col-sm-1
-    - if @client.organization_id == nil
-      form action="/organization/accept-client/#{@client.id}" method="post"
-        button.btn.btn-success style='width:100%; margin-top: 20px;' type="submit" Accept Client
-    - else
-      form action="/organization/release-client/#{@client.id}" method="post"
-        button.btn.btn-success style='width:100% margin-top: 20px;' type="submit" Release Client
-      form action="/client/#{@client.id}/release" method="post"
-        button.btn.btn-failure style='width:100% margin-top: 20px;' type="submit" Delete Client
-
-.row
-  .col-sm-10.col-sm-offset-1
-    .panel.panel-default
-      .panel-heading
-        h3 Client Application
-      .panel-body
-        = render 'client/situation_details', client_application: @client.client_application
+- if current_user.site_admin? || current_user.advocate?
+  = render 'client/shared/advocate'
+- if current_user.shelter?
+  = render 'client/shared/shelter'
