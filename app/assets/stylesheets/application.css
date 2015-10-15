@@ -14,6 +14,10 @@
  *= require_self
  */
 
+ .terms-link:hover{
+  color: blue;
+ }
+ 
  .sh-navbar-container{
   min-height: 100px;
  }
