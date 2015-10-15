@@ -148,7 +148,8 @@ class OrganizationController < ApplicationController
       :email,
       :password,
       :password_confirmation,
-      :phone_number
+      :phone_number,
+      :agree_to_terms
     )
   end
 
@@ -156,7 +157,8 @@ class OrganizationController < ApplicationController
     params.permit(
       :type,
       :organization_name,
-      :organization_phone_number
+      :organization_phone_number,
+      :tax_id
     )
   end
 

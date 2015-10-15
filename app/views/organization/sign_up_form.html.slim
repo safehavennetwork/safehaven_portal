@@ -6,15 +6,15 @@
       .panel-body
         form.form-horizontal action="/organization/sign-up/#{@organization_type}" method="post"
           .form-group
-            label.col-sm-5.control-label  for="org_name"  Already with an organization?
+            label.col-sm-5.control-label  for="organization_member"  Already with an organization?
             .col-sm-7
               input id='organization_member' type='checkbox' name='organization_member' style='height:auto;'
 
           .organization-detail-group
             .form-group id='organization_id_group' style='display: none;'
-              label.col-sm-5.control-label  for="org_name" Organization Code
+              label.col-sm-5.control-label  for="org_code" Organization Code
               .col-sm-7
-                input.form-control type="text" id="org_name" name='organization_code' value="#{@params['organization_code']}"
+                input.form-control type="text" id="org_code" name='organization_code' value="#{@params['organization_code']}"
 
             .form-group id='organization_name_group'
               label.col-sm-5.control-label  for="org_name" Organization Name
@@ -22,9 +22,11 @@
                 input.form-control type="text" id="org_name" name='organization_name' value="#{@params['organization_name']}"
 
             .form-group id='organization_tax_id_group'
-              label.col-sm-5.control-label  for="org_name" Tax ID (EIN)
+              label.col-sm-5.control-label  for="tax_id" Tax ID (EIN)
+              span.glyphicon.glyphicon-exclamation-sign.pull-right id='tax_id_tooltip' style='color:purple'
               .col-sm-7
-                input.form-control type="text" id="org_name" name='tax_id' value="#{@params['tax_id']}"
+                input.form-control. type="text" id="tax_id" name='tax_id' value="#{@params['tax_id']}"
+
 
             .form-group id='organization_phone_number_group'
               label.col-sm-5.control-label  for="org_phone_number" Organization Phone Number
@@ -61,6 +63,9 @@
             .col-sm-7
               input.form-control type="password" id="user[password_confirmation]" name='password_confirmation'
 
+          .form-group.pull-right style='margin-right: 0px;'
+            input type="checkbox" required='true' id="user[agree_to_terms]" name='agree_to_terms' &nbsp &nbsp I agree to the <a target='blank' href='/legal/terms-of-use'>Terms of Use</a>
+
           .form-group
             .col-sm-offset-2.col-sm-10
               button.btn.btn-success style='width:100%'  type="submit" Sign up
@@ -68,6 +73,7 @@
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
 
 javascript:
+  $('#tax_id_tooltip').tooltip({'trigger':'hover', 'title': 'Required for verification of a new organization!'})
   $("[name='organization_member']").bootstrapSwitch(
     { onText:  'Yes',
       offText: 'No',
