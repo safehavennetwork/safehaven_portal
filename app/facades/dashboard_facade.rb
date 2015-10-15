@@ -12,7 +12,7 @@ class DashboardFacade
 
   def admin_dashboard
     OpenStruct.new(defaults.merge({
-      all_users:          User.where.not(email: 'admin@safehaven.org').order(:welcome_email_sent),
+      all_users:          User.where.not(email: 'referral@thesafehavennetwork.org').order(:welcome_email_sent),
       all_clients:        Client.all,
       recent_activities:  GetRecentActivity.call,
       view:               'admin/dashboard',
