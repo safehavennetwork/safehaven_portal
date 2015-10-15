@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     root to: "home#index"
   end
 
+  scope 'legal' do
+    get 'terms-of-use' => 'home#terms_of_use'
+  end
+
   get 'live-search' => 'search#live_search'
 
   get  'getHelp'          => 'client#short_form'
