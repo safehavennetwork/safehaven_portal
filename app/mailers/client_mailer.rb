@@ -10,7 +10,7 @@ class ClientMailer < ActionMailer::Base
   end
 
   def site_admin_email
-    ['safe@thesafehavennetwork.org']
+    ['referral@thesafehavennetwork.org']
   end
 
   def advocate_emails
