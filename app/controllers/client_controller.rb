@@ -7,7 +7,11 @@ class ClientController < ApplicationController
   def show
     @client = Client.includes(:pets, :client_application).friendly.find(params.permit(:id)[:id])
     unless @client.application_completed?
-      @apply_url = apply_pet_details_path(@client.pets.first.id)
+      if @client.pets.present?
+        @apply_url = apply_pet_details_path(@client.pets.first.id)
+      else
+        @apply_url = apply_client_details_path(@client)
+      end
     end
   end
 
