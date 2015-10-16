@@ -1,127 +1,131 @@
 .row
   .col-md-10
-    form.form-horizontal action="/apply/pet/#{@pet.id}" method="post"
-      .form-group id='organization_name_group'
-        label.col-sm-5.control-label  for="name" Pet Name
-        .col-sm-7
-          input.form-control type="text" name='name' value="#{@pet.name}"
+    .panel.panel-default
+        .panel-heading
+          h3.sh-panel-title "Details for #{@pet.name}"
+        .panel-body
+          form.form-horizontal action="/apply/pet/#{@pet.id}" method="post"
+            .form-group id='organization_name_group'
+              label.col-sm-5.control-label  for="name" Pet Name
+              .col-sm-7
+                input.form-control type="text" name='name' value="#{@pet.name}"
 
-      .form-group.form-inline
-          label.col-sm-5.control-label Pet Type
-          .col-sm-7
-            .radio-inline
-              label
-                input type="radio" name="pet_type" value="dog" style='padding: 10px;' checked=('checked' if @pet.dog?)
-                  | Dog
-            .radio-inline
-              label
-                input type="radio" name="pet_type" value="cat" checked=('checked' if @pet.cat?)
-                  | Cat
-            .radio-inline
-              label
-                input type="radio" name="pet_type" value="other" checked=('checked' if @pet.other?)
-                  | Other
+            .form-group.form-inline
+                label.col-sm-5.control-label Pet Type
+                .col-sm-7
+                  .radio-inline
+                    label
+                      input type="radio" name="pet_type" value="dog" style='padding: 10px;' checked=('checked' if @pet.dog?)
+                        | Dog
+                  .radio-inline
+                    label
+                      input type="radio" name="pet_type" value="cat" checked=('checked' if @pet.cat?)
+                        | Cat
+                  .radio-inline
+                    label
+                      input type="radio" name="pet_type" value="other" checked=('checked' if @pet.other?)
+                        | Other
 
-      .form-group id='organization_name_group'
-        label.col-sm-5.control-label  for="breed" Breed
-        .col-sm-7
-          input.form-control type="text" name='breed' value="#{@pet.breed}"
+            .form-group id='organization_name_group'
+              label.col-sm-5.control-label  for="breed" Breed
+              .col-sm-7
+                input.form-control type="text" name='breed' value="#{@pet.breed}"
 
-      .form-group id='organization_name_group'
-        label.col-sm-5.control-label  for="weight" Weight
-        .col-sm-7
-          input.form-control type="text" name='weight' value="#{@pet.weight}"
+            .form-group id='organization_name_group'
+              label.col-sm-5.control-label  for="weight" Weight
+              .col-sm-7
+                input.form-control type="text" name='weight' value="#{@pet.weight}"
 
-      .form-group id='organization_name_group'
-        label.col-sm-5.control-label  for="age" Age
-        .col-sm-7
-          input.form-control type="text" name='age' value="#{@pet.age}"
+            .form-group id='organization_name_group'
+              label.col-sm-5.control-label  for="age" Age
+              .col-sm-7
+                input.form-control type="text" name='age' value="#{@pet.age}"
 
-      .form-group id='organization_name_group'
-        label.col-sm-5.control-label  for="org_name" Description
-        .col-sm-7
-          input.form-control type="text" name='description' value="#{@pet.description}"
+            .form-group id='organization_name_group'
+              label.col-sm-5.control-label  for="org_name" Description
+              .col-sm-7
+                input.form-control type="text" name='description' value="#{@pet.description}"
 
 
 
-        .form-group.form-inline
-          label.col-sm-5.control-label Is the pet spayed/neutered?
-          .col-sm-7
-            .radio-inline
-              label
-                input type="radio" name="spayed" value="yes" style='padding: 10px;' checked=('checked' if @pet.spayed)
-                  | Yes
-            .radio-inline
-              label
-                input type="radio" name="spayed" value="no"  checked=('checked' unless @pet.spayed)
-                  | No
+              .form-group.form-inline
+                label.col-sm-5.control-label Is the pet spayed/neutered?
+                .col-sm-7
+                  .radio-inline
+                    label
+                      input type="radio" name="spayed" value="yes" style='padding: 10px;' checked=('checked' if @pet.spayed)
+                        | Yes
+                  .radio-inline
+                    label
+                      input type="radio" name="spayed" value="no"  checked=('checked' unless @pet.spayed)
+                        | No
 
-        .form-group.form-inline
-          label.col-sm-5.control-label If not, does the client object to having the pet spayed/neutered?
-          .col-sm-7
-            .radio-inline
-              label
-                input type="radio" name="objection_to_spay" value="yes" style='padding: 10px;' checked=('checked' if @pet.objection_to_spay)
-                  | Yes
-            .radio-inline
-              label
-                input type="radio" name="objection_to_spay" value="no" checked=('checked' unless @pet.objection_to_spay)
-                  | No
-        .form-group.form-inline
-          label.col-sm-5.control-label Is the pet microchipped?
-          .col-sm-7
-            .radio-inline
-              label
-                input type="radio" name="microchipped" value="yes" style='padding: 10px;' checked=('checked' if @pet.microchipped)
-                  | Yes
-            .radio-inline
-              label
-                input type="radio" name="microchipped" value="no" checked=('checked' unless @pet.microchipped)
-                  | No
-        .form-group.form-inline
-          label.col-sm-5.control-label Up to date on vaccincations?
-          .col-sm-7
-            .radio-inline
-              label
-                input type="radio" name="vaccinations" value="yes" style='padding: 10px;' checked=('checked' if @pet.vaccinations)
-                  | Yes
-            .radio-inline
-              label
-                input type="radio" name="vaccinations" value="no" checked=('checked' unless @pet.vaccinations)
-                  | No
+              .form-group.form-inline
+                label.col-sm-5.control-label If not, does the client object to having the pet spayed/neutered?
+                .col-sm-7
+                  .radio-inline
+                    label
+                      input type="radio" name="objection_to_spay" value="yes" style='padding: 10px;' checked=('checked' if @pet.objection_to_spay)
+                        | Yes
+                  .radio-inline
+                    label
+                      input type="radio" name="objection_to_spay" value="no" checked=('checked' unless @pet.objection_to_spay)
+                        | No
+              .form-group.form-inline
+                label.col-sm-5.control-label Is the pet microchipped?
+                .col-sm-7
+                  .radio-inline
+                    label
+                      input type="radio" name="microchipped" value="yes" style='padding: 10px;' checked=('checked' if @pet.microchipped)
+                        | Yes
+                  .radio-inline
+                    label
+                      input type="radio" name="microchipped" value="no" checked=('checked' unless @pet.microchipped)
+                        | No
+              .form-group.form-inline
+                label.col-sm-5.control-label Up to date on vaccincations?
+                .col-sm-7
+                  .radio-inline
+                    label
+                      input type="radio" name="vaccinations" value="yes" style='padding: 10px;' checked=('checked' if @pet.vaccinations)
+                        | Yes
+                  .radio-inline
+                    label
+                      input type="radio" name="vaccinations" value="no" checked=('checked' unless @pet.vaccinations)
+                        | No
 
-        .form-group
-          label.col-sm-5.control-label Any special dietary needs?
-          .col-sm-7
-            textarea.form-control row='3' name='dietary_needs'= "#{@pet.dietary_needs}"
+              .form-group
+                label.col-sm-5.control-label Any special dietary needs?
+                .col-sm-7
+                  textarea.form-control row='3' name='dietary_needs'= "#{@pet.dietary_needs}"
 
-        .form-group
-          label.col-sm-5.control-label Any special veterinary needs?
-          .col-sm-7
-            textarea.form-control row='3' name='vet_needs' = "#{@pet.vet_needs}"
+              .form-group
+                label.col-sm-5.control-label Any special veterinary needs?
+                .col-sm-7
+                  textarea.form-control row='3' name='vet_needs' = "#{@pet.vet_needs}"
 
-        .form-group
-          label.col-sm-5.control-label Please describe the pets behavior and temperament
-          .col-sm-7
-            textarea.form-control row='3' name='temperament' = "#{@pet.temperament}"
+              .form-group
+                label.col-sm-5.control-label Please describe the pets behavior and temperament
+                .col-sm-7
+                  textarea.form-control row='3' name='temperament' = "#{@pet.temperament}"
 
-        .form-group.form-inline
-          label.col-sm-5.control-label Does the abuser frequently have access or visit the pet?
-          .col-sm-7
-            .radio-inline
-              label
-                input type="radio" name="abuser_at_mid_address" value="yes" style='padding: 10px;' checked=('checked' if @pet.abuser_at_mid_address)
-                  | Yes
-            .radio-inline
-              label
-                input type="radio" name="abuser_at_mid_address" value="no" checked=('checked' unless @pet.abuser_at_mid_address)
-                  | No
+              .form-group.form-inline
+                label.col-sm-5.control-label Does the abuser frequently have access or visit the pet?
+                .col-sm-7
+                  .radio-inline
+                    label
+                      input type="radio" name="abuser_at_mid_address" value="yes" style='padding: 10px;' checked=('checked' if @pet.abuser_at_mid_address)
+                        | Yes
+                  .radio-inline
+                    label
+                      input type="radio" name="abuser_at_mid_address" value="no" checked=('checked' unless @pet.abuser_at_mid_address)
+                        | No
 
-        .form-group
-          label.col-sm-5.control-label Any other relevant information for this pet?
-          .col-sm-7
-            textarea.form-control row='3' name='additional_info' value="#{@pet.additional_info}"
+              .form-group
+                label.col-sm-5.control-label Any other relevant information for this pet?
+                .col-sm-7
+                  textarea.form-control row='3' name='additional_info' value="#{@pet.additional_info}"
 
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            button.btn.btn-success type="submit" Save
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  button.btn.btn-success type="submit" Save

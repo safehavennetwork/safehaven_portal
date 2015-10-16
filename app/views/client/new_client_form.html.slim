@@ -1,87 +1,90 @@
 .row
   .col-md-6.col-sm-12
-    h1 style='text-align: center; color: rgb(255, 174, 0);' New Client Application
-    form.form-horizontal action="/organization/#{@org_id}/new_client" method="post"
-      .form-group
-        label.col-sm-5.control-label  for="client_name" Name
-        .col-sm-7
-          input.form-control.qa-client-name type="text" id="client_name" name='client_name'
+    .panel.panel-default
+      .panel-heading
+        h3.sh-panel-title New Client Application
+      .panel-body
+        form.form-horizontal action="/organization/#{@org_id}/new_client" method="post"
+          .form-group
+            label.col-sm-5.control-label  for="client_name" Name
+            .col-sm-7
+              input.form-control.qa-client-name type="text" id="client_name" name='name'
 
-      .form-group
-        label.col-sm-5.control-label  for="organization_name" Phone Number
-        .col-sm-7
-          input.form-control.qa-client-phone type="text" id="client_phone_number" name='client_phone_number'
+          .form-group
+            label.col-sm-5.control-label  for="organization_name" Phone Number
+            .col-sm-7
+              input.form-control.qa-client-phone type="text" id="client_phone_number" name='phone_number'
 
-      .form-group
-        label.col-sm-5.control-label  for="org_phone_number" Email
-        .col-sm-7
-          input.form-control.qa-client-email type="text" name='email'
+          .form-group
+            label.col-sm-5.control-label  for="org_phone_number" Email
+            .col-sm-7
+              input.form-control.qa-client-email type="text" name='email'
 
-      .form-group
-        label.col-sm-5.control-label  for="org_phone_number" Preferred contact method
-        .col-sm-7
-          input.form-control.qa-client-best-way-to-reach type="text" id="best_way_to_reach" name='best_way_to_reach'
+          .form-group
+            label.col-sm-5.control-label  for="org_phone_number" Preferred contact method
+            .col-sm-7
+              input.form-control.qa-client-best-way-to-reach type="text" id="best_way_to_reach" name='best_way_to_reach'
 
-      .form-group
-        label.col-sm-5.control-label  for="org_phone_number" Address
-        .col-sm-7
-          input.form-control.qa-client-address-line-1 type="text" name='address[line1]'
+          .form-group
+            label.col-sm-5.control-label  for="org_phone_number" Address
+            .col-sm-7
+              input.form-control.qa-client-address-line-1 type="text" name='address[line1]'
 
-      .form-group
-        label.col-sm-5.control-label  for="org_phone_number" City
-        .col-sm-7
-          input.form-control.qa-client-address-city type="text" name='address[city]'
+          .form-group
+            label.col-sm-5.control-label  for="org_phone_number" City
+            .col-sm-7
+              input.form-control.qa-client-address-city type="text" name='address[city]'
 
-      .form-group
-        label.col-sm-5.control-label  for="org_phone_number" State
-        .col-sm-7
-          = select_tag 'address[state]', options_for_select(us_states, selected: 'IL'), class: 'form-control'
+          .form-group
+            label.col-sm-5.control-label  for="org_phone_number" State
+            .col-sm-7
+              = select_tag 'address[state]', options_for_select(us_states, selected: 'IL'), class: 'form-control'
 
-      .form-group
-        label.col-sm-5.control-label  for="org_phone_number" Zip
-        .col-sm-7
-          input.form-control.qa-client-address-zip-code type="text" name='address[zip_code]'
+          .form-group
+            label.col-sm-5.control-label  for="org_phone_number" Zip
+            .col-sm-7
+              input.form-control.qa-client-address-zip-code type="text" name='address[zip_code]'
 
-      .form-group
-        label.col-sm-5
-          h2.pull-right Your pets
-      .form-group
-        label.col-sm-5.control-label  for="pet_breed" Type
-        .col-sm-7
-          select.form-control.qa-pet-type style='width: 50%;' id='pet_type'
-            option value='dog' Dog
-            option value='cat' Cat
-            option value= 'other' Other
-      .form-group
-        label.col-sm-5.control-label  for="pet_breed" Breed
-        .col-sm-7
-          input.form-control.qa-pet-breed type="text" id="pet_breed"
-      .form-group
-        label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
-        .col-sm-7
-          input.form-control.qa-pet-weight type="text" id="pet_weight"
-        br
-        button.btn.btn-success.pull-right.qa-add-pet-btn type='button' onclick='addPet();' style='margin-top: 10px;' Add Pet
-      br
-      .form-group
-        .col-sm-7.pull-right
-          table.table.table-hover id='pet_list'
-            th
-              td
-                p Pet Type
-              td
-                p Breed
-              td
-                p Weight
+          .form-group
+            label.col-sm-5
+              h2.pull-right Your pets
+          .form-group
+            label.col-sm-5.control-label  for="pet_breed" Type
+            .col-sm-7
+              select.form-control.qa-pet-type style='width: 50%;' id='pet_type'
+                option value='dog' Dog
+                option value='cat' Cat
+                option value= 'other' Other
+          .form-group
+            label.col-sm-5.control-label  for="pet_breed" Breed
+            .col-sm-7
+              input.form-control.qa-pet-breed type="text" id="pet_breed"
+          .form-group
+            label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
+            .col-sm-7
+              input.form-control.qa-pet-weight type="text" id="pet_weight"
+            br
+            button.btn.btn-success.pull-right.qa-add-pet-btn type='button' onclick='addPet();' style='margin-top: 10px;' Add Pet
+          br
+          .form-group
+            .col-sm-7.pull-right
+              table.table.table-hover id='pet_list'
+                th
+                  td
+                    p Pet Type
+                  td
+                    p Breed
+                  td
+                    p Weight
 
-      .form-group
-        label.col-sm-5.control-label  for="pet_breed" Assign to your organization now?
-        .col-sm-7
-          input.form-control.qa-add-to-org type='checkbox' name='self_assign' Yes
+          .form-group
+            label.col-sm-5.control-label  for="pet_breed" Assign to your organization now?
+            .col-sm-7
+              input.form-control.qa-add-to-org type='checkbox' name='self_assign' checked='true'
 
-      .form-group
-        .col-sm-offset-2.col-sm-10
-          button.btn.btn-success.qa-submit-form style='width:100%'  type="submit" Next
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-success.qa-submit-form style='width:100%'  type="submit" Next
   .col-md-6.col-sm-12
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
 

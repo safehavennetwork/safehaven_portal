@@ -10,14 +10,7 @@ h1 style='text-align: center;' Application Review
         h3 Client info
       .panel-body
         = render 'client/personal_details'
-  .col-sm-5
-    .panel.panel-default
-      .panel-heading
-        h3 Client's Pets
-      .panel-body
-        .row
-          .col-md-12
-            = render 'client/pet_list'
+  = render 'client/pet_list', no_edit: true
 .row
   .col-sm-10.col-sm-offset-1
     .panel.panel-default

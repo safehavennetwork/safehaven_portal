@@ -1,9 +1,10 @@
 class GetPetsInNeed
   def self.call
-    Client.includes(:pets, pets: :pet_type).where.not(organization: nil, pets_count: 0).where('pets.organization' => nil, 'pets.release_status_id' => nil).map do |c|
+    Client.includes(:pets, pets: :pet_type).where.not(organization: nil, pets_count: 0, name: nil).where('pets.organization' => nil, 'pets.release_status_id' => nil).map do |c|
       @pets = c.pets
       OpenStruct.new({
         client_id: (c.slug || c.id),
+        client_name: c.name,
         pet_count: c.pets.size,
         breeds:    breeds,
         types:     types,

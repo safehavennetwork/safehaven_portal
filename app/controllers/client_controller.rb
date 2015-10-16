@@ -1,4 +1,6 @@
 class ClientController < ApplicationController
+  include ClientHelper
+
   before_action :authenticate_user!, except: [:short_form, :anonymous_signup]
   skip_before_action :verify_authenticity_token
 
@@ -30,6 +32,7 @@ class ClientController < ApplicationController
     client_hash[:phone_number] = PhoneNumber.find_or_create_by(phone_number: client_params[:phone_number])
     @client.update_attributes(client_hash)
 
+    redirect_to :back and return if apply_review?
     redirect_to "/client/#{@client.id}"
   end
 
@@ -40,6 +43,7 @@ class ClientController < ApplicationController
     else
       @client.update_attributes(client_application: ClientApplication.create(client_application_params))
     end
+    redirect_to :back and return if apply_review?
     redirect_to "/client/#{@client.id}"
   end
 
@@ -48,6 +52,7 @@ class ClientController < ApplicationController
     pet_hash = new_pet_params
     pet_hash[:pet_type] = PetType.find_by(pet_type: pet_hash[:pet_type])
     @client.pets << Pet.find_or_create_by(pet_hash)
+    redirect_to :back and return if apply_review?
     redirect_to "/client/#{@client.id}"
   end
 
