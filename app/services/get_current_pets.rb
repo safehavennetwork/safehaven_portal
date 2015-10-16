@@ -4,6 +4,7 @@ class GetCurrentPets
       @pets = c.pets
       OpenStruct.new({
         client_id: c.id,
+        client_name: c.name,
         pet_count: c.pets.size,
         breeds:    breeds,
         types:     types,

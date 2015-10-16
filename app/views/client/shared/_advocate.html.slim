@@ -4,7 +4,8 @@
       a.btn.sh-default-btn href='/' Back to Dashboard
     .pull-right
       - unless @client.application_completed?
-        a.btn.warning-label href="#{@apply_url}" Client Application is Incomplete!  Click here to finish it!
+        - if @client.organization == current_user.organization
+          a.btn.warning-label href="#{@apply_url}" Client Application is Incomplete!  Click here to finish it!
       - unless current_user.site_admin?
         - unless @client.organization_id
           button.btn.sh-default-btn.pull-right href='#client-acceptance-modal' role='button' data-toggle='modal' Accept Client
@@ -24,7 +25,7 @@
 .row
   .col-sm-12
     -for pet in @client.pets
-      = render 'pet/summary', pet: pet
+      = render 'pet/summary', pet: pet, no_edit: false
 
 .row
   .col-sm-12

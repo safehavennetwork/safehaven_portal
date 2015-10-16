@@ -1,5 +1,6 @@
 .panel.panel-default.pet-summary-panel
-  a.pull-right.sh-more-info style='padding: 10px;' href="/pet/#{pet.slug || pet.id}" More Info
+  - unless no_edit
+    a.pull-right.sh-more-info style='padding: 10px;' href="/pet/#{pet.slug || pet.id}" More Info
   .panel-heading
     h3.sh-panel-title = "#{pet.name.try(:titleize)} #{' (incomplete)'unless pet.completed?}"
   .panel-body
