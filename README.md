@@ -11,7 +11,7 @@ This is a pretty straightforward Rails application using MySQL for the database.
 Your setup may vary, but we recommend using [rbenv](https://github.com/sstephenson/rbenv) or [RVM](https://rvm.io/) to version your ruby environments.  If you're on OS X, you can use [Homebrew](http://brew.sh/) to help make things easier.  If you're feeling adventurous, [RailsInstaller](http://railsinstaller.org/en) may get you up and running on Windows.  Please be aware that development on Windows will be different, and may require advanced knowledge when problems are encountered.
 
 
-## Install MySQL
+## Install MySQL [UPDATE NEEDED! NOW USING POSTGRESQL]
 
 Checkout the MySQL [Installation Guides](http://dev.mysql.com/doc/refman/5.7/en/installing.html) for getting MySQL up and running on your machine.
 
