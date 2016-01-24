@@ -10,16 +10,21 @@ This is a pretty straightforward Rails application using MySQL for the database.
 
 Your setup may vary, but we recommend using [rbenv](https://github.com/sstephenson/rbenv) or [RVM](https://rvm.io/) to version your ruby environments.  If you're on OS X, you can use [Homebrew](http://brew.sh/) to help make things easier.  If you're feeling adventurous, [RailsInstaller](http://railsinstaller.org/en) may get you up and running on Windows.  Please be aware that development on Windows will be different, and may require advanced knowledge when problems are encountered.
 
+## Install  PostgreSQL
 
-## Install MySQL [UPDATE NEEDED! NOW USING POSTGRESQL]
+Checkout the PostgreSQL [Installation Guides](http://www.postgresql.org/download/linux/ubuntu/) or you can use the PostgreSQL that comes with your Linux distribution.
 
-Checkout the MySQL [Installation Guides](http://dev.mysql.com/doc/refman/5.7/en/installing.html) for getting MySQL up and running on your machine.
-
-Once that's done, be sure to add the safehaven user
+Once that's done, be sure to add the safehaven portal user
 ```
-mysql --user-root mysql
-mysql> CREATE USER 'safehaven'@'localhost';
-mysql> GRANT ALL PRIVELGES ON *.* TO 'safehaven'@'localhost';
+sudo su - postgres
+psql -c 'create user secure_portal createdb login;'
+```
+and that the secure_portal user is trusted for local user
+```
+sudo su -
+/etc/init.d/postgresql stop
+echo -e "local\tall\tsecure_portal\ttrust" >> /etc/postgresql/9.5/main/pg_hba.conf
+/etc/init.d/postgresql start
 ```
 
 ## Clone the repo
