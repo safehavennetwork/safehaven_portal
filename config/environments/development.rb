@@ -35,7 +35,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true #false
   config.action_mailer.default_url_options = { :host => 'secure.thesafehavennetwork.org' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -44,7 +44,7 @@ Rails.application.configure do
     domain:                'gmail.com',
     authentication:        'plain',
     enable_startttls_auto: true,
-    user_name:             ENV['EMAIL_USER'],
-    password:              ENV['EMAIL_PASS']
+    user_name:             'dtest562@gmail.com',#ENV['EMAIL_USER'],
+    password:              'dtestpwd' #ENV['EMAIL_PASS']
   }
 end

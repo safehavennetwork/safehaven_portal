@@ -1,6 +1,6 @@
 class ClientMailer < ActionMailer::Base
-  default from: 'referral@thesafehavennetwork.org'
-
+  #default from: 'referral@thesafehavennetwork.org'
+  default from: 'dtest562@gmail.com'
   def confirm_signup(client)
     mail(to: client.email,  subject: 'signup confirmation')
   end
@@ -10,11 +10,13 @@ class ClientMailer < ActionMailer::Base
   end
 
   def site_admin_email
-    ['referral@thesafehavennetwork.org']
+    #['referral@thesafehavennetwork.org']
+    ['dtest562@gmail.com']
   end
 
   def advocate_emails
-    Organization.where(organization_type: OrganizationType['advocate']).pluck(:email).compact
+    #Organization.where(organization_type: OrganizationType['advocate']).pluck(:email).compact
+    User.joins(:organization).where("organizations.organization_type_id = 1").pluck(:email)
   end
 
   def shelter_emails
