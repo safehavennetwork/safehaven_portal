@@ -17,10 +17,10 @@ class ClientController < ApplicationController
 
   def anonymous_signup
     if @client = CreateClientWithPets.call(client_params, params[:pets])
-      unless Rails.env.development?
-        VolunteerMailer.new_client(@client).deliver
-        ClientMailer.confirm_signup(@client).deliver if params[:confirmation_email]
-      end
+      #unless Rails.env.development?
+      VolunteerMailer.new_client(@client).deliver
+      ClientMailer.confirm_signup(@client).deliver if params[:confirmation_email]
+      #end
       render 'client/signup_confirmation'
     else
       flash[:status] = 'error'
