@@ -1,6 +1,6 @@
 class ClientMailer < ActionMailer::Base
-  #default from: 'referral@thesafehavennetwork.org'
-  default from: 'dtest562@gmail.com'
+  default from: 'referral@thesafehavennetwork.org'
+
   def confirm_signup(client)
     mail(to: client.email,  subject: 'signup confirmation')
   end
@@ -10,8 +10,7 @@ class ClientMailer < ActionMailer::Base
   end
 
   def site_admin_email
-    #['referral@thesafehavennetwork.org']
-    ['dtest562@gmail.com']
+    ['referral@thesafehavennetwork.org']
   end
 
   def advocate_emails
