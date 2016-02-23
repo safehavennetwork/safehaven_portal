@@ -87,14 +87,14 @@
           br
           .form-group
             .col-sm-7.pull-right
-              table.table.table-hover id='pet_list' required = true
+              table.table.table-hover id='pet_list'
                 th
                   td
-                    p required = true Pet Type 
+                    p Pet Type 
                   td
-                    p required = true Breed
+                    p Breed
                   td
-                    p required = true Weight
+                    p Weight
 
           br
           .form-group
@@ -108,7 +108,38 @@
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
 
 
+javascript:
+  function addPet(){
+    pet_type   = $('#pet_type').val();
+    pet_breed  = $('#pet_breed').val();
+    pet_weight = $('#pet_weight').val();
 
+    if (pet_type == '' || pet_breed == '' || pet_weight == ''){
+      return null;
+    } else {
+      $('#pet_type').val('dog');
+      $('#pet_breed').val('');
+      $('#pet_weight').val('');
+    }
+
+    pet_row_count = $('#pet_list tr').length;
+    row_id = "pet_row_" + (pet_row_count - 1)
+    new_row = "<tr id='"+ row_id + "' class=\"pet_listing_" + (pet_row_count - 1) + "\"'>";
+    new_row += "<td></td>";
+    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[pet_type]]' value='" + pet_type   + "'></input></td>"; 
+    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[breed]]'    value='" + pet_breed  + "'></input></td>";
+    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[weight]]'   value='" + pet_weight + "'></input></td>";
+    new_row += "<td><span class='glyphicon glyphicon-remove' style='color:red;' onclick='deletePetRow("+ row_id + ");'></span></td>";
+    new_row += '</tr>';
+
+    $('#pet_list tr:last').after(new_row);
+  }
+
+  function deletePetRow(row_id){
+    $(row_id).remove();
+  }
+  
+/*
 javascript:
   function addPet(){
     pet_type   = $('#pet_type').val();
@@ -145,41 +176,6 @@ javascript:
   function deletePetRow(row_id){
     $(row_id).remove();
   }
+*/
 
 
-
-
-
-
-/*
-javascript:
-  function addPet(){
-    pet_type   = $('#pet_type').val();
-    pet_breed  = $('#pet_breed').val();
-    pet_weight = $('#pet_weight').val();
-
-    if (pet_type == '' || pet_breed == '' || pet_weight == ''){
-      return null;
-    } else {
-      $('#pet_type').val('dog');
-      $('#pet_breed').val('');
-      $('#pet_weight').val('');
-    }
-
-    pet_row_count = $('#pet_list tr').length;
-    row_id = "pet_row_" + (pet_row_count - 1)
-    new_row = "<tr id='"+ row_id + "' class=\"pet_listing_" + (pet_row_count - 1) + "\"'>";
-    new_row += "<td></td>";
-    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[pet_type]]' value='" + pet_type   + "'></input></td>"; 
-    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[breed]]'    value='" + pet_breed  + "'></input></td>";
-    new_row += "<td><input class='form-control' type='text' name='pets[pet"+pet_row_count+"[weight]]'   value='" + pet_weight + "'></input></td>";
-    new_row += "<td><span class='glyphicon glyphicon-remove' style='color:red;' onclick='deletePetRow("+ row_id + ");'></span></td>";
-    new_row += '</tr>';
-
-    $('#pet_list tr:last').after(new_row);
-  }
-
-  function deletePetRow(row_id){
-    $(row_id).remove();
-  }
-  */
