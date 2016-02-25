@@ -21,4 +21,4 @@ class VolunteerMailer < ActionMailer::Base
     Organization.where(organization_type: OrganizationType['shelter']).pluck(:email).compact
   end
 end
-
+ 

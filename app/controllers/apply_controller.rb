@@ -22,7 +22,7 @@ class ApplyController < ApplicationController
 
     client = pet.client
     unless client.all_pets_complete?
-      pet = client.pets.find_by(completed: [nil, false])
+      pet = client.pets.find_by(completed: [nil, false]) 
       redirect_to apply_pet_details_path(id: pet.id)
     else
       redirect_to apply_client_details_path(id: client.id)
@@ -49,7 +49,7 @@ class ApplyController < ApplicationController
   end
 
   def confirm
-    ClientMailer.application_completed
+    ClientMailer.application_completed.deliver
     redirect_to root_path
   end
 

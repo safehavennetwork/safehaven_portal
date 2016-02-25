@@ -3,47 +3,48 @@
     .panel.panel-default
       .panel-heading
         h3.sh-panel-title New Client Application
+        h6.text-danger All fields are required
       .panel-body
         form.form-horizontal action="/organization/#{@org_id}/new_client" method="post"
           .form-group
-            label.col-sm-5.control-label  for="client_name" Name
+            label.col-sm-5.control-label  for="client_name" Name 
             .col-sm-7
-              input.form-control.qa-client-name type="text" id="client_name" name='name'
+              input.form-control.qa-client-name type="text" id="client_name" name='name' required='true' autofocus='true'
 
           .form-group
-            label.col-sm-5.control-label  for="organization_name" Phone Number
+            label.col-sm-5.control-label  for="client_phone_number" Phone Number
             .col-sm-7
-              input.form-control.qa-client-phone type="text" id="client_phone_number" name='phone_number'
+              input.form-control.qa-client-phone type="tel" placeholder='xxx-xxx-xxxx' pattern="^\d{3}-\d{3}-\d{4}" id="client_phone_number" name='phone_number' required='true'
 
           .form-group
-            label.col-sm-5.control-label  for="org_phone_number" Email
+            label.col-sm-5.control-label  for="client_email" Email
             .col-sm-7
-              input.form-control.qa-client-email type="text" name='email'
+              input.form-control.qa-client-email type="email" name='email' placeholder='emailId@domain.com' required='true' 
 
           .form-group
             label.col-sm-5.control-label  for="org_phone_number" Preferred contact method
             .col-sm-7
-              input.form-control.qa-client-best-way-to-reach type="text" id="best_way_to_reach" name='best_way_to_reach'
+              input.form-control.qa-client-best-way-to-reach type="text" id="best_way_to_reach" name='best_way_to_reach' required='true'
 
           .form-group
-            label.col-sm-5.control-label  for="org_phone_number" Address
+            label.col-sm-5.control-label  for="address" Address
             .col-sm-7
-              input.form-control.qa-client-address-line-1 type="text" name='address[line1]'
+              input.form-control.qa-client-address-line-1 type="text" name='address[line1]' required='true'
 
           .form-group
-            label.col-sm-5.control-label  for="org_phone_number" City
+            label.col-sm-5.control-label  for="city" City
             .col-sm-7
-              input.form-control.qa-client-address-city type="text" name='address[city]'
+              input.form-control.qa-client-address-city type="text" name='address[city]' required='true'
 
           .form-group
-            label.col-sm-5.control-label  for="org_phone_number" State
+            label.col-sm-5.control-label  for="state" State
             .col-sm-7
               = select_tag 'address[state]', options_for_select(us_states, selected: 'IL'), class: 'form-control'
 
           .form-group
-            label.col-sm-5.control-label  for="org_phone_number" Zip
+            label.col-sm-5.control-label  for="zip-code" Zip(5digits)
             .col-sm-7
-              input.form-control.qa-client-address-zip-code type="text" name='address[zip_code]'
+              input.form-control.qa-client-address-zip-code type="text" pattern="^\d{5}" placeholder='12345' name='address[zip_code]' required='true'
 
           .form-group
             label.col-sm-5
@@ -58,11 +59,11 @@
           .form-group
             label.col-sm-5.control-label  for="pet_breed" Breed
             .col-sm-7
-              input.form-control.qa-pet-breed type="text" id="pet_breed"
+              input.form-control.qa-pet-breed type="text" id="pet_breed" 
           .form-group
             label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
             .col-sm-7
-              input.form-control.qa-pet-weight type="text" id="pet_weight"
+              input.form-control.qa-pet-weight type="text" id="pet_weight" 
             br
             button.btn.btn-success.pull-right.qa-add-pet-btn type='button' onclick='addPet();' style='margin-top: 10px;' Add Pet
           br
@@ -95,6 +96,8 @@ javascript:
     pet_weight = $('#pet_weight').val();
 
     if (pet_type == '' || pet_breed == '' || pet_weight == ''){
+
+      alert("enter all pet details");
       return null;
     } else {
       $('#pet_type').val('dog');

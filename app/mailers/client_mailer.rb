@@ -19,6 +19,7 @@ class ClientMailer < ActionMailer::Base
 
   def shelter_emails
     Organization.where(organization_type: OrganizationType['shelter']).pluck(:email).compact
-  end
+   end
 end
 
+  

@@ -158,7 +158,8 @@ class OrganizationController < ApplicationController
       :type,
       :organization_name,
       :organization_phone_number,
-      :tax_id
+      :tax_id,
+      :email
     )
   end
 
