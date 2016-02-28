@@ -1,5 +1,0 @@
- id |       email       |                      encrypted_password                      | reset_password_token | reset_password_sent_at | remember_created_at | sign_in_count | current_sign_in_at | last_sign_in_at | current_sign_in_ip | last_sign_in_ip |         created_at         |         updated_at         
-----+-------------------+--------------------------------------------------------------+----------------------+------------------------+---------------------+---------------+--------------------+-----------------+--------------------+-----------------+----------------------------+----------------------------
-  1 | admin@example.com | $2a$10$DgBjhDf1qtjP/eTssnVPgOxpw55yZ.4ZR9pvTQ5oxiXNbY4QNEyiO |                      |                        |                     |             0 |                    |                 |                    |                 | 2016-01-26 01:04:26.844366 | 2016-01-26 01:04:26.844366
-(1 row)
-
