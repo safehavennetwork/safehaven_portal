@@ -70,6 +70,7 @@ class ClientController < ApplicationController
     @new_client  = CreateClientWithPets.call(client_params, params[:pets], @org)
     redirect_to apply_pet_details_path(id: @new_client.pets.first.id)
   rescue => e
+    
     render 'shared/oops'
   end
 

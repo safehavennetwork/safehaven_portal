@@ -49,7 +49,7 @@ class ApplyController < ApplicationController
   end
 
   def confirm
-    ClientMailer.application_completed
+    ClientMailer.application_completed.deliver
     redirect_to root_path
   end
 
