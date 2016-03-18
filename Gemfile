@@ -51,4 +51,5 @@ end
 group :development do
   gem 'better_errors'
   gem 'brakeman', require: false
+  gem 'figaro'
 end
