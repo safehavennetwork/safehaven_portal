@@ -39,12 +39,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'secure.thesafehavennetwork.org' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => ENV['sendgrid_username'],
-    :password => ENV['sendgrid_password'],
-    :domain => 'secure.thesafehavennetwork.org',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    address:               'smtp.gmail.com',
+    port:                  '587',
+    domain:                'gmail.com',
+    authentication:        'plain',
+    enable_startttls_auto: true,
+    user_name:             ENV['EMAIL_USER'],
+    password:              ENV['EMAIL_PASS'],
+    #enable_starttls_auto: true
   }
 end
