@@ -23,7 +23,8 @@ class ApplyController < ApplicationController
     client = @pet.client
     unless client.all_pets_complete?
       @pet = client.pets.find_by(completed: [nil, false])
-      redirect_to apply_pet_details_path(id: pet.id)
+      #redirect_to apply_pet_details_path(id: pet.id)
+      redirect_to apply_client_details_path(id: client.id)
     else
       redirect_to apply_client_details_path(id: client.id)
     end
@@ -35,7 +36,7 @@ class ApplyController < ApplicationController
   end
 
   def update_client_application
-     @client = Client.find(params.permit(:id)[:id])
+    @client = Client.find(params.permit(:id)[:id])
     if @client.client_application
       @client.client_application.update_attributes(client_application_params)
     else

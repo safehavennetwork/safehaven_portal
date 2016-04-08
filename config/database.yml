@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: safehaven_development
+  database: safehaven_development_anithaworkspace
 
 test:
   <<: *default
-  database: secure_portal_test
+  database: secure_portal_test_anithaworkspace
 
 staging:
   <<: *default

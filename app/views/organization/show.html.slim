@@ -15,7 +15,10 @@
           .form-group
             label.col-sm-5.control-label  for="name" Code
             .col-sm-7
-              label.form-control = @organization.code
+              - if current_user.user_id == @organization.admin_id
+                label.form-control = @organization.code
+              - else
+                label.form-control = "Ask your Organization Admin for Code"
           .form-group
             label.col-sm-5.control-label  for="name" Tax ID (EIN)
             .col-sm-7

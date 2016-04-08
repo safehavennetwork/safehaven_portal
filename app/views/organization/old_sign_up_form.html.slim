@@ -9,50 +9,52 @@
             label.col-sm-5.control-label  for="organization_member"  Already with an organization?
             .col-sm-7
               input id='organization_member' type='checkbox' name='organization_member' style='height:auto;'
-
+              
           .organization-detail-group
             .form-group id='organization_id_group' style='display: none;'
               label.col-sm-5.control-label  for="org_code" Organization Code
               .col-sm-7
-                input.form-control type="text" id="org_code" name='organization_code' value="#{@params['organization_code']}"
+                input.form-control type="text" id="org_code" name='organization_code' placeholder= "xxxxxx" value="#{@params['organization_code']}" required = true
+                h6.pull-left.text-danger * Ask your Organization Admin for Code
 
             .form-group id='organization_name_group'
               label.col-sm-5.control-label  for="org_name" Organization Name
               .col-sm-7
-                input.form-control type="text" id="org_name" name='organization_name' value="#{@params['organization_name']}"
+                input.form-control type="text" id="org_name" name='organization_name' maxlength="40" value="#{@params['organization_name']}" required = true
 
             .form-group id='organization_tax_id_group'
               label.col-sm-5.control-label  for="tax_id" Tax ID (EIN)
               span.glyphicon.glyphicon-exclamation-sign.pull-right id='tax_id_tooltip' style='color:purple'
               .col-sm-7
-                input.form-control. type="text" id="tax_id" name='tax_id' value="#{@params['tax_id']}"
+                input.form-control. type="text" id="tax_id" name='tax_id' maxlength="10" pattern="^\d{2}-\d{7}$" placeholder="xx-xxxxxxx" value="#{@params['tax_id']}" required = true
 
 
             .form-group id='organization_phone_number_group'
               label.col-sm-5.control-label  for="org_phone_number" Organization Phone Number
               .col-sm-7
-                input.form-control type="phone" id="org_phone_number" name='organization_phone_number' value="#{@params['organization_phone_number']}"
+                input.form-control type="phone" id="org_phone_number" name='organization_phone_number' maxlength="10" pattern="^\d{3}\d{3}\d{4}$" placeholder="xxxxxxxxxx" value="#{@params['organization_phone_number']}" required = true
 
           .form-group
             label.col-sm-5.control-label  for="first_name" First Name
             .col-sm-7
-              input.form-control type="text" id="first_name" name='first_name' value="#{@params['first_name']}"
+              input.form-control type="text" id="first_name" name='first_name' maxlength="20" value="#{@params['first_name']}"
 
           .form-group
             label.col-sm-5.control-label  for="last_name" Last Name
             .col-sm-7
-              input.form-control type="text" id="last_name" name='last_name' value="#{@params['last_name']}"
+              input.form-control type="text" id="last_name" name='last_name' maxlength="20" value="#{@params['last_name']}"
 
           .form-group
             label.col-sm-5.control-label  for="email" Email
             .col-sm-7
-              input.form-control type="email" id="email" name='email' value="#{@params['email']}"
+              input.form-control type="email" id="email" name='email' value="#{@params['email']}" maxlength="45" 
+              /placeholder="e.g. yourname@yourmail.com"
 
           .form-group
             label.col-sm-5.control-label  for="primary_phone_number_attributes_phone_number" Contact Phone Number
             .col-sm-7
-              input.form-control type="phone" id="primary_phone_number_attributes[phone_number]" name='phone_number' value="#{@params['phone_number']}"
-
+              input.form-control type="phone" id="primary_phone_number_attributes[phone_number]" name='phone_number' value="#{@params['phone_number']}" maxlength="10" pattern="^\d{3}\d{3}\d{4}$" placeholder="xxxxxxxxxx"
+              
           .form-group
             label.col-sm-5.control-label  for="user_password" Password
             .col-sm-7
