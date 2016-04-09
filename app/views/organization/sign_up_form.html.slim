@@ -1,10 +1,12 @@
 .row
   .col-md-4.col-sm-12.col-md-offset-2
-    .panel.panel-default
+    .panel.panel-default 
       .panel-heading
         h3.sh-panel-title = "#{@organization_type.capitalize} sign up"
+      
       .panel-body
         form.form-horizontal action="/organization/sign-up/#{@organization_type}" method="post"
+          
           .form-group
             label.col-sm-5.control-label  for="organization_member"  Already with an organization?
             .col-sm-7
@@ -14,54 +16,54 @@
             .form-group id='organization_id_group' style='display: none;'
               label.col-sm-5.control-label  for="org_code" Organization Code
               .col-sm-7
-                input.form-control type="text" id="org_code" name='organization_code' value="#{@params['organization_code']}"
+                input.form-control type="text" id="org_code" name='organization_code' value="#{@params['organization_code']}" placeholder="xxxxxx" required=true
 
             .form-group id='organization_name_group'
               label.col-sm-5.control-label  for="org_name" Organization Name
               .col-sm-7
-                input.form-control type="text" id="org_name" name='organization_name' value="#{@params['organization_name']}"
+                input.form-control type="text" id="org_name" name='organization_name' value="#{@params['organization_name']}" maxlength="40" required=true
 
             .form-group id='organization_tax_id_group'
-              label.col-sm-5.control-label  for="tax_id" Tax ID (EIN)
+              label.col-sm-5.control-label  for="tax_id" Tax ID (EIN) - (9 digits)
               span.glyphicon.glyphicon-exclamation-sign.pull-right id='tax_id_tooltip' style='color:purple'
               .col-sm-7
-                input.form-control. type="text" id="tax_id" name='tax_id' value="#{@params['tax_id']}"
+                input.form-control. type="text" id="tax_id" name='tax_id' value="#{@params['tax_id']}" maxlength="10" pattern="^\d{2}-\d{7}$" placeholder="xx-xxxxxxx" required=true
 
 
             .form-group id='organization_phone_number_group'
-              label.col-sm-5.control-label  for="org_phone_number" Organization Phone Number
+              label.col-sm-5.control-label  for="org_phone_number" Organization Phone Number - (10 digits)
               .col-sm-7
-                input.form-control type="phone" id="org_phone_number" name='organization_phone_number' value="#{@params['organization_phone_number']}"
+                input.form-control type="phone" id="org_phone_number" name='organization_phone_number' value="#{@params['organization_phone_number']}" maxlength="10" pattern="^\d{3}\d{3}\d{4}$" placeholder="xxxxxxxxxx" required=true
 
           .form-group
             label.col-sm-5.control-label  for="first_name" First Name
             .col-sm-7
-              input.form-control type="text" id="first_name" name='first_name' value="#{@params['first_name']}"
+              input.form-control type="text" id="first_name" name='first_name' value="#{@params['first_name']}" maxlength="25" required=true
 
           .form-group
             label.col-sm-5.control-label  for="last_name" Last Name
             .col-sm-7
-              input.form-control type="text" id="last_name" name='last_name' value="#{@params['last_name']}"
+              input.form-control type="text" id="last_name" name='last_name' value="#{@params['last_name']}" maxlength="25" required=true
 
           .form-group
             label.col-sm-5.control-label  for="email" Email
             .col-sm-7
-              input.form-control type="email" id="email" name='email' value="#{@params['email']}"
+              input.form-control type="email" id="email" name='email' value="#{@params['email']}" maxlength="45" placeholder="e.g. yourname@yourmail.com" required=true
 
           .form-group
             label.col-sm-5.control-label  for="primary_phone_number_attributes_phone_number" Contact Phone Number
             .col-sm-7
-              input.form-control type="phone" id="primary_phone_number_attributes[phone_number]" name='phone_number' value="#{@params['phone_number']}"
+              input.form-control type="phone" id="primary_phone_number_attributes[phone_number]" name='phone_number' value="#{@params['phone_number']}" maxlength="10" pattern="^\d{3}\d{3}\d{4}$" placeholder="xxxxxxxxxx" required=true
 
           .form-group
             label.col-sm-5.control-label  for="user_password" Password
             .col-sm-7
-              input.form-control type="password" id="user[password]" name='password'
+              input.form-control type="password" id="user[password]" name='password' maxlength="15" required=true
 
           .form-group
             label.col-sm-5.control-label  for="user_password_confirmation" Confirm Password
             .col-sm-7
-              input.form-control type="password" id="user[password_confirmation]" name='password_confirmation'
+              input.form-control type="password" id="user[password_confirmation]" name='password_confirmation' maxlength="15" required=true
 
           .form-group.pull-right style='margin-right: 0px;'
             input type="checkbox" required='true' id="user[agree_to_terms]" name='agree_to_terms' &nbsp &nbsp I agree to the <a class='terms-link' target='blank' href='/legal/terms-of-use'>Terms of Use</a>
