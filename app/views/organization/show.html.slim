@@ -15,7 +15,7 @@
           .form-group
             label.col-sm-5.control-label  for="name" Code
             .col-sm-7
-              - if current_user.user_id == @organization.admin_id
+              - if current_user.user_id == @organization.admin_id or current_user.site_admin?
                 label.form-control = @organization.code
               - else
                 label.form-control = "Ask your Organization Admin for Code"
@@ -42,11 +42,11 @@
           .form-group
             label.col-sm-5.control-label  for="name" Organization Admin
             .col-sm-7
-              - if can? :update, @organization
+              - if current_user.user_id == @organization.admin_id and can? :update, @organization
                 = select("user", "email", @organization.users.collect{|u|[u.email, u.email]}, {selected: @organization.admin.try(:email)}, class: 'form-control')
               - else
                 label.form-control = @organization.admin.try(:email)
-          - if can? :update, @organization
+          - if current_user.user_id == @organization.admin_id and can? :update, @organization
             button.btn.btn-success.pull-right type="submit" Save details
   .col-sm-6
     .panel.panel-default
