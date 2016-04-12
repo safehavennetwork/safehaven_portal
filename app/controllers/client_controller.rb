@@ -47,6 +47,7 @@ class ClientController < ApplicationController
     else
       @client.update_attributes(client_application: ClientApplication.create(client_application_params))
     end
+    OrganizationMailer.client_updated(@client).deliver
     redirect_to :back and return if apply_review?
     redirect_to "/client/#{@client.id}"
   end
