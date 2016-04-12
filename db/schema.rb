@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20151014234047) do
     t.integer "organization_id"
     t.date    "updated_at"
     t.text    "update_action"
-    t.integer "pets_count", default: 1              
+    t.integer "pets_count"              
     t.string  "slug"
     t.integer "release_status_id"
     t.integer "phone_number_id"
