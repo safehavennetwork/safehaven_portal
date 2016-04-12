@@ -35,7 +35,7 @@ class ApplyController < ApplicationController
   end
 
   def update_client_application
-    @client = Client.find(params.permit(:id)[:id])
+     @client = Client.find(params.permit(:id)[:id])
     if @client.client_application
       @client.client_application.update_attributes(client_application_params)
     else
