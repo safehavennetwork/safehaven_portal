@@ -1,77 +1,97 @@
 .row
   .col-md-6.col-sm-12
     .panel.panel-default
+
       .panel-heading
-        h3.sh-panel-title  New Client Application
+        h3.sh-panel-title  New Client Application 
+        h6.text-danger * All fields are required
+
       .panel-body
         form.form-horizontal action="anonymous-signup" method="post"
-          .form-group
-            label.col-sm-5.control-label  for="name" Name
-            .col-sm-7
-              input.form-control.qa-client-name type="text" id="client_name" name='name'
 
           .form-group
-            label.col-sm-5.control-label  for="phone_number" Phone Number
+            label.col-sm-5.control-label for="client_name" * Name (first & last)
             .col-sm-7
-              input.form-control.qa-client-phone type="text" id="phone_number" name='phone_number'
+              input.form-control.qa-client-name type="text" id="client_name" name='name' maxlength="45"  required = true
 
           .form-group
-            label.col-sm-5.control-label  for="email" Email
+            label.col-sm-5.control-label  for="client_phone_number" * Phone Number (10 digits)
             .col-sm-7
-              input.form-control.qa-client-email type="text" name='email'
+              input.form-control.qa-client-phone type="phone" id="client_phone_number" name='phone_number' maxlength="10" pattern="^\d{3}\d{3}\d{4}$" placeholder="xxxxxxxxxx" required = true 
 
           .form-group
-            label.col-sm-5.control-label  for="best_way_to_reach" Preferred contact method
+            label.col-sm-5.control-label  for="client_email" * E-mail
             .col-sm-7
-              input.form-control.qa-client-best-way-to-reach type="text" id="best_way_to_reach" name='best_way_to_reach'
+              input.form-control.qa-client-email maxlength="45" id="client_email" type="email" name='email' placeholder="e.g. yourname@yourmail.com" required = true
 
           .form-group
-            label.col-sm-5.control-label  for="address_line_1" Address
+            label.col-sm-5.control-label  for="best_way_to_reach" * Preferred contact method
             .col-sm-7
-              input.form-control.qa-client-address-line-1 type="text" name='address[line1]'
+              select.form-control.qa-client-best-way-to-reach style='width: 50%;' id="best_way_to_reach" name='best_way_to_reach'
+                option selected="selected" value='phone' Phone
+                option value='e-mail' E-mail
+                option value='postal mail' Postal Mail
 
           .form-group
-            label.col-sm-5.control-label  for="city" City
+            label.col-sm-5.control-label  for="address_line_1" * Address
             .col-sm-7
-              input.form-control.qa-client-address-city type="text" name='address[city]'
+              input.form-control.qa-client-address-line-1 id="address_line_1" type="text" name='address[line1]' maxlength="45"  required = true
 
           .form-group
-            label.col-sm-5.control-label  for="state" State
+            label.col-sm-5.control-label  for="client_city" * City
             .col-sm-7
-              = select_tag 'address[state]', options_for_select(us_states, selected: 'IL'), class: 'form-control'
+              input.form-control.qa-client-address-city id="client_city" type="text" name='address[city]' maxlength="30"  required = true
 
           .form-group
-            label.col-sm-5.control-label  for="zip" Zip
+            label.col-sm-5.control-label  for="client_state" * State 
             .col-sm-7
-              input.form-control.qa-client-address-zip-code type="text" name='address[zip_code]'
+              = select_tag 'address[state]', options_for_select(us_states, selected: 'IL'), class: 'form-control', required: true
+
+          .form-group
+            label.col-sm-5.control-label  for="client_zip" * Zip (5 digits)
+            .col-sm-7
+              input.form-control.qa-client-address-zip-code id="client_zip" type="text" name='address[zip_code]' maxlength="5" pattern="^\d{5}$" placeholder="xxxxx" required = true
 
           .form-group
             label.col-sm-5
               h2.pull-right Your pets
+            br
+            label.col-sm-5
+              h6.text-danger * All fields required
+              
           .form-group
-            label.col-sm-5.control-label  for="pet_type" Type
+            label.col-sm-5.control-label  for="pet_type" * Type
             .col-sm-7
-              select.form-control.qa-pet-type style='width: 50%;' id='pet_type'
-                option value='dog' Dog
+              select.form-control.qa-pet-type style='width: 50%;' id="pet_type"
+                option selected="selected" value='dog' Dog
                 option value='cat' Cat
                 option value= 'other' Other
+          
           .form-group
-            label.col-sm-5.control-label  for="pet_breed" Breed
+            label.col-sm-5.control-label  for="pet_breed" * Breed 
             .col-sm-7
-              input.form-control.qa-pet-breed type="text" id="pet_breed"
+              input.form-control.qa-pet-breed type="text" id="pet_breed" maxlength="25" placeholder="e.g. Labrador"
+          
           .form-group
-            label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
+            label.col-sm-5.control-label  for="pet_weight" * Weight (lbs)
             .col-sm-7
-              input.form-control.qa-pet-weight type="text" id="pet_weight"
+              input.form-control.qa-pet-weight type="text" id="pet_weight" maxlength="2" pattern="^\d{2}$" placeholder="e.g. 15"
+            
             br
-            button.btn.btn-success.pull-right.qa-add-pet-btn type='button' onclick='addPet();' style='margin-top: 10px; margin-right: 15px' Add Pet
+            button.btn.btn-success.pull-right.qa-add-pet-btn type='button' onclick='addPet();' style='margin-top: 10px; margin-right: 15px' Add Pet 
+            
+            br
+            h6.pull-right.text-danger * Must add atleast one pet
+            br
+            //h6.pull-right id="demo" NOTE
+          
           br
           .form-group
             .col-sm-7.pull-right
-              table.table.table-hover id='pet_list'
+              table.table.table-hover id='pet_list' required = true
                 th
                   td
-                    p Pet Type
+                    p Pet Type 
                   td
                     p Breed
                   td
@@ -83,10 +103,12 @@
               .form-group
                 label.col-sm-5.control-label  for="confirmation_email" Send confirmation email?
                 .col-sm-7
-                  input.form-control type='checkbox' name='confirmation_email'
-              button.btn.btn-success style='width:100%'  type="submit" Submit
+                  input.form-control type='checkbox' checked="checked" name='confirmation_email'
+              button.btn.btn-success style='width:100%'  id="submitbutton" type="submit" Submit
+              
   .col-md-6.col-sm-12
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
+
 
 javascript:
   function addPet(){
@@ -95,6 +117,7 @@ javascript:
     pet_weight = $('#pet_weight').val();
 
     if (pet_type == '' || pet_breed == '' || pet_weight == ''){
+      alert("Please enter all pet details!");
       return null;
     } else {
       $('#pet_type').val('dog');

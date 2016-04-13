@@ -21,6 +21,14 @@ class OrganizationMailer < ActionMailer::Base
     mail(to: site_admin_email,  subject: 'Client released')
   end
 
+  def client_updated(client)
+    @client = client
+    pet = Pet.find_by(client_id: @client.client_id)
+    if pet.organization != nil
+      mail(to: [pet.organization.email] + site_admin_email,  subject: 'Client Information Updated')
+    end
+  end
+
   def site_admin_email
     ['referral@thesafehavennetwork.org']
   end

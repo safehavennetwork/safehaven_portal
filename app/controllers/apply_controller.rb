@@ -15,14 +15,14 @@ class ApplyController < ApplicationController
   def update_pet
     update_service = UpdatePet.new(pet_update_params)
     update_service.call
-    pet = Pet.find(params[:id])
+    @pet = Pet.find(params[:id])
     if update_service.success?
-      pet.update_attributes(completed: true)
+      @pet.update_attributes(completed: true)
     end
 
-    client = pet.client
+    client = @pet.client
     unless client.all_pets_complete?
-      pet = client.pets.find_by(completed: [nil, false])
+      @pet = client.pets.find_by(completed: [nil, false])
       redirect_to apply_pet_details_path(id: pet.id)
     else
       redirect_to apply_client_details_path(id: client.id)
@@ -49,7 +49,7 @@ class ApplyController < ApplicationController
   end
 
   def confirm
-    ClientMailer.application_completed
+    ClientMailer.application_completed.deliver
     redirect_to root_path
   end
 
