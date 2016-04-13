@@ -1,4 +1,3 @@
-=begin
 require 'rails_helper'
 
 RSpec.feature "managing clients as an organization", js: true do
@@ -27,4 +26,3 @@ RSpec.feature "managing clients as an organization", js: true do
     end
   end
 end
-=end

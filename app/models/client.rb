@@ -8,6 +8,8 @@ class Client < ActiveRecord::Base
   has_one    :client_application
   friendly_id :name, use: :slugged
 
+  validates :email, uniqueness: true
+
   def all_pets_released?
     pets.map(&:organization).compact.empty?
   end

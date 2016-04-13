@@ -26,8 +26,6 @@ unless Rails.env.production?
     disabled: nil,
     organization: Organization.create({
       name:              'Advocate Inc.',
-      code:              'ADV123',
-      admin_id:          '2', 
       organization_type: OrganizationType.find_by(organization_type: 'advocate')
     })
   )
@@ -38,8 +36,6 @@ unless Rails.env.production?
     disabled: nil,
     organization: Organization.create({
       name:              'Shelter Inc.',
-      code:              'SHL123',
-      admin_id:          '3', 
       organization_type: OrganizationType.find_by(organization_type: 'shelter')
     })
   )
@@ -48,7 +44,7 @@ unless Rails.env.production?
   shelter.groups  << Group.find_by(name: 'org_admin')
 
   Client.create({
-    name:  'Jane Doe',
+    name:  'jane doe',
     email: 'jane@doe.com',
     address: Address.create(
       line1:    '12 S Maple St.',

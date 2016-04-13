@@ -14,14 +14,11 @@ class ClientMailer < ActionMailer::Base
   end
 
   def advocate_emails
-    #Organization.where(organization_type: OrganizationType['advocate']).pluck(:email).compact
-    User.joins(:organization).where("organizations.organization_type_id = 1").pluck(:email)
+    Organization.where(organization_type: OrganizationType['advocate']).pluck(:email).compact
   end
 
   def shelter_emails
-   # Organization.where(organization_type: OrganizationType['shelter']).pluck(:email).compact
-   User.joins(:organization).where("organizations.organization_type_id=2").pluck(:email)    
-   end
+    Organization.where(organization_type: OrganizationType['shelter']).pluck(:email).compact
+  end
 end
 
-  
