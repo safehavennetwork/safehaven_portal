@@ -1,4 +1,3 @@
-=begin
 require 'rails_helper'
 
 RSpec.feature "adding a new client", js: true do
@@ -58,4 +57,3 @@ RSpec.feature "adding a new client", js: true do
     end
   end
 end
-=end

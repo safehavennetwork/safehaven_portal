@@ -77,17 +77,16 @@ class OrganizationController < ApplicationController
     if params[:organization_member] == 'on'
       unless org = Organization.find_by(code: org_lookup_params[:organization_code].upcase)
         flash[:error] = 'The organization code entered could not be found'
-        render 'users/registrations/failed' && return
+        render 'users/registration/failed'
       end
 
       @user = User.get_user(user_params.merge(organization: org))
-      if @user.errors.messages.present?
+      if @user.errors
         flash[:error] = @user.errors.messages.map {|k,v| "#{k.to_s} #{v[0]}"}.join(', ')
-        render "organization/sign_up_form" 
-      else
-      UserMailer.new_user_email.deliver unless Rails.env.development?
+        render "organization/sign_up_form" && return
+      end
+      UserMailer.new_user_email.deliver
       render 'users/registrations/pending'
-    end
     else
       unless @org = Organization.create_with_admin(organization_params, user_params)
         flash[:error] = 'Error creating new Organization!'
@@ -159,8 +158,7 @@ class OrganizationController < ApplicationController
       :type,
       :organization_name,
       :organization_phone_number,
-      :tax_id,
-      :email
+      :tax_id
     )
   end
 

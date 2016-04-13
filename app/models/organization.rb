@@ -21,7 +21,6 @@ class Organization < ActiveRecord::Base
     org = Organization.create!(
       name:              org_hash[:organization_name],
       # FIXME: this needs to be updated to an actual PhoneNumber object
-      email:             org_hash[:email], 
       phone:             org_hash[:organization_phone_number],
       admin:             User.get_user(user_hash),
       organization_type: OrganizationType.find_by(organization_type: org_hash[:type]),
