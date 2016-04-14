@@ -19,6 +19,7 @@ form.form-horizontal action="/client/#{@client.id}" method="post"
       label.col-sm-5.control-label  for="org_phone_number" Preferred contact method
       .col-sm-7
         input.form-control type="text" id="best_way_to_reach" name='best_way_to_reach' value="#{@client.best_way_to_reach}" maxlength="15"  required = true
+        h6.pull-left  Options - phone (or) email (or) postal mail
   .col-sm-6
     .form-group
       label.col-sm-5.control-label  for="org_phone_number" Address
