@@ -8,7 +8,7 @@
           .form-group id='organization_name_group'
             label.col-sm-5.control-label  for="name" Pet Name
             .col-sm-7
-              input.form-control type="text" name='name' value="#{@pet.name}"
+              input.form-control type="text" name='name' value="#{@pet.name}" maxlength="25"  required = true
 
           .form-group.form-inline
               label.col-sm-5.control-label Pet Type
@@ -29,22 +29,22 @@
           .form-group id='organization_name_group'
             label.col-sm-5.control-label  for="breed" Breed
             .col-sm-7
-              input.form-control type="text" name='breed' value="#{@pet.breed}"
+              input.form-control type="text" name='breed' value="#{@pet.breed}" maxlength="25"  required = true
 
           .form-group id='organization_name_group'
             label.col-sm-5.control-label  for="weight" Weight
             .col-sm-7
-              input.form-control type="text" name='weight' value="#{@pet.weight}"
+              input.form-control type="text" name='weight' value="#{@pet.weight}" pattern="\d+" maxlength="2"  required = true
 
           .form-group id='organization_name_group'
             label.col-sm-5.control-label  for="age" Age
             .col-sm-7
-              input.form-control type="text" name='age' value="#{@pet.age}"
+              input.form-control type="text" name='age' value="#{@pet.age}" pattern="\d+" maxlength="2"  required = true
 
           .form-group id='organization_name_group'
             label.col-sm-5.control-label  for="org_name" Description
             .col-sm-7
-              input.form-control type="text" name='description' value="#{@pet.description}"
+              input.form-control type="text" name='description' value="#{@pet.description}" maxlength="100"  required = true
 
 
 
@@ -97,17 +97,17 @@
             .form-group
               label.col-sm-5.control-label Any special dietary needs?
               .col-sm-7
-                textarea.form-control row='3' name='dietary_needs'= "#{@pet.dietary_needs}"
+                textarea.form-control row='3' maxlength="50"  required = true name='dietary_needs'= "#{@pet.dietary_needs}" 
 
             .form-group
               label.col-sm-5.control-label Any special veterinary needs?
               .col-sm-7
-                textarea.form-control row='3' name='vet_needs' = "#{@pet.vet_needs}"
+                textarea.form-control row='3' maxlength="50"  required = true name='vet_needs' = "#{@pet.vet_needs}" 
 
             .form-group
               label.col-sm-5.control-label Please describe the pets behavior and temperament
               .col-sm-7
-                textarea.form-control row='3' name='temperament' = "#{@pet.temperament}"
+                textarea.form-control row='3' maxlength="50"  required = true name='temperament' = "#{@pet.temperament}" 
 
             .form-group.form-inline
               label.col-sm-5.control-label Does the abuser frequently have access or visit the pet?
@@ -124,7 +124,7 @@
             .form-group
               label.col-sm-5.control-label Any other relevant information for this pet?
               .col-sm-7
-                textarea.form-control row='3' name='additional_info' value="#{@pet.additional_info}"
+                textarea.form-control row='3' name='additional_info' value="#{@pet.additional_info}" maxlength="50"  required = true
 
             .form-group
               .col-sm-offset-2.col-sm-10
