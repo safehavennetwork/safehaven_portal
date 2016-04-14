@@ -2,7 +2,7 @@
   label.col-sm-5.control-label
     p  Approximately how long will temporary housing be required? (Please note that our program is currently limited to 30 day placement.)
   .col-sm-7
-    textarea.form-control row='3' name='estimated_length_of_housing' value="#{client_application.try(:estimated_length_of_housing)}" = client_application.try(:estimated_length_of_housing)
+    textarea.form-control row='3' name='estimated_length_of_housing' value="#{client_application.try(:estimated_length_of_housing)}" = client_application.try(:estimated_length_of_housing) maxlength="50"  required=true
 .form-group.form-inline
   label.col-sm-5.control-label
     p Are the police currently involved?
@@ -68,7 +68,7 @@
   label.col-sm-5.control-label
     p Please add any details about the abuser that may be helpful for protection. (frequent locations, names of friends, phone numbers used, etc)
   .col-sm-7
-    textarea.form-control rows=3 name='abuser_notes' value="#{client_application.try(:abuser_notes)}" = client_application.try(:abuser_notes)
+    textarea.form-control rows=3 name='abuser_notes' value="#{client_application.try(:abuser_notes)}" = client_application.try(:abuser_notes) maxlength="100"  required=true
 .form-group.form-inline
   label.col-sm-5.control-label
     p Has the client explored other boarding options (i.e. friends, family, private vet or boarding)
