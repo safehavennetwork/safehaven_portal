@@ -34,12 +34,12 @@
             .form-group id='organization_name_group'
               label.col-sm-5.control-label  for="weight" Weight
               .col-sm-7
-                input.form-control type="text" name='weight' value="#{@pet.weight}" pattern="^\d{2}$" maxlength="2"  required = true
+                input.form-control type="text" name='weight' value="#{@pet.weight}" pattern="\d+" maxlength="2"  required = true
 
             .form-group id='organization_name_group'
               label.col-sm-5.control-label  for="age" Age
               .col-sm-7
-                input.form-control type="text" name='age' value="#{@pet.age}" pattern="^\d{2}$" maxlength="2"  required = true
+                input.form-control type="text" name='age' value="#{@pet.age}" pattern="\d+" maxlength="2"  required = true
 
             .form-group id='organization_name_group'
               label.col-sm-5.control-label  for="org_name" Description
