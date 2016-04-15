@@ -7,7 +7,8 @@
         h6.text-danger * All fields are required
 
       .panel-body
-        form.form-horizontal action="anonymous-signup" method="post"
+        //form.form-horizontal action="anonymous-signup" method="post"
+        form.form-horizontal name="myform" action="javascript:frm_submit();" method="post"
 
           .form-group
             label.col-sm-5.control-label for="client_name" * Name (first & last)
@@ -103,7 +104,10 @@
                 label.col-sm-5.control-label  for="confirmation_email" Send confirmation email?
                 .col-sm-7
                   input.form-control type='checkbox' checked="checked" name='confirmation_email'
-              button.btn.btn-success style='width:100%'  id="submitbutton" type="submit" Submit
+
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              button.btn.btn-success style='width:100%'  type="submit"  Submit
               
   .col-md-6.col-sm-12
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
@@ -116,7 +120,8 @@ javascript:
     pet_weight = $('#pet_weight').val();
 
     if (pet_type == '' || pet_breed == '' || pet_weight == ''){
-      alert("Please enter all pet details!");
+
+      alert("enter all pet details");
       return null;
     } else {
       $('#pet_type').val('dog');
@@ -139,4 +144,18 @@ javascript:
 
   function deletePetRow(row_id){
     $(row_id).remove();
+
+  }
+
+  function frm_submit() {
+  pet_row_count_no = $('#pet_list tr').length;
+  if(pet_row_count_no <=1){
+    alert('Please Add Pet Details');
+     $('#pet_breed').focus();
+     return;
+  }else {
+    document.forms["myform"].action="anonymous-signup";
+    document.forms["myform"].submit();
+  }
+
   }

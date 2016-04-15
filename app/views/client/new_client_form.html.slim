@@ -7,7 +7,8 @@
         h6.text-danger * All fields are required
 
       .panel-body
-        form.form-horizontal action="/organization/#{@org_id}/new_client" method="post"
+        //form.form-horizontal action="/organization/#{@org_id}/new_client" method="post"
+        form.form-horizontal name="myform" action="javascript:frm_submit();" method="post"
 
           .form-group
             label.col-sm-5.control-label for="client_name" * Name (first & last)
@@ -107,6 +108,7 @@
   .col-md-6.col-sm-12
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
 
+
 javascript:
   function addPet(){
     pet_type   = $('#pet_type').val();
@@ -138,5 +140,18 @@ javascript:
 
   function deletePetRow(row_id){
     $(row_id).remove();
+
   }
-  
+
+  function frm_submit() {
+  pet_row_count_no = $('#pet_list tr').length;
+  if(pet_row_count_no <=1){
+    alert('Please Add Pet Details');
+     $('#pet_breed').focus();
+     return;
+  }else {
+    document.forms["myform"].action="/organization/#{@org_id}/new_client";
+    document.forms["myform"].submit();
+  }
+
+  }
