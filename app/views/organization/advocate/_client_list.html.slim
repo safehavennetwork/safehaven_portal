@@ -12,7 +12,8 @@
             a href='/client/#{client.slug}'
               span.glyphicon.glyphicon-folder-close
           td
-            p = client.name
+            //p = client.name
+            a href='/client/#{client.slug}' #{client.name}
           td
             p = client.created_at.strftime("%d/%m/%Y")
           td
