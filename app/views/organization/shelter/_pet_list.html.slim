@@ -18,7 +18,8 @@
               a href='/client/#{client.client_id}'
                 span.glyphicon.glyphicon-pencil
             td
-              strong = client.client_name
+              //strong = "#{Client.friendly.find(client.client_id).id}"
+              a href='/client/#{client.client_id}' #{Client.friendly.find(client.client_id).id}
             td
               strong = "#{client.pet_count}"
             td

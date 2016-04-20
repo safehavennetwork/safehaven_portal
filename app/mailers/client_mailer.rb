@@ -19,7 +19,9 @@ class ClientMailer < ActionMailer::Base
   end
 
   def shelter_emails
-    Organization.where(organization_type: OrganizationType['shelter']).pluck(:email).compact
-  end
+   # Organization.where(organization_type: OrganizationType['shelter']).pluck(:email).compact
+   User.joins(:organization).where("organizations.organization_type_id=2").pluck(:email)    
+   end
 end
 
+  

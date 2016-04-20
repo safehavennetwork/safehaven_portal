@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -45,6 +45,7 @@ Rails.application.configure do
     authentication:        'plain',
     enable_startttls_auto: true,
     user_name:             ENV['EMAIL_USER'],
-    password:              ENV['EMAIL_PASS']
+    password:              ENV['EMAIL_PASS'],
+    #enable_starttls_auto: true
   }
 end
