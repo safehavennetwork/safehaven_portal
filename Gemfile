@@ -51,6 +51,6 @@ end
 
 group :development do
   gem 'better_errors'
-  gem 'brakeman', require: false
+  gem 'brakeman', require: false # Static analysis security scanner for Ruby on Rails
   gem 'figaro'
 end

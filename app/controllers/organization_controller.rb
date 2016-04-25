@@ -56,13 +56,15 @@ class OrganizationController < ApplicationController
   end
 
   def release_pets
+    client = Client.find(params[:id])
     if ReleasePets.new( shelter: current_user.organization,
                         client:  Client.find(params[:client_id]),
                         reason:  params[:release_status]).call
       redirect_to :root
     else
       flash[:error] = 'Error releasing pets'
-      render "client/#{params[:client_id]}"
+      #render "client/#{params[:client_id]}"
+      render "client/#{client.client_id}"
     end
   end
 
