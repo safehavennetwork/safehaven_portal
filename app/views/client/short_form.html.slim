@@ -4,13 +4,10 @@
       .panel-heading
         h3.sh-panel-title  New Client Application
       .panel-body
-<<<<<<< HEAD
-        form.form-horizontal action="anonymous-signup" method="post"
-=======
+      
         //form.form-horizontal action="anonymous-signup" method="post"
         form.form-horizontal name="myform" action="javascript:frm_submit();" method="post"
-
->>>>>>> staging
+        
           .form-group
             label.col-sm-5.control-label  for="name" Name
             .col-sm-7
@@ -68,11 +65,6 @@
           .form-group
             label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
             .col-sm-7
-<<<<<<< HEAD
-              input.form-control.qa-pet-weight type="text" id="pet_weight"
-            br
-            button.btn.btn-success.pull-right.qa-add-pet-btn type='button' onclick='addPet();' style='margin-top: 10px; margin-right: 15px' Add Pet
-=======
               input.form-control.qa-pet-weight type="text" id="pet_weight" maxlength="2" pattern="\d+" placeholder="e.g. 15"
             
             br
@@ -81,8 +73,6 @@
             br
             h6.pull-right.text-danger * Must add atleast one pet
             br
-          
->>>>>>> staging
           br
           .form-group
             .col-sm-7.pull-right
@@ -101,17 +91,12 @@
               .form-group
                 label.col-sm-5.control-label  for="confirmation_email" Send confirmation email?
                 .col-sm-7
-<<<<<<< HEAD
-                  input.form-control type='checkbox' name='confirmation_email'
-              button.btn.btn-success style='width:100%'  type="submit" Submit
-=======
                   input.form-control type='checkbox' checked="checked" name='confirmation_email'
 
           .form-group
             .col-sm-offset-2.col-sm-10
               button.btn.btn-success style='width:100%'  type="submit"  Submit
-              
->>>>>>> staging
+
   .col-md-6.col-sm-12
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
 
@@ -122,11 +107,7 @@ javascript:
     pet_weight = $('#pet_weight').val();
 
     if (pet_type == '' || pet_breed == '' || pet_weight == ''){
-<<<<<<< HEAD
-=======
-
       alert("enter all pet details");
->>>>>>> staging
       return null;
     } else {
       $('#pet_type').val('dog');
