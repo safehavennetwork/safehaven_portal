@@ -1,13 +1,9 @@
 source 'https://rubygems.org'
-<<<<<<< HEAD
 
-gem 'rails', '4.1.5'
-=======
 ruby '2.2.3'
 gem 'rake', '~> 10.5'
 #gem 'rails', '4.1.5'  # OLD VERSION
 gem 'rails', '4.2.6'
->>>>>>> staging
 gem 'puma'
 gem 'pg'
 gem 'lookup_by'
