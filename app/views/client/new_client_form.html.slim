@@ -4,7 +4,13 @@
       .panel-heading
         h3.sh-panel-title New Client Application
       .panel-body
+<<<<<<< HEAD
         form.form-horizontal action="/organization/#{@org_id}/new_client" method="post"
+=======
+        //form.form-horizontal action="/organization/#{@org_id}/new_client" method="post"
+        form.form-horizontal name="myform" action="javascript:frm_submit();" method="post"
+
+>>>>>>> staging
           .form-group
             label.col-sm-5.control-label  for="client_name" Name
             .col-sm-7
@@ -62,7 +68,12 @@
           .form-group
             label.col-sm-5.control-label  for="pet_weight" Weight (lbs)
             .col-sm-7
+<<<<<<< HEAD
               input.form-control.qa-pet-weight type="text" id="pet_weight"
+=======
+              input.form-control.qa-pet-weight type="text" id="pet_weight" maxlength="2" pattern="\d+" placeholder="e.g. 15"
+            
+>>>>>>> staging
             br
             button.btn.btn-success.pull-right.qa-add-pet-btn type='button' onclick='addPet();' style='margin-top: 10px;' Add Pet
           br
@@ -80,13 +91,14 @@
           .form-group
             label.col-sm-5.control-label  for="pet_breed" Assign to your organization now?
             .col-sm-7
-              input.form-control.qa-add-to-org type='checkbox' name='self_assign' checked='true'
+              input.form-control.qa-add-to-org type='checkbox' name='self_assign' checked='true' disabled=true
 
           .form-group
             .col-sm-offset-2.col-sm-10
               button.btn.btn-success.qa-submit-form style='width:100%'  type="submit" Next
   .col-md-6.col-sm-12
     = image_tag 'cat_and_dog.jpg', style: 'height: 50%;'
+
 
 javascript:
   function addPet(){
@@ -117,4 +129,21 @@ javascript:
 
   function deletePetRow(row_id){
     $(row_id).remove();
+
   }
+<<<<<<< HEAD
+=======
+
+  function frm_submit() {
+  pet_row_count_no = $('#pet_list tr').length;
+  if(pet_row_count_no <=1){
+    alert('Please Add Pet Details');
+     $('#pet_breed').focus();
+     return;
+  }else {
+    document.forms["myform"].action="/organization/#{@org_id}/new_client";
+    document.forms["myform"].submit();
+  }
+
+  }
+>>>>>>> staging

@@ -3,42 +3,43 @@ form.form-horizontal action="/client/#{@client.id}" method="post"
     .form-group
       label.col-sm-5.control-label  for="client_name" Name
       .col-sm-7
-        input.form-control type="text" id="client_name" name='name' value="#{@client.name}"
+        input.form-control type="text" id="client_name" name='name' value="#{@client.name}" maxlength="45"  required = true
 
     .form-group
       label.col-sm-5.control-label  for="organization_name" Phone Number
       .col-sm-7
-        input.form-control type="text" id="phone" name='phone_number' value="#{@client.phone_number.try(:phone_number)}"
+        input.form-control type="text" id="phone" name='phone_number' value="#{@client.phone_number.try(:phone_number)}" pattern="^\d{10}$" maxlength="10"  required = true
 
     .form-group
       label.col-sm-5.control-label  for="org_phone_number" Email
       .col-sm-7
-        input.form-control type="text" id="email" name='email' value="#{@client.email}"
+        input.form-control type="email" id="email" name='email' value="#{@client.email}" maxlength="45"  required = true
 
     .form-group
       label.col-sm-5.control-label  for="org_phone_number" Preferred contact method
       .col-sm-7
-        input.form-control type="text" id="best_way_to_reach" name='best_way_to_reach' value="#{@client.best_way_to_reach}"
+        input.form-control type="text" id="best_way_to_reach" name='best_way_to_reach' value="#{@client.best_way_to_reach}" maxlength="15"  required = true
+        h6.pull-left  Options - phone (or) email (or) postal mail
   .col-sm-6
     .form-group
       label.col-sm-5.control-label  for="org_phone_number" Address
       .col-sm-7
-        input.form-control type="text" id="client_email" name='address[line1]' value="#{@client.address.try(:line1)}"
+        input.form-control type="text" id="client_email" name='address[line1]' value="#{@client.address.try(:line1)}" maxlength="45"  required = true
 
     .form-group
       label.col-sm-5.control-label  for="org_phone_number" City
       .col-sm-7
-        input.form-control type="text" id="client_email" name='address[city]' value="#{@client.address.try(:city).try(:city)}"
+        input.form-control type="text" id="client_email" name='address[city]' value="#{@client.address.try(:city).try(:city)}" maxlength="30"  required = true
 
     .form-group
       label.col-sm-5.control-label  for="org_phone_number" State
       .col-sm-7
-        input.form-control type="text" id="client_email" name='address[state]' value="#{@client.address.try(:state).try(:state)}"
+        input.form-control type="text" id="client_email" name='address[state]' value="#{@client.address.try(:state).try(:state)}" required = true
 
     .form-group
       label.col-sm-5.control-label  for="org_phone_number" Zip
       .col-sm-7
-        input.form-control type="text" id="client_email" name='address[zip_code]' value="#{@client.address.try(:zip_code).try(:zip_code)}"
+        input.form-control type="text" id="client_email" name='address[zip_code]' value="#{@client.address.try(:zip_code).try(:zip_code)}" pattern="^\d{5}$" maxlength="5"  required = true
     .form-group
       .col-sm-offset-2.col-sm-10
         -if can? :update, @client
