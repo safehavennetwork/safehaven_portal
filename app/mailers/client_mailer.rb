@@ -23,5 +23,3 @@ class ClientMailer < ActionMailer::Base
    User.joins(:organization).where("organizations.organization_type_id=2").pluck(:email)    
    end
 end
-
-  
