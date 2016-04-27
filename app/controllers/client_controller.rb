@@ -16,7 +16,7 @@ class ClientController < ApplicationController
   end
 
   def anonymous_signup
-    if @client = CreateClientWithPets.call(client_params, params[:pets])
+    if @client = CreateClientWithPets.call(client_params, new_pet_params)
       #unless Rails.env.development?
       VolunteerMailer.new_client(@client).deliver
       ClientMailer.confirm_signup(@client).deliver if params[:confirmation_email]
