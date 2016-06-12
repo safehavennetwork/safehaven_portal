@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 gem 'rake', '~> 10.5'
-#gem 'rails', '4.1.5'  # OLD VERSION
-gem 'rails', '4.2.6'
+gem 'rails', '4.1.5'  # OLD VERSION
+#gem 'rails', '4.2.6'
 gem 'puma'
 gem 'pg'
 gem 'lookup_by'
