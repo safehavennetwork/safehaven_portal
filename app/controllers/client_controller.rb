@@ -69,7 +69,8 @@ class ClientController < ApplicationController
   def new
     @client_hash = client_params
     @org         = current_user.organization
-    @new_client  = CreateClientWithPets.call(client_params, params[:pets], @org)
+    #@new_client  = CreateClientWithPets.call(client_params, params[:pets], @org)
+    @new_client  = CreateClientWithPets.call(client_params, params[:pets])
     redirect_to apply_pet_details_path(id: @new_client.pets.first.id)
   rescue => e
     
