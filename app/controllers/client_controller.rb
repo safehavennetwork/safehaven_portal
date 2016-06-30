@@ -16,6 +16,7 @@ class ClientController < ApplicationController
   end
 
   def anonymous_signup
+    #if @client = CreateClientWithPets.call(client_params, new_pet_params)
     if @client = CreateClientWithPets.call(client_params, params[:pets])
       #unless Rails.env.development?
       VolunteerMailer.new_client(@client).deliver
@@ -68,7 +69,8 @@ class ClientController < ApplicationController
   def new
     @client_hash = client_params
     @org         = current_user.organization
-    @new_client  = CreateClientWithPets.call(client_params, params[:pets], @org)
+    #@new_client  = CreateClientWithPets.call(client_params, params[:pets], @org)
+    @new_client  = CreateClientWithPets.call(client_params, params[:pets])
     redirect_to apply_pet_details_path(id: @new_client.pets.first.id)
   rescue => e
     

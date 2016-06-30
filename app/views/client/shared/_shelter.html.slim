@@ -17,14 +17,13 @@
     -for pet in @client.pets
       = render 'pet/summary', pet: pet, no_edit: false
 
-- if pets_accepted
-  .row
-    .col-sm-12
-      .panel.panel-default
-        .panel-heading
-          h3 = "Client Application #{'(incomplete)' unless @client.client_application}"
-        .panel-body
-          = render 'client/situation_details', client_application: @client.client_application
+.row
+  .col-sm-12
+    .panel.panel-default
+      .panel-heading
+        h3 = "Client Application #{'(incomplete)' unless @client.client_application}"
+      .panel-body
+        = render 'client/situation_details', client_application: @client.client_application
 
 = render 'legal/disclosure/pet_acceptance'
 = render 'client/shared/release_pets'
